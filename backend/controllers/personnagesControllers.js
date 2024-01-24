@@ -24,7 +24,7 @@ export const createPersonnage = async (req, res) => {
         if (files.image && files.image.length > 0) {
             newpath = await saveImage(files.image[0].filepath, files);
         } else {
-            newpath = 'images/default_image.jpg';
+            newpath = 'images/perso_default.jpg';
         }
 
         const personnage = await personnageModel.create({

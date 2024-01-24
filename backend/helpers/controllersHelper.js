@@ -1,9 +1,9 @@
 import fs from "fs/promises";
 
 
-export const isCombinationUnique = async (model, first, second) => {
+export const isCombinationUnique = async (model, nom, roman) => {
     try {
-        const existingData = await model.findOne({ nom: first, roman: second });
+        const existingData = await model.findOne({ nom: nom, roman: roman });
         return !existingData;
     } catch (error) {
         throw new Error('Error checking combination uniqueness: ' + error.message);

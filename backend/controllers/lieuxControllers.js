@@ -4,45 +4,54 @@ import formidable from "formidable";
 import fs from "fs/promises";
 
 
-export const createLieu = (req, res) => {
-    
+export const createLieu = async (req, res) => {
     const form = formidable();
 
-    form.parse(req, function (err, fields, files){
-
-        let oldpath = files.images[0].filepath;
-        let newpath = 'images/' + new Date().getTime() + "_" + files.images[0].originalFilename;
-        
-        fs.copyFile(oldpath, "./public/"+newpath, function (err){
-            if (err) throw err;
-            lieuModel.create({
-                nom : fields.nom[0],
-                roman : fields.roman[0],
-                appartenance : fields.appartenance[0],
-                emplacement : fields.emplacement[0],
-                population : fields.population[0],
-                description : fields.description[0],
-                images : newpath,
-            })
-            .then((lieu) => {
-                res.status(201).json({
-                    lieu: {
-                        id:lieu.id,
-                        nom : lieu.nom,
-                        roman : lieu.roman,
-                        appartenance : lieu.appartenance,
-                        emplacement : lieu.emplacement,
-                        description : lieu.description,
-                        population : lieu.population,
-                        images : lieu.images,
-                    }
-                });
-            })
-            .catch((err) => {
-                res.status(400).json(err.message);
+    try {
+        const { fields, files } = await new Promise((resolve, reject) => {
+            form.parse(req, (err, fields, files) => {
+                if (err) reject(err);
+                else resolve({ fields, files });
             });
         });
-    });
+
+        const isUnique = await isCombinationUnique(personnageModel, fields.nom[0], fields.roman[0]);
+        if (!isUnique) {
+            return res.status(400).json({ message: 'La combinaison du nom et du roman doit être unique.' });
+        }
+
+        let newpath;
+        if (files.image && files.image.length > 0) {
+            newpath = await saveImage(files.image[0].filepath, files);
+        } else {
+            newpath = 'images/perso_default.jpg';
+        }
+
+        const personnage = await lieuModel.create({
+            nom : fields.nom[0],
+            roman : fields.roman[0],
+            appartenance : fields.appartenance[0],
+            emplacement : fields.emplacement[0],
+            population : fields.population[0],
+            description : fields.description[0],
+            images : newpath,
+        });
+
+        res.status(201).json({
+            lieu: {
+                id:lieu.id,
+                nom : lieu.nom,
+                roman : lieu.roman,
+                appartenance : lieu.appartenance,
+                emplacement : lieu.emplacement,
+                description : lieu.description,
+                population : lieu.population,
+                images : lieu.images,
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
 
