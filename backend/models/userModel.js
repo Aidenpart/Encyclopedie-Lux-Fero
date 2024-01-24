@@ -17,22 +17,13 @@ const userSchema = new mongoose.Schema(
             unique: true,
             required: [true, 'Un pseudo est requis']
         },
-        name: {
-            type: String,
-            required: [true, 'Un nom est requis']
-        },
-        firstName: {
-            type: String,
-            required: [true, 'Un prénom est requis']
-        },
         password: {
             type: String,
             required: [true, 'Un mot de passe est requis'],
             message: "Le mot de passe doit contenir 8 caractères, dont un chiffre, un caractère spécial"
         },
-        images: {
-            type: String,
-            required: [true, 'Une image est requise']
+        image: {
+            type: String
         },
         isAdmin: {
             type: Boolean

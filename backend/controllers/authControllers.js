@@ -7,21 +7,22 @@ import fs from "fs";
 export const register = (req, res) => {
     
 const form = formidable();
+console.log("here")
     
     form.parse(req, function (err, fields, files){
 
-        let oldpath = files.images[0].filepath;
-        let newpath = 'images/' + new Date().getTime() + "_" + files.images[0].originalFilename;
+        console.log("here too")
+
+        let oldpath = files.image[0].filepath;
+        let newpath = 'images/' + new Date().getTime() + "_" + files.image[0].originalFilename;
         
         fs.copyFile(oldpath,  "./public/"+newpath, function (err){
             if (err) throw err;
             UserModel.create({
-                name : fields.name[0],
-                firstName : fields.firstName[0],
-                pseudo : fields.pseudo[0],
-                images : newpath,
                 email : fields.email[0],
+                pseudo : fields.pseudo[0],
                 password : fields.password[0],
+                image : newpath,
                 isAdmin: false
             })
             .then((user) => {
@@ -31,9 +32,7 @@ const form = formidable();
                         _id: user.id,
                         email: user.email,
                         pseudo: user.pseudo,
-                        name : user.name,
-                        firstName : user.firstName,
-                        images : newpath
+                        image : newpath
                     },
                     jwt
                 });
@@ -45,6 +44,8 @@ const form = formidable();
         });
     console.log(err);
     });
+
+    console.log("ici")
 };
 
 

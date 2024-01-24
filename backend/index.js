@@ -6,6 +6,7 @@ import cors from "cors";
 
 import authRouter from "./routers/authRouter.js";
 import publicRouter from "./routers/publicRouter.js";
+import adminRouter from "./routers/adminRouter.js"
 import {auth} from "./middleware/authGate.js";
 
 

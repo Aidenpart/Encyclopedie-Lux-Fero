@@ -46,7 +46,6 @@ const isAdmin = async (req, res, next) => {
 
 
 export const auth = {
-    isUser,
     isAdmin,
     verifyToken
 };

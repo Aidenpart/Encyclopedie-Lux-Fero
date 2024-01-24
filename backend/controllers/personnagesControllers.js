@@ -1,44 +1,65 @@
 import personnageModel from '../models/personnageModel.js';
+import {isCombinationUnique, saveImage} from "../helpers/controllersHelper.js"
 import formidable from "formidable";
-import fs from "fs";
+import fs from "fs/promises";
 
 
-export const createPersonnage = (req, res) => {
-    
+export const createPersonnage = async (req, res) => {
     const form = formidable();
-    
-    form.parse(req, function (err, fields, files){
 
-        let oldpath = files.images[0].filepath;
-        let newpath = 'images/' + new Date().getTime() + "_" + files.images[0].originalFilename;
-        
-        fs.copyFile(oldpath,  "./public/"+newpath, function (err){
-            if (err) throw err;
-            personnageModel.create({
-                nom : fields.nom[0],
-                appartenance : fields.appartenance[0],
-                titre : fields.titre[0],
-                description : fields.description[0],
-                images : newpath,
-            })
-            .then((personnage) => {
-                res.status(201).json({
-                    personnage: {
-                        _id : personnage.id,
-                        nom : personnage.nom,
-                        appartenance : personnage.appartenance,
-                        titre : personnage.titre,
-                        description : personnage.description,
-                        images : personnage.images,
-                    }
-                });
-            })
-            .catch((err) => {
-                res.status(400).json(err.message);
+    try {
+        const { fields, files } = await new Promise((resolve, reject) => {
+            form.parse(req, (err, fields, files) => {
+                if (err) reject(err);
+                else resolve({ fields, files });
             });
         });
-    console.log(err);
-    });
+
+        const isUnique = await isCombinationUnique(personnageModel, fields.nom[0], fields.roman[0]);
+        if (!isUnique) {
+            return res.status(400).json({ message: 'La combinaison du nom et du roman doit être unique.' });
+        }
+
+        let newpath;
+        if (files.image && files.image.length > 0) {
+            newpath = await saveImage(files.image[0].filepath, files);
+        } else {
+            newpath = 'images/default_image.jpg';
+        }
+
+        const personnage = await personnageModel.create({
+            nom: fields.nom[0],
+            appartenance: fields.appartenance[0],
+            demeure: fields.demeure[0],
+            titrePrincipal: fields.titrePrincipal[0],
+            titresSecondaires: fields.titresSecondaires[0],
+            sexe: fields.sexe[0],
+            specialite: fields.specialite[0],
+            sousSpecialite: fields.sousSpecialite[0],
+            roman: fields.roman[0],
+            description: fields.description[0],
+            image: newpath,
+        });
+
+        res.status(201).json({
+            personnage: {
+                _id: personnage.id,
+                nom: personnage.nom,
+                appartenance: personnage.appartenance,
+                demeure: personnage.demeure,
+                titrePrincipal: personnage.titrePrincipal,
+                titresSecondaires: personnage.titresSecondaires,
+                sexe: personnage.sexe,
+                specialite: personnage.specialite,
+                sousSpecialite: personnage.sousSpecialite,
+                roman: personnage.roman,
+                description: personnage.description,
+                image: newpath,
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
 

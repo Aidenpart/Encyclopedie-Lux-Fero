@@ -1,6 +1,7 @@
 import lieuModel from '../models/lieuModel.js';
+import {isCombinationUnique, saveImage} from "../helpers/controllersHelper.js"
 import formidable from "formidable";
-import fs from "fs";
+import fs from "fs/promises";
 
 
 export const createLieu = (req, res) => {
@@ -16,10 +17,11 @@ export const createLieu = (req, res) => {
             if (err) throw err;
             lieuModel.create({
                 nom : fields.nom[0],
+                roman : fields.roman[0],
                 appartenance : fields.appartenance[0],
                 emplacement : fields.emplacement[0],
-                description : fields.description[0],
                 population : fields.population[0],
+                description : fields.description[0],
                 images : newpath,
             })
             .then((lieu) => {
@@ -27,6 +29,7 @@ export const createLieu = (req, res) => {
                     lieu: {
                         id:lieu.id,
                         nom : lieu.nom,
+                        roman : lieu.roman,
                         appartenance : lieu.appartenance,
                         emplacement : lieu.emplacement,
                         description : lieu.description,
