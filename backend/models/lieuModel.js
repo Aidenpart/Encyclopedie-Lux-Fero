@@ -8,8 +8,8 @@ const lieuSchema = new mongoose.Schema(
             required: [true, 'Un nom est requis']
         },
         roman: {
-            type: String,
-            required: [true, 'Un roman est requis']
+            type : mongoose.Schema.Types.ObjectId, 
+            ref: "Roman",
         },            
         appartenance: {
             type: String,
