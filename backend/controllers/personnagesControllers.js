@@ -1,5 +1,5 @@
 import personnageModel from '../models/personnageModel.js';
-import {isCombinationUnique, saveImage} from "../helpers/controllersHelper.js"
+import {isCombinationUnique, saveImage, deleteImage, infosRoman} from "../helpers/controllersHelper.js"
 import formidable from "formidable";
 import fs from "fs/promises";
 
@@ -24,19 +24,22 @@ export const createPersonnage = async (req, res) => {
         if (files.image && files.image.length > 0) {
             newpath = await saveImage(files.image[0].filepath, files);
         } else {
-            newpath = 'images/perso_default.jpg';
+            newpath = 'images/perso_default.png';
         }
 
+        let informationsRoman = await infosRoman(fields.roman[0]);
+
         const personnage = await personnageModel.create({
-            nom: fields.nom[0],
+            nom: fields.nom[0],            
+            roman: informationsRoman,
             appartenance: fields.appartenance[0],
             demeure: fields.demeure[0],
             titrePrincipal: fields.titrePrincipal[0],
             titresSecondaires: fields.titresSecondaires[0],
             sexe: fields.sexe[0],
+            attirance: fields.attirance[0],
             specialite: fields.specialite[0],
             sousSpecialite: fields.sousSpecialite[0],
-            roman: fields.roman[0],
             description: fields.description[0],
             image: newpath,
         });
@@ -50,6 +53,7 @@ export const createPersonnage = async (req, res) => {
                 titrePrincipal: personnage.titrePrincipal,
                 titresSecondaires: personnage.titresSecondaires,
                 sexe: personnage.sexe,
+                attirance: personnage.attirance,
                 specialite: personnage.specialite,
                 sousSpecialite: personnage.sousSpecialite,
                 roman: personnage.roman,
@@ -86,36 +90,52 @@ export const readPersonnages = async (req, res) => {
 export const updatePersonnage = async (req, res) => {
     const form = formidable();
 
-    form.parse(req, async function (err, fields, files) {
         try {
             const id = req.params.id;
 
-            let newpath = null;
-            if (files.images) {
-                const oldpath = files.images[0].filepath;
-                newpath = 'images/' + new Date().getTime() + "_" + files.images[0].originalFilename;
-
-                const oldPersonnage = await personnageModel.findById(id);
-                if (oldPersonnage.images) {
-                    const oldImagePath = "./public/" + oldPersonnage.images;
-                    fs.unlink(oldImagePath, (err) => {
-                        if (err) throw err;
-                    });
-                }
-
-                fs.copyFile(oldpath, "./public/" + newpath, (err) => {
-                    if (err) throw err;
+            const {fields, files} = await new Promise((resole, reject) => {
+                form.parse(req, (err, fields, files) => {
+                    if (err) reject(err);
+                    else resole({fields, files});
                 });
+            });
+
+            let newPath;
+
+            if (files.image && files.image.length > 0) {
+                const oldPath = files.image[0].filepath;
+                newPath = 'images/' + new Date().getTime() + "_" + files.image[0].originalFilename;
+            
+                await deleteImage(personnageModel, id)
+            
+                try {
+                    await fs.copyFile(oldPath, "./public/" + newPath);
+                } catch (err) {
+                    console.error(err.message);
+                }
+            } else {
+                newPath = 'images/perso_default.png';
+            
+                await deleteImage(personnageModel, id)
             }
+
+            let informationsRoman = await infosRoman(fields.roman[0]);
 
             const updatedPersonnage = await personnageModel.findOneAndUpdate(
                 { _id: id },
                 {
                     nom: fields.nom[0],
+                    roman: informationsRoman,
                     appartenance: fields.appartenance[0],
-                    titre: fields.titre[0],
+                    demeure: fields.demeure[0],
+                    titrePrincipal: fields.titrePrincipal[0],
+                    titresSecondaires: fields.titresSecondaires[0],
+                    sexe: fields.sexe[0],
+                    attirance: fields.attirance[0],
+                    specialite: fields.specialite[0],
+                    sousSpecialite: fields.sousSpecialite[0],
                     description: fields.description[0],
-                    images: newpath
+                    image: newPath
                 },
                 { new: true }
             );
@@ -123,7 +143,6 @@ export const updatePersonnage = async (req, res) => {
         } catch (error) {
             res.status(400).json(error.message);
         }
-    });
 };
 
     
@@ -133,8 +152,8 @@ export const deletePersonnage = (req, res) => {
     
     personnageModel.findOneAndDelete({ _id: idPersonnage })
         .then((personnage) => {
-            if (personnage.images) {
-                const image = "./public/"+personnage.images;
+            if (personnage.image) {
+                const image = "./public/"+personnage.image;
                 fs.unlink(image, (err) => {
                     if (err) throw err;
                 });

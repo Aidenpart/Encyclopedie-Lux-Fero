@@ -8,6 +8,10 @@ const personnageSchema = new mongoose.Schema(
             required: [true, 'Un nom est requis'],
             message: "Être déja existant"
         },
+        roman: {
+            type : mongoose.Schema.Types.ObjectId, 
+            ref: "Roman",
+        },  
         appartenance: {
             type: String,
             required: [true, 'Une appartenance est requise']
@@ -25,7 +29,10 @@ const personnageSchema = new mongoose.Schema(
         },
         sexe: {
             type: String
-        },                        
+        },
+        attirance: {
+            type: String
+        },                       
         specialite: {
             type: String,
             required: [true, 'Une specialite est requise']
@@ -33,11 +40,7 @@ const personnageSchema = new mongoose.Schema(
         sousSpecialite: {
             type: String,
             required: [true, 'Une ou des sous-specialites sont requises']
-        },        
-        roman: {
-            type: String,
-            required: [true, 'Un roman est requis']
-        },        
+        },              
         description: {
             type: String
         },

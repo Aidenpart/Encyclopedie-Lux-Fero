@@ -5,7 +5,8 @@ const romanSchema = new mongoose.Schema(
     {
         nom: {
             type: String,
-            required: [true, 'Un nom est requis']
+            required: [true, 'Un nom est requis'],
+            unique: true
         },
         nombreDePages: {
             type: String
