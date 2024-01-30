@@ -29,10 +29,8 @@ export const createRoman = (req, res) => {
 
 export const getRoman = async(req, res) => {
     
-    const idRoman = req.params.id;
-    const roman = await romanModel.findOne({_id : idRoman});
+    const roman = await romanModel.findOne({_id : req.params.id});
     res.status(200).json(roman);
-
 };
 
 
@@ -40,24 +38,22 @@ export const readRomans = async (req, res) => {
 
     const romans = await romanModel.find();
     res.status(200).json(romans);
-
 };
 
 
 export const updateRoman = async (req, res) => {
 
-    const romanId = req.params.id;
-
+    const id = req.params.id;
     const form = formidable();
     form.parse(req, function (err, fields, files){
 
-        romanModel.findOne({ _id: romanId })
+        romanModel.findOne({ _id: id })
         .then((romanFound) => {
             if (!romanFound) {
                 return res.status(404).json({ message: "roman introuvable" });
             }else {
                 romanModel.findOneAndUpdate(
-                    {_id : romanId}, 
+                    {_id : id}, 
                     {
                         nom: fields.nom[0],
                         nombreDePages: fields.nombreDePages[0],
@@ -71,7 +67,7 @@ export const updateRoman = async (req, res) => {
                 .then((roman) => {
                     res.status(200).json(roman);
                 });
-            }
+            };
         })
         .catch((err) => {
             console.log(err);
@@ -83,22 +79,21 @@ export const updateRoman = async (req, res) => {
 
 export const deleteRoman = async (req, res) => {
     
-    const romanId = req.params.id;
+    const id = req.params.id;
 
-    romanModel.findOne({ _id: romanId })
+    romanModel.findOne({ _id: id })
     .then((romanFound) => {
         if (!romanFound) {
             return res.status(404).json({ message: "roman introuvable" });
         }else {
-            romanModel.findOneAndDelete({_id: roman.id})
+            romanModel.findOneAndDelete({_id: romanFound.id})
             .then((roman) => {
                 res.status(200).json(roman);
             });
-        }
+        };
     })
     .catch((err) => {
         console.log(err);
         res.status(500).json({ message: "Une erreur s'est produite lors de la suppression du roman" });
     });
-    
 };

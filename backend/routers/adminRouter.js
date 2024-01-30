@@ -1,11 +1,10 @@
-import express from "express";
-import {createLieu, updateLieu, deleteLieu} from "../controllers/lieuxControllers.js";
-import {createRoman, updateRoman, deleteRoman} from "../controllers/romanControllers.js";
-import {createPersonnage, updatePersonnage, deletePersonnage} from "../controllers/personnagesControllers.js";
+import express from 'express';
+import {createLieu, updateLieu, deleteLieu} from '../controllers/lieuxControllers.js';
+import {createRoman, updateRoman, deleteRoman} from '../controllers/romanControllers.js';
+import {createPersonnage, updatePersonnage, deletePersonnage} from '../controllers/personnagesControllers.js';
 
 
 const router = express.Router();
-
 
 router.post("/create-lieu", createLieu);
 router.post("/update-lieu/:id", updateLieu);

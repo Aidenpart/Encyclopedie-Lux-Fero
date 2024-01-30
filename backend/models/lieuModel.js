@@ -1,23 +1,23 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 
 const lieuSchema = new mongoose.Schema(
     {
         nom: {
             type: String,
-            required: [true, 'Un nom est requis']
+            required: [true, "Un nom est requis"]
         },
         roman: {
             type : mongoose.Schema.Types.ObjectId, 
-            ref: "Roman",
+            ref: "Roman"
         },            
         appartenance: {
             type: String,
-            required: [true, 'Une appartenance est requise']
+            required: [true, "Une appartenance est requise"]
         },
         emplacement: {
             type: String,
-            required: [true, 'Un emplacement est requis']
+            required: [true, "Un emplacement est requis"]
         },
         population: {
             type: String
@@ -36,4 +36,4 @@ const lieuSchema = new mongoose.Schema(
 );
 
 
-export default mongoose.model('Lieu', lieuSchema);
+export default mongoose.model("Lieu", lieuSchema);

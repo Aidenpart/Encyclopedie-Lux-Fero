@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 
 const romanSchema = new mongoose.Schema(
     {
         nom: {
             type: String,
-            required: [true, 'Un nom est requis'],
+            required: [true, "Un nom est requis"],
             unique: true
         },
         nombreDePages: {
@@ -25,7 +25,7 @@ const romanSchema = new mongoose.Schema(
         },
         isFini: {
             type: Boolean
-        },
+        }
     }, 
     {
         timestamps: true,
@@ -34,4 +34,4 @@ const romanSchema = new mongoose.Schema(
 );
 
 
-export default mongoose.model('Roman', romanSchema);
+export default mongoose.model("Roman", romanSchema);

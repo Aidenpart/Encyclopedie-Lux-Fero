@@ -1,16 +1,16 @@
-import express from "express";
-import mongoose from "mongoose";
+import express from 'express';
+import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
-import cors from "cors";
+import cors from 'cors';
 
 
-import authRouter from "./routers/authRouter.js";
-import publicRouter from "./routers/publicRouter.js";
-import adminRouter from "./routers/adminRouter.js"
-import {auth} from "./middleware/authGate.js";
+import authRouter from './routers/authRouter.js';
+import publicRouter from './routers/publicRouter.js';
+import adminRouter from './routers/adminRouter.js'
+import {auth} from './middleware/authGate.js';
 
 
-dotenv.config( { path: './.env.local' } );
+dotenv.config( { path: "./.env.local" } );
 
 
 const app = express();
@@ -28,15 +28,13 @@ app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(MONGO_URI)
 .then(initialisation)
-.catch(err => {
-    console.log(err.message);
-});
+.catch(err => {console.log(err.message)});
 
 
 async function initialisation() {
     console.log("connexion");
     app.use("/auth", authRouter);
-    app.use('/admin', [auth.verifyToken, auth.isAdmin], adminRouter);
+    app.use("/admin", [auth.verifyToken, auth.isAdmin], adminRouter);
     app.use("/", publicRouter);
 } 
 
