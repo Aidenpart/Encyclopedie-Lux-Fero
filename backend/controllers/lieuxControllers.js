@@ -20,11 +20,11 @@ export const createLieu = async (req, res) => {
             return res.status(400).json({ message: 'La combinaison du nom et du roman doit être unique.' });
         }
 
-        let newpath;
+        let newPath;
         if (files.image && files.image.length > 0) {
-            newpath = await saveImage(files.image[0].filepath, files);
+            newPath = await saveImage(files.image[0].filepath, files);
         } else {
-            newpath = 'images/perso_default.jpg';
+            newPath = 'images/perso_default.jpg';
         }
 
         let informationsRoman = await infosRoman(fields.roman[0]);
@@ -37,7 +37,7 @@ export const createLieu = async (req, res) => {
             emplacement : fields.emplacement[0],
             population : fields.population[0],
             description : fields.description[0],
-            image : newpath,
+            image : newPath,
         });
 
         res.status(201).json({
@@ -92,21 +92,12 @@ export const updateLieu = async (req, res) => {
         });
 
         let newPath;
-
         if (files.image && files.image.length > 0) {
-            const oldPath = files.image[0].filepath;
-            newPath = 'images/' + new Date().getTime() + "_" + files.image[0].originalFilename;
-        
+            newPath = await saveImage(files.image[0].filepath, files);
             await deleteImage(lieuModel, id)
-        
-            try {
-                await fs.copyFile(oldPath, "./public/" + newPath);
-            } catch (err) {
-                console.error(err.message);
-            }
+
         } else {
-            newPath = 'images/perso_default.png';
-        
+            newPath = 'images/perso_default.png';       
             await deleteImage(lieuModel, id)
         }
 
@@ -132,22 +123,14 @@ export const updateLieu = async (req, res) => {
 };
 
 
-
-
-
 export const deleteLieu = async(req, res) => {
 
-    const idLieu = req.params.id;
     
-    await lieuModel.findOneAndDelete({ _id: idLieu })
-    .then((lieu) => {
-        if (lieu.image) {
-            const image = "./public/"+lieu.image;
-            fs.unlink(image, (err) => {
-                if (err) throw err;
-            });
-        }
-        res.status(201).send(`${lieu.nom} a été supprimé`);
+
+    await deleteImage(lieuModel, req.params.id)
+    await lieuModel.findOneAndDelete({ _id: req.params.id })
+    .then((data) => {
+        res.status(201).send(`${data.nom} a été supprimé`);
     })
     .catch(() => res.status(500).json({ message: 'Problème lors de la suppression ou lieu introuvable' }));
 };

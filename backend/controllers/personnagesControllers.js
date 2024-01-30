@@ -103,19 +103,11 @@ export const updatePersonnage = async (req, res) => {
             let newPath;
 
             if (files.image && files.image.length > 0) {
-                const oldPath = files.image[0].filepath;
-                newPath = 'images/' + new Date().getTime() + "_" + files.image[0].originalFilename;
-            
+                newPath = await saveImage(files.image[0].filepath, files);           
                 await deleteImage(personnageModel, id)
-            
-                try {
-                    await fs.copyFile(oldPath, "./public/" + newPath);
-                } catch (err) {
-                    console.error(err.message);
-                }
+
             } else {
-                newPath = 'images/perso_default.png';
-            
+                newPath = 'images/perso_default.png';           
                 await deleteImage(personnageModel, id)
             }
 

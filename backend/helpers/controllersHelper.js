@@ -11,6 +11,7 @@ export const isCombinationUnique = async (model, nom, roman) => {
     }
 };
 
+
 const findIdRoman = async (nom) => {
     try {
         const roman = await romanModel.findOne({ nom: nom});
@@ -21,6 +22,7 @@ const findIdRoman = async (nom) => {
     }
 };
 
+
 export const infosRoman = async (nom) => {
     try {
         const roman = await romanModel.findOne({ nom: nom});
@@ -30,11 +32,13 @@ export const infosRoman = async (nom) => {
     }
 };
 
-export const saveImage = async (oldpath, files) => {
-    const newpath = 'images/' + new Date().getTime() + "_" + files.image[0].originalFilename;
-    await fs.copyFile(oldpath, "./public/" + newpath);
-    return newpath;
+
+export const saveImage = async (oldPath, files) => {
+    const newPath = 'images/' + new Date().getTime() + "_" + files.image[0].originalFilename;
+    await fs.copyFile(oldPath, "./public/" + newPath);
+    return newPath;
 };
+
 
 export const deleteImage = async (model, id) => {
     const oldData = await model.findById(id);
