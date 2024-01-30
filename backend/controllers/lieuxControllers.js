@@ -116,8 +116,9 @@ export const updateLieu = async (req, res) => {
 
 export const deleteLieu = async(req, res) => {
 
-    await deleteImage(lieuModel, req.params.id)
-    await lieuModel.findOneAndDelete({ _id: req.params.id })
+    const id = req.params.id;
+    await deleteImage(lieuModel, id)
+    await lieuModel.findOneAndDelete({ _id: id })
     .then((data) => res.status(201).send(`${data.nom} a été supprimé`))
     .catch(() => res.status(500).json({ message: "Problème lors de la suppression ou lieu introuvable"}));
 };
