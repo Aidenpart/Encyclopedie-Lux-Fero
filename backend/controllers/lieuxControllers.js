@@ -125,10 +125,10 @@ export const updateLieu = async (req, res) => {
 
 export const deleteLieu = async(req, res) => {
 
-    
+    const id = req.params.id;
 
-    await deleteImage(lieuModel, req.params.id)
-    await lieuModel.findOneAndDelete({ _id: req.params.id })
+    await deleteImage(lieuModel, id)
+    await lieuModel.findOneAndDelete({ _id: id })
     .then((data) => {
         res.status(201).send(`${data.nom} a été supprimé`);
     })
