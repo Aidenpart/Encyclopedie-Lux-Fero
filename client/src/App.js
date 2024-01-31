@@ -1,13 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
-import { Loading } from "./components/shared/loading/loading.js";
-
-
+import { Loading } from "./components/loading/loading.js";
 
 
 import { getUserbyToken } from "./helpers/authHelpers.js";
 import { addUser } from "./store/slice/userSlice";
+import { Accueil } from "./pages/public/accueil.js";
 
 
 function App() {
@@ -38,7 +37,7 @@ function App() {
 
   return (
       <Routes>
-        
+        <Route path="/" element={<Accueil />} />
       </Routes>
   );
 }

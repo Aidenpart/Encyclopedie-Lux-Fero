@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Nunito&family=Cinzel&family=Playfair+Display&display=swap');
+
+
+$primary-color: #E1581E;
+$secundary-color: #fff;
+$third-color: #000;
+
+
+$bg-link-secundary : #EDA21B;
+$footer : #2E2B29;
+
+
+$Cinzel : 'Cinzel', serif;
+$Nunito : 'Nunito', sans-serif;
+$Kanit : 'Kanit', sans-serif;
+
+
+body {
+    text-align: center;
+    
+    p {
+        font-family: $Nunito;
+    }
+    
+    a {
+        font-family: $Kanit;
+        text-decoration: none;
+    }
+    
+    main {
+        margin-top: 50px;
+    }
+    
+    button {
+        background-color: $secundary-color;
+        color: $primary-color;
+        border: $third-color 1px solid;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    textarea {
+        border-radius: 5px;
+    }
+    
+    .err-message {
+        color: red;
+    }
+}
+
+@media screen and (min-width: 1279px) {
+    
+    button {
+        font-size: 1.12em;
+    }
+    
+}
