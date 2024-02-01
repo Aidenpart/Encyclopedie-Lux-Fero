@@ -6,8 +6,10 @@ import { Loading } from "./components/loading/loading.js";
 
 import { getUserbyToken } from "./helpers/authHelpers.js";
 import { addUser } from "./store/slice/userSlice";
-import { Accueil } from "./pages/public/accueil.js";
-import { AccueilEncylopedie } from "./pages/public/accueilEncyclopedie.js";
+import { PagePreambule } from "./pages/public/pageAccueil.js";
+import { PageCGU } from "./pages/legal/pageCGU.js"
+import { PageAccueilEncylopedie } from "./pages/public/pageAccueilEncyclopedie.js";
+import { PageRGPD } from "./pages/legal/pageRGPD.js";
 
 
 function App() {
@@ -38,8 +40,11 @@ function App() {
 
   return (
       <Routes>
-        <Route path="/" element={<Accueil />} />
-        <Route path="/accueil" element={<AccueilEncylopedie />} />
+        <Route path="/" element={<PagePreambule />} />
+        <Route path="/accueil" element={<PageAccueilEncylopedie />} />
+        <Route path="/cgu" element={<PageCGU />} />
+        <Route path="/rgpd" element={<PageRGPD />} />
+        <Route path="/mentions-legales" element={<PagePreambule />} />
       </Routes>
   );
 }

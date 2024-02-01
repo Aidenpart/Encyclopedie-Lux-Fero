@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Door } from "../../components/door/door";
+import { Door } from "../../components/public/door/door";
+import { Footer } from "../../components/public/footer/footer";
 
 
-export const Accueil = () => {
+export const PagePreambule = () => {
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1081);
     const [isTablet, setTablet] = useState(window.innerWidth > 500 && window.innerWidth < 1080);
     const [isMobile, setMobile] = useState(window.innerWidth < 500);
@@ -35,7 +36,7 @@ export const Accueil = () => {
                     </Link>
                 </article>
             </main>
-            <footer>mentions légales</footer>
+            <Footer />
         </section>
     )
 }

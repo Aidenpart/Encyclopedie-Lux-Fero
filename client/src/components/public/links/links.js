@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "./linkStyles.scss"
 
 export const LinkAccueil = (props) => {
@@ -9,3 +10,10 @@ export const LinkAccueil = (props) => {
         </a>
     )
 }
+
+export const GenericLink = (props) => {
+    
+    return (
+        <Link to={props.direction} className={props.class}>{props.text}</Link>
+    );
+};

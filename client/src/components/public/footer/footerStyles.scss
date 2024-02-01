@@ -1,0 +1,21 @@
+@import "../../../pages/generalStyles.scss";
+
+.footer {
+    background-color: $footer;
+    color: $secundary-color;
+    margin-top: 50px;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0; 
+    display: flex;
+    justify-content: space-around;
+    
+    p {
+        margin: 0;
+    }
+    
+    .droits {
+        display: flex;
+        align-items: center;
+    }
+}

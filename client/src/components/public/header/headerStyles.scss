@@ -1,0 +1,44 @@
+@import "../../../pages/generalStyles.scss";
+
+
+.header {
+    width: 70%;
+    margin: 0 auto;
+    font-family: 'Cinzel', serif;
+    box-sizing: border-box;
+
+    h1 {
+        margin: 0;
+    }
+}
+
+
+@media screen and (min-width: 479px) {
+    .header {
+        width: 75%;
+        
+        h1 {
+            font-size: 3em;
+        }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .header {
+        width: 80%;
+        
+        h1 {
+            font-size: 4em;
+        }
+    }    
+}
+
+@media screen and (min-width: 1279px) {
+    .header {
+        width: 85%;
+        
+        h1 {
+            font-size: 4.5em;
+        }
+    }    
+}

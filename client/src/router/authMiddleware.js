@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 
 import { getUserbyToken } from "../helpers/authHelpers.js";
-import { addUser } from "../store/slice/userSlice";
+import { addUser } from "../store/slice/userSlice.js";
 
 
 export const AuthMiddleware = (props) => {
