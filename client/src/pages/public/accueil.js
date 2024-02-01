@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Door } from "../../components/door/door";
 
 
 export const Accueil = () => {
@@ -25,10 +26,11 @@ export const Accueil = () => {
             <main>
                 <article>
                     <h1>Encyclopédie</h1>
-                    <p>Introduction</p>
+                    <p>Introduction</p>              
                 </article>
                 <article>
                     <p>links</p>
+                    <Door />
                 </article>
             </main>
             <footer>mentions légales</footer>

@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    height: 300px;
+    width: 250px;
+    position: relative;
+    border: 5px solid #61412D;
+    perspective: 1000px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.door {
+    background-color: #61412D;
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#left-door {
+    top: 0;
+    left: 0;
+    border-right: 1px solid black;
+    transition: transform 0.5s;
+    transform-origin: left;
+}
+
+#right-door {
+    top: 0;
+    right: 0;
+    border-left: 1px solid black;
+    transition: transform 0.5s;
+    transform-origin: right;
+}
+
+.shape {
+    border: 4px solid black;
+    width: 100px;
+    height: 130px;
+}
+
+.knob {
+    background-color: #d7dade;
+    width: 10px;
+    height: 50px;
+    position: absolute;
+}
+
+#left-knob {
+    top: 50%;
+    right: 10px;
+}
+
+#right-knob {
+    top: 50%;
+    left: 10px;
+}
+
+.wrapper:hover #left-door {
+    transform: rotateY(-140deg);
+}
+
+.wrapper:hover #right-door {
+    transform: rotateY(140deg);
+}
