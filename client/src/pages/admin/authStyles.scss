@@ -1,0 +1,162 @@
+@import "../generalStyles.scss";
+
+
+.main-user {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    
+    a {
+        border-radius: 10px;
+    }
+    
+    main {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        
+        h1 {
+            margin-top: 20px;
+        }
+        
+        .links-place {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            margin: 30px auto;
+        }
+        
+        .info-user {
+            display: flex;
+            justify-content: center;
+            border-radius: 10px;
+            width: 90%;
+            height: 100%;
+            margin-top: 25px;
+        
+            .img-side {
+                width: 50%;
+                
+                    
+                img {
+                    border-radius: 10px;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    overflow: hidden;
+                }
+            }
+            
+            .info-side {
+                margin: auto;
+                width: 50%;
+            }
+        }
+    }
+}
+
+
+.main-auth, .main-register {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    
+    article {
+        margin: 30px 0;
+    }
+    
+    a {
+        border-radius: 10px;
+    }
+    
+    main {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        
+        .links-place {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            margin: 30px auto;
+        }
+        
+        .log-in-form {
+            width: 100%;
+            font-family: $Nunito;
+            
+            h3 {
+                font-size: 2em;
+                margin: 0;
+                font-family: $Kanit;
+            }
+            
+            .form {
+                width: 50%;
+                margin: 0 auto;
+                font-family: $Nunito;
+                display: flex;
+                flex-direction: column;
+            
+                label, select, input, button {
+                    margin: 5px 0;
+                }
+            }
+        }
+        
+        .form-register {
+            width: 80%;
+            font-family: $Nunito;
+            
+            .form {
+            width: 100%;
+            font-family: $Nunito;
+            display: flex;
+            flex-direction: column;
+            align-items: center
+            }
+            
+            input {
+                width: 80%;
+            }
+
+            label, select, button {
+                margin: 5px 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 479px) {
+
+}
+
+@media screen and (min-width: 900px) {
+    
+    .main-user {
+        
+        main {
+           
+            .info-user {
+                
+                .info-side {
+                    font-size: 1.5em;
+                }
+            }
+        }
+    } 
+}
+
+@media screen and (min-width: 1279px) {
+
+}
