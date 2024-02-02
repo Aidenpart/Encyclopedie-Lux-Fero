@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 
@@ -6,6 +5,8 @@ import { Header } from "../../components/public/header/header";
 import { LinkAccueil } from "../../components/public/links/links";
 import { Door } from "../../components/public/door/door";
 import { Footer } from "../../components/public/footer/footer";
+import { IntroductionAccueil } from "../../components/public/introductions/introductions";
+import "./pagesAccueilStyles.scss"
 
 
 export const PagePreambule = () => {
@@ -30,14 +31,12 @@ export const PagePreambule = () => {
             <main>
                 <article>
                     <Header text={"Accueil Encyclopédie"}/>
-                    <p>Introduction</p>              
+                    <IntroductionAccueil/>              
                 </article>
-                <article>
-                    <Link to={"/accueil"}>
-                        {isMobile && <LinkAccueil direction={"/accueil"} image={"/images/link_general.jpg"} texte={"Acceuil Encyclopédie"}/>}
-                        {isTablet && <LinkAccueil direction={"/accueil"} image={"/images/link_general.jpg"} texte={"Acceuil Encyclopédie"}/>}
-                        {isDesktop && <Door />}
-                    </Link>
+                <article className="center-link-preambule">                   
+                    {isMobile && <LinkAccueil direction={"/accueil"} image={"/images/link_general-deux.jpg"} texte={"Acceuil Encyclopédie"}/>}
+                    {isTablet && <LinkAccueil direction={"/accueil"} image={"/images/link_general-deux.jpg"} texte={"Acceuil Encyclopédie"}/>}
+                    {isDesktop && <Door />}
                 </article>
             </main>
             <Footer />

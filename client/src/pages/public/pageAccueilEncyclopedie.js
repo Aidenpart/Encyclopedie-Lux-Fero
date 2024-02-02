@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 
+
 import { LinkAccueil } from "../../components/public/links/links"
 import { Header } from "../../components/public/header/header";
 import { Footer } from "../../components/public/footer/footer";
+
 
 export const PageAccueilEncylopedie = () => {
 
