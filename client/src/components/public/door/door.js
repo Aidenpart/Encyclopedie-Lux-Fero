@@ -4,7 +4,7 @@ export const Door = () => {
 
     return (
         <div className="lintel">
-            <img src="/images/link_Regina-Magicae.jpg" alt="link_RM"/>
+            <img src="/images/link_general.jpg" alt="link_RM"/>
             <div id="left-door" className="door">
                 <div className="shape"></div>
                 <div className="shape"></div>

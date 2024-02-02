@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { Header } from "../../../components/shared/header/header.js";
+import { Header } from "../../components/public/header/header.js";
 import { GenericLink } from "../../components/public/links/links.js";
-import { Footer } from "../../../components/shared/footer/footer.js";
+import { Footer } from "../../components/public/footer/footer.js";
 import "./legalStyles.scss";
 
 

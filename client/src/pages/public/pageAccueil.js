@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+
+
+import { Header } from "../../components/public/header/header";
+import { LinkAccueil } from "../../components/public/links/links";
 import { Door } from "../../components/public/door/door";
 import { Footer } from "../../components/public/footer/footer";
 
@@ -25,13 +29,13 @@ export const PagePreambule = () => {
             <nav></nav>
             <main>
                 <article>
-                    <h1>Encyclopédie</h1>
+                    <Header text={"Accueil Encyclopédie"}/>
                     <p>Introduction</p>              
                 </article>
                 <article>
                     <Link to={"/accueil"}>
-                        {isMobile && <p>links</p>}
-                        {isTablet && <p>links</p>}
+                        {isMobile && <LinkAccueil direction={"/accueil"} image={"/images/link_general.jpg"} texte={"Acceuil Encyclopédie"}/>}
+                        {isTablet && <LinkAccueil direction={"/accueil"} image={"/images/link_general.jpg"} texte={"Acceuil Encyclopédie"}/>}
                         {isDesktop && <Door />}
                     </Link>
                 </article>

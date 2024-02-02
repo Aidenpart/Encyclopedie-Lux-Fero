@@ -27,7 +27,7 @@
         justify-content: center;
         color: whitesmoke;
         font-size: 2em;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.5);
         display: none;}
 }
 
@@ -48,4 +48,11 @@
     text-decoration: none;
     font-size: 1.5em;
     color: black;
+}
+
+@media screen and (max-width: 1080px) {
+    
+    .lien-accueil .texte-lien-accueil {
+        display: flex;  }
+    
 }
