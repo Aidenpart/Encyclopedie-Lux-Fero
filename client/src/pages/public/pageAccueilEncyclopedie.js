@@ -14,7 +14,6 @@ export const PageAccueilEncylopedie = () => {
 
     return (
         <section>
-            <nav></nav>
             <main>
                 <article>
                     <Header text={"Encyclopédie"}/>

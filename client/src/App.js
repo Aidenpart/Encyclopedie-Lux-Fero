@@ -5,7 +5,7 @@ import { Loading } from "./components/public/loading/loading.js";
 
 
 import { getUserbyToken } from "./helpers/authHelpers.js";
-import { AuthMiddleware, AdminMiddleware } from "./router/authMiddleware.js";
+import { AdminMiddleware } from "./router/authMiddleware.js";
 
 import { addUser } from "./store/slice/userSlice";
 import { PagePreambule } from "./pages/public/pageAccueil.js";
@@ -15,6 +15,7 @@ import { PageRGPD } from "./pages/legal/pageRGPD.js";
 import { PageMentionsLegales } from "./pages/legal/pageMentionsLegales.js"
 import { PageConnexion } from "./pages/admin/pageConnexion.js";
 import { PageAdmin } from "./pages/admin/pageAdmin.js";
+import { PageCRUDLieux } from "./pages/admin/create/pageCRUDLieux.js";
 
 
 function App() {
@@ -53,8 +54,9 @@ function App() {
         <Route path="/connexion" element={<PageConnexion />} />
 
         <Route path="/admin" element={<AdminMiddleware> <PageAdmin /> </AdminMiddleware>} />
+        <Route path="/admin/CRUD-Lieux" element={<AdminMiddleware> <PageCRUDLieux /> </AdminMiddleware>} />
       </Routes>
   );
-}
+};
 
 export default App;
