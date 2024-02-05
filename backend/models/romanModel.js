@@ -9,19 +9,19 @@ const romanSchema = new mongoose.Schema(
             unique: true
         },
         nombreDePages: {
-            type: String
+            type: Number
         },
         nombreDeMots: {
-            type: String
+            type: Number
         },
         nombreDeSEC: {
-            type: String
+            type: Number
         },
         nombreDeParties: {
-            type: String
+            type: Number
         },
         nombreDeChapitres: {
-            type: String
+            type: Number
         },
         isFini: {
             type: Boolean

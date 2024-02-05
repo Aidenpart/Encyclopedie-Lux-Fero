@@ -9,7 +9,8 @@ const personnageSchema = new mongoose.Schema(
         },
         roman: {
             type : mongoose.Schema.Types.ObjectId, 
-            ref: "Roman"
+            ref: "Roman",
+            required: [true, "Un roman est requise"]
         },  
         appartenance: {
             type: String,
