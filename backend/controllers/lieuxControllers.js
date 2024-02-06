@@ -23,7 +23,7 @@ export const createLieu = async (req, res) => {
         if (files.image && files.image.length > 0) {
             newPath = await saveImage(files.image[0].filepath, files);
         } else {
-            newPath = "images/perso_default.jpg";
+            newPath = "images/perso_default.png";
         };
 
         let informationsRoman = await infosRoman(fields.roman[0]);
