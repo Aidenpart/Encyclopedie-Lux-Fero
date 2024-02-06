@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 import { URL } from "../../../helpers/urlHelpers.js";
-import { appartenancesRomans, listeRomans } from "../../../helpers/categories.js";
+import { appartenancesLuxFero, appartenancesReginaMagicae, listeRomans } from "../../../helpers/categories.js";
 import { Loading } from "../../../components/public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
 
@@ -14,7 +14,7 @@ export const CreateLieu = () =>{
     const [nom, setNom] = useState('');
     const [roman, setRoman] = useState('');
     const romans = listeRomans
-    const appartenancesRoman = appartenancesRomans
+    const [appartenances, setAppartenances] = useState([]);
     const [appartenance, setAppartenance] = useState('');
     const [emplacement, setEmplacement] = useState('');
     const [description, setDescription] = useState('');
@@ -63,7 +63,15 @@ export const CreateLieu = () =>{
         setDataLoaded(true);
     }, [setToken, setDataLoaded]);
 
-
+    useEffect(() => {
+        if(roman === "Lux Fero"){
+            setAppartenances(appartenancesLuxFero)
+        }else if(roman === "Regina Magicae"){
+            setAppartenances(appartenancesReginaMagicae)
+        }else {
+            setAppartenances([])
+        }
+    }, [setAppartenances, roman]);
 
     console.log("probleme")
 
@@ -89,7 +97,7 @@ export const CreateLieu = () =>{
                     <label>Appartenance : 
                         <select onChange={(e) => setAppartenance(e.target.value)} value={appartenance}>
                             <option>-----</option>
-                            {appartenancesRoman.map((appartenance, i) => {
+                            {appartenances.map((appartenance, i) => {
                                 return <option key={i}>{appartenance}</option>;
                             })}
                         </select>

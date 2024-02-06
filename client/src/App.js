@@ -15,7 +15,8 @@ import { PageRGPD } from "./pages/legal/pageRGPD.js";
 import { PageMentionsLegales } from "./pages/legal/pageMentionsLegales.js"
 import { PageConnexion } from "./pages/admin/pageConnexion.js";
 import { PageAdmin } from "./pages/admin/pageAdmin.js";
-import { PageCRUDLieux } from "./pages/admin/create/pageCRUDLieux.js";
+import { PageCRUDLieux } from "./pages/admin/CRUD/pageCRUDLieux.js";
+import { PageOneLieu } from "./pages/admin/CRUD/pageOneLieu.js";
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
 
         <Route path="/admin" element={<AdminMiddleware> <PageAdmin /> </AdminMiddleware>} />
         <Route path="/admin/CRUD-Lieux" element={<AdminMiddleware> <PageCRUDLieux /> </AdminMiddleware>} />
+        <Route path="/admin/CRUD-Lieux/lieu/:id" element={<AdminMiddleware> <PageOneLieu /> </AdminMiddleware>} />
       </Routes>
   );
 };
