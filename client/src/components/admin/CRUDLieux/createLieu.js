@@ -73,7 +73,6 @@ export const CreateLieu = () =>{
         }
     }, [setAppartenances, roman]);
 
-    console.log("probleme")
 
     if (!dataLoaded)
         return <Loading />;    

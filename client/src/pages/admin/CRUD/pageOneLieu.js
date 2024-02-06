@@ -8,6 +8,7 @@ import { Header } from "../../../components/public/header/header.js";
 import { DeleteOne } from "../../../components/admin/CRUDGeneral/deleteOne.js";
 import { GenericLink } from "../../../components/public/links/links.js";
 import { Footer } from "../../../components/public/footer/footer.js";
+import { CardsLieux } from "../../../components/public/cards/cardsLieux.js";
 
 
 export const PageOneLieu = () =>{
@@ -47,6 +48,7 @@ export const PageOneLieu = () =>{
                 <Header text={lieu.nom} />
                 <GenericLink direction={"/admin/CRUD-Lieux"} class={"link"} text={"CRUD Lieux"}/>
                 <DeleteOne text={"lieu"} direction={"Lieux"}/>
+                <CardsLieux lieux={[lieu]}/>
             </main>
             <Footer/>
         </section>
