@@ -8,9 +8,11 @@ import { getUserbyToken } from "./helpers/authHelpers.js";
 import { AdminMiddleware } from "./router/authMiddleware.js";
 
 import { addUser } from "./store/slice/userSlice";
-import { PagePreambule } from "./pages/public/pageAccueil.js";
+import { PagePreambule } from "./pages/public/pagePreambule.js";
 import { PageCGU } from "./pages/legal/pageCGU.js"
-import { PageAccueilEncylopedie } from "./pages/public/pageAccueilEncyclopedie.js";
+import { PageAccueil } from "./pages/public/pageAccueilEncyclopedie.js";
+import { PageAccueilLuxFero } from "./pages/public/pageAccueilLuxFero.js";
+import { PageAccueilReginaMagicae } from "./pages/public/pageAccueilReginaMagicae.js";
 import { PageRGPD } from "./pages/legal/pageRGPD.js";
 import { PageMentionsLegales } from "./pages/legal/pageMentionsLegales.js"
 import { PageConnexion } from "./pages/admin/pageConnexion.js";
@@ -48,7 +50,11 @@ function App() {
   return (
       <Routes>
         <Route path="/" element={<PagePreambule />} />
-        <Route path="/accueil" element={<PageAccueilEncylopedie />} />
+        <Route path="/accueil" element={<PageAccueil />} />
+        <Route path="/accueil-Lux-Fero" element={<PageAccueilLuxFero />} />
+        <Route path="/accueil-Regina-Magicae" element={<PageAccueilReginaMagicae />} />
+
+
         <Route path="/cgu" element={<PageCGU />} />
         <Route path="/rgpd" element={<PageRGPD />} />
         <Route path="/mentions-legales" element={<PageMentionsLegales />} />

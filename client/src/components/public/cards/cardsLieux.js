@@ -6,7 +6,7 @@ export const CardsLieux = (props) => {
     return (
         <>
             {props.lieux.map((lieu, i) => {
-                console.log(lieu.image)
+                console.log(lieu.roman)
                 return (
                     <article key={i} className="card">
                         <h1>{lieu.nom}</h1>

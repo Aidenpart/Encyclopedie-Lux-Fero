@@ -4,9 +4,7 @@ const initialState = {
     id : "",
     email : "",
     pseudo : "",
-    name : "",
-    firstName : "",
-    images : "",
+    image : "",
     isAdmin : false,
     isLogged: false
 };
@@ -25,8 +23,6 @@ export const userSlice = createSlice({
                 id: action.payload._id,
                 email: action.payload.email,
                 pseudo : action.payload.pseudo,
-                name : action.payload.name,
-                firstName : action.payload.firstName,
                 images : action.payload.images,
                 isAdmin: action.payload.isAdmin,
                 isLogged: true

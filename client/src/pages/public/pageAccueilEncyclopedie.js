@@ -1,16 +1,41 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 
 import { LinkAccueil } from "../../components/public/links/links"
 import { Header } from "../../components/public/header/header";
 import { Footer } from "../../components/public/footer/footer";
+import { URL } from "../../helpers/urlHelpers";
+import { deleteRoman } from "../../store/slice/romanSlice";
 
-
-export const PageAccueilEncylopedie = () => {
+export const PageAccueil = () => {
+    
+    const [romans, setRomans] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = "Acceuil Encyclopédie";
+        dispatch(deleteRoman())
     });
+
+    useEffect(() => {
+        fetch(`${URL}/wiki/romans`, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response)=>response.json())
+        .then((data) => {
+            setRomans(data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }, [setRomans])
+
+    console.log(romans)
 
     return (
         <section>
