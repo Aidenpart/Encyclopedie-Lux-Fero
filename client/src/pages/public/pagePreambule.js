@@ -30,7 +30,7 @@ export const PagePreambule = () => {
             <nav></nav>
             <main>
                 <article>
-                    <Header text={"Accueil Encyclopédie"}/>
+                    <Header text={"Préambule"}/>
                     <IntroductionAccueil/>              
                 </article>
                 <article className="center-link-preambule">                   
