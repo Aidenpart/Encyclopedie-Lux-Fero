@@ -18,7 +18,7 @@ export const CreatePersonnage = () =>{
     const appartenances = appartenancesPersonnages;
     const [titre, setTitre] = useState('');
     const [description, setDescription] = useState('');
-    const [images, setImages] = useState('');
+    const [image, setImage] = useState('');
     const [message, setMessage] = useState('');
     const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -31,7 +31,7 @@ export const CreatePersonnage = () =>{
         formData.append('appartenance', appartenance);
         formData.append('titre', titre);
         formData.append('description', description);
-        formData.append('images', images);
+        formData.append('image', image);
  
         fetch(`${URL}/admin/create-personnage`, {
                 method: 'POST',
@@ -51,7 +51,7 @@ export const CreatePersonnage = () =>{
 
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
-        setImages(file);
+        setImage(file);
     };
     
     useEffect(() => {
@@ -82,7 +82,7 @@ export const CreatePersonnage = () =>{
                         <input onChange={(e) => setTitre(e.target.value)} value={titre} placeholder={"titre"} type="text" required/>
                     <label>Description :</label>
                         <input onChange={(e) => setDescription(e.target.value)} value={description} placeholder={"description"} type="text" required/>
-                    <label>Images : </label>
+                    <label>Image : </label>
                         <input onChange={handleFileUpload} fileinput="multiple" type="file" required/>
                         <p className="spec-images">Utiliser un fichier de dimension 308px de large et 564px de haut, ou un multiple supérieur</p>
                     <button>Créer un personnage</button>

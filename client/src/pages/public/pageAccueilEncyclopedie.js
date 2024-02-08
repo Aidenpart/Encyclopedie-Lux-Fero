@@ -5,11 +5,13 @@ import { useDispatch } from "react-redux";
 import { LinkAccueil } from "../../components/public/links/links"
 import { Header } from "../../components/public/header/header";
 import { Footer } from "../../components/public/footer/footer";
-import { URL } from "../../helpers/urlHelpers";
 import { deleteRoman } from "../../store/slice/romanSlice";
+import { fetchData } from "../../helpers/dataHelpers";
+import { Loading } from "../../components/public/loading/loading";
 
 export const PageAccueil = () => {
     
+    const [dataLoaded, setDataLoaded] = useState(false);
     const [romans, setRomans] = useState([]);
     const dispatch = useDispatch();
 
@@ -19,23 +21,22 @@ export const PageAccueil = () => {
     });
 
     useEffect(() => {
-        fetch(`${URL}/wiki/romans`, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        })
-        .then((response)=>response.json())
-        .then((data) => {
-            setRomans(data)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+        if(!dataLoaded) {
+            fetchData(romans)
+            .then((data) => {
+                setRomans(data)
+                setDataLoaded(true);
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
     }, [setRomans])
 
     console.log(romans)
+
+    if (!dataLoaded)
+    return <Loading />; 
 
     return (
         <section>

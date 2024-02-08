@@ -67,10 +67,9 @@ export const CreateLieu = () =>{
         }else {
             setAppartenances([])
         }
-
+        
         setToken(getToken());
         setDataLoaded(true);
-
     }, [setAppartenances, roman, setDataLoaded, setToken]);
 
 
