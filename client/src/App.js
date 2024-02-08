@@ -29,7 +29,7 @@ function App() {
   
   useEffect(() => {
     if (!dataLoaded) {
-      if (localStorage.getItem('jwt') && !user.isLogged) {
+      if (sessionStorage.getItem('jwt') && !user.isLogged) {
         const userTokenPromise = getUserbyToken();
         userTokenPromise
         .then(data => {

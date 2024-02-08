@@ -9,7 +9,7 @@ import { addUser } from "../store/slice/userSlice.js";
 
 export const AuthMiddleware = (props) => {
 
-    if (!localStorage.getItem("jwt")) {
+    if (!sessionStorage.getItem("jwt")) {
         return (
             <Navigate to={"/"}/>
         );
@@ -31,7 +31,7 @@ export const AdminMiddleware = (props) => {
 
     useEffect(() => {
         
-        if (localStorage.getItem('jwt') && !user.isLogged) {
+        if (sessionStorage.getItem('jwt') && !user.isLogged) {
             const userTokenPromise = getUserbyToken();
             userTokenPromise
             .then(data => {
@@ -43,7 +43,7 @@ export const AdminMiddleware = (props) => {
         }
     });
     
-    if (!localStorage.getItem('jwt') || !user.isAdmin) {
+    if (!sessionStorage.getItem('jwt') || !user.isAdmin) {
         return (
             <Navigate to={"/"}/>
         );

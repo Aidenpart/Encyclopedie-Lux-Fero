@@ -19,7 +19,7 @@ export const CreateLieu = () =>{
     const [emplacement, setEmplacement] = useState('');
     const [description, setDescription] = useState('');
     const [population, setPopulation] = useState('');
-    const [images, setImages] = useState('');
+    const [image, setImage] = useState('');
     const [message, setMessage] = useState('');
     const [token, setToken] = useState('');
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -35,7 +35,7 @@ export const CreateLieu = () =>{
         formData.append('emplacement', emplacement);
         formData.append('description', description);
         formData.append('population', population);
-        formData.append('images', images);
+        formData.append('image', image);
  
         fetch(`${URL}/admin/create-lieu`, {
             method: 'POST',
@@ -55,14 +55,10 @@ export const CreateLieu = () =>{
 
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
-        setImages(file);
+        console.log(file)
+        setImage(file);
     };
     
-    useEffect(() => {
-        setToken(getToken());
-        setDataLoaded(true);
-    }, [setToken, setDataLoaded]);
-
     useEffect(() => {
         if(roman === "Lux Fero"){
             setAppartenances(appartenancesLuxFero)
@@ -71,7 +67,11 @@ export const CreateLieu = () =>{
         }else {
             setAppartenances([])
         }
-    }, [setAppartenances, roman]);
+
+        setToken(getToken());
+        setDataLoaded(true);
+
+    }, [setAppartenances, roman, setDataLoaded, setToken]);
 
 
     if (!dataLoaded)

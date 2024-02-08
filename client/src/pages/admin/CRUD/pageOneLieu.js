@@ -8,7 +8,7 @@ import { Header } from "../../../components/public/header/header.js";
 import { DeleteOne } from "../../../components/admin/CRUDGeneral/deleteOne.js";
 import { GenericLink } from "../../../components/public/links/links.js";
 import { Footer } from "../../../components/public/footer/footer.js";
-import { CardsLieux } from "../../../components/public/cards/cardsLieux.js";
+import { CardsLieux } from "../../../components/public/cards/cardsEncyclopedie.js";
 
 
 export const PageOneLieu = () =>{

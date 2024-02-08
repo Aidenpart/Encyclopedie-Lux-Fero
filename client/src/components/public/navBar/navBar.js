@@ -29,7 +29,7 @@ export const NavBar = () => {
                     <GenericLink direction={"/encyclopedie"} class={"nav-link"} text={"Encyclopédie"}/>
                 </li>
                 {
-                localStorage.getItem("jwt") ? 
+                sessionStorage.getItem("jwt") ? 
                     <li className="nav-item">
                         <LinkLogOutBurger />
                     </li>

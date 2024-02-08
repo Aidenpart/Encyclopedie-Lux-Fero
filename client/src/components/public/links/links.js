@@ -48,7 +48,7 @@ export const LinkLogOut = () => {
     const dispatch = useDispatch();
     
     const handleLogOut = () => {
-        localStorage.removeItem('jwt');
+        sessionStorage.removeItem('jwt');
         dispatch(deleteUser());
         navigate("/");
     };
@@ -65,7 +65,7 @@ export const LinkLogOutBurger = () => {
     
     const handleLogOut = () => {
         
-        localStorage.removeItem('jwt')
+        sessionStorage.removeItem('jwt')
         dispatch(deleteUser())
         navigate("/")
 
@@ -82,7 +82,7 @@ export const LinkConditionalNavigation = () => {
     return (
         <>
             {
-                localStorage.getItem('jwt')
+                sessionStorage.getItem('jwt')
                     ? user.isAdmin
                         ? <LinkPageAdmin />
                         : <LinkProfil />
@@ -98,7 +98,7 @@ export const LinkConditionalNavigationBurger = () => {
     return (
         <>
             {
-                localStorage.getItem('jwt')
+                sessionStorage.getItem('jwt')
                     ? user.isAdmin
                         ? <GenericLink direction={"/admin"} class={"nav-link"} text={"Admin"}/>
                         : <GenericLink direction={"/profil"} class={"nav-link"} text={"Profil"}/>

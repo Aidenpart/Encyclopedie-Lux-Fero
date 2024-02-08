@@ -33,79 +33,9 @@
     }
 }
 
-.card-user {
-    width: 47%;
-    margin: 30px auto;
-    text-align: center;
-    color: #fff;
-    background-color: $primary-color;
-    border: 1px solid $primary-color;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
-    display: flex;
-    
-    
-    .section-infos {
-        width: 49%;
-        
-        p {
-            width: 100%;
-            height: auto;
-        }
-    }
-    .section-image {
-        margin: auto;
-        width: 49%;
-        height: 200px;
-        border: 1px solid $third-color;
-        border-radius: 10px;
-        
-        .image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-    }
-}
 
 
-.mini-card {
-    margin: 50px auto;
-    border: 1px solid $primary-color;
-    background-color: #FFFDFC;
-    border-radius: 15px;
-    position: relative;
-    width: 70%;
-    height: 100px;
-    align-content: center;
-    
-    .sujet-mini-card {
-        padding: 3px;
-        position: absolute;
-        top: -25px;
-        left: -10px;
-        border: 1px solid $primary-color;
-        border-radius: 10px;
-        color: $secundary-color;
-        background-color: $primary-color;
-    }
-    
-    .titre-mini-card{
-        margin: 35px; 
-    }
-    
-    .link-mini-card {
-        padding: 3px;
-        position: absolute;
-        bottom: -15px;
-        right: -10px;
-        border: 1px solid $primary-color;
-        color: $secundary-color;
-        background-color: $primary-color;
-    }
-}
+
 
 .carte:hover .interieur {    transform: rotateY(180deg);  }
 .carte {
@@ -165,13 +95,54 @@
             background-color: #caae98;
             box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);  }
     }
-
-
-      
-
-    
-
 } 
+
+.post-card:hover .interieur {    transform: rotateY(180deg);  }
+.post-card {
+    box-sizing: border-box;
+    background-color: transparent;
+    width: 320px;
+    height: 450px; 
+    margin: 10px;
+    text-align: center;
+
+
+    .interieur {
+        border: 2px black solid;
+        position: relative;
+        width: 100%;
+        height: 100%; 
+        transition: transform 0.8s;
+        transform-style: preserve-3d;  
+    
+        .recto, .verso {
+            position: absolute;        
+            width: 100%;
+            height: 100%; 
+            margin: 0;
+            backface-visibility: hidden; }
+
+        .white-margin {
+            background-color: #fff;
+            
+            .recto { 
+                box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);
+           
+                    p {
+                        margin: 0;
+                    }
+                }
+        }
+        }
+            
+    
+        .verso {
+            transform: rotateY(180deg);
+            background-color: #caae98;
+            box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);  }
+    }
+
+
 
 
 @media screen and (min-width: 479px) {

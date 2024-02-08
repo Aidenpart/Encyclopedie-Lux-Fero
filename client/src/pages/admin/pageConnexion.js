@@ -34,7 +34,7 @@ export const PageConnexion = () => {
                 window.alert(data.message);
             }else{
                 dispatch(addUser(data.user));
-                localStorage.setItem('jwt', data.jwt);
+                sessionStorage.setItem('jwt', data.jwt);
                 data.user.isAdmin ? navigate("/admin") : navigate("/");
             }
         })

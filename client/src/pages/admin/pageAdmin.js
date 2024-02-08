@@ -9,20 +9,36 @@ import { GenericLink } from "../../components/public/links/links.js";
 export const PageAdmin = () => {
     const [token, setToken] = useState('');
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [romans, setRomans] = useState([])
 
 
     useEffect(() => {
-        setToken(getToken());
-        setDataLoaded(true);
+        
+        fetch(`${URL}/wiki/romans`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            setRomans(data);
+            setDataLoaded(true);
+            setToken(getToken());
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+        
+        document.title = "Page Administrateur";
+
     }, [setToken, setDataLoaded]);
-
-
 
     if (!dataLoaded)
         return <Loading />;    
 
-    console.log("probleme")
-
+    console.log(romans)
 
     return (
         <>

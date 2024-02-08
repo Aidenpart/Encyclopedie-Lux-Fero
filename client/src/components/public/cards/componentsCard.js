@@ -31,9 +31,15 @@ const convertArabicToRoman = (num) => {
 	return res;
 };
 
+
 export const RomanNumber = (props) => {
     let num = props.i + 1;
     return (
         <span>{convertArabicToRoman(num)}</span>
     )
 }
+
+export const getNomRoman = (romans, id) => {
+    const roman = romans.find(roman => roman._id === id);
+    return roman ? roman.nom : '';
+};
