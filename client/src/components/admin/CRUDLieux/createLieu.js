@@ -55,7 +55,6 @@ export const CreateLieu = () =>{
 
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
-        console.log(file)
         setImage(file);
     };
     
@@ -67,7 +66,7 @@ export const CreateLieu = () =>{
         }else {
             setAppartenances([])
         }
-        
+
         setToken(getToken());
         setDataLoaded(true);
     }, [setAppartenances, roman, setDataLoaded, setToken]);

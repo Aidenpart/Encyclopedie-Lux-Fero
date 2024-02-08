@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { URL } from "../../../helpers/urlHelpers.js";
 import { appartenancesPersonnages } from "../categories.js";
-import { Loading } from "../../../components/shared/loading/loading.js";
+import { Loading } from "../../../components/public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
-import "../adminComponentsStyles.scss";
 
 
 export const UpdatePersonnage = (props) =>{
@@ -17,7 +16,7 @@ export const UpdatePersonnage = (props) =>{
     const appartenances = appartenancesPersonnages;
     const [titre, setTitre] = useState(props.personnage.titre);
     const [description, setDescription] = useState(props.personnage.description);
-    const [images, setImages] = useState('');
+    const [image, setImage] = useState('');
     const [message, setMessage] = useState('');
     const id = props.id;
     const [token, setToken] = useState('');
@@ -32,7 +31,7 @@ export const UpdatePersonnage = (props) =>{
         formData.append('appartenance', appartenance);
         formData.append('titre', titre);
         formData.append('description', description);
-        formData.append('images', images);
+        formData.append('image', image);
 
         fetch(`${URL}/admin/update-personnage/${id}`, {
                 method: 'POST',
@@ -52,7 +51,7 @@ export const UpdatePersonnage = (props) =>{
 
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
-        setImages(file);
+        setImage(file);
     };
     
     useEffect(() => {

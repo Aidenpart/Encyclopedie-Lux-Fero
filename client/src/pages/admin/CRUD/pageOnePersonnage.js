@@ -3,15 +3,13 @@ import { useParams } from "react-router-dom";
 
 
 import { URL } from "../../../helpers/urlHelpers.js";
-import { Loading } from "../../../components/shared/loading/loading.js";
-import { Header } from "../../../components/shared/header/header.js";
-import { CardsPersonnages } from "../../../components/shared/cards/cardsPersonnages.js";
-import { UpdatePersonnage } from "../../../components/admin/CRUDPersonnages/updatePersonnage.js";
+import { Loading } from "../../../components/public/loading/loading.js";
+import { Header } from "../../../components/public/header/header.js";
 import { DeleteOne } from "../../../components/admin/CRUDGeneral/deleteOne.js";
-import { GenericLink } from "../../../components/shared/links/navigationLinks.js";
-import { NavBar } from "../../../components/shared/navBar/navBar.js";
-import { Footer } from "../../../components/shared/footer/footer.js";
-import "../../../components/admin/adminComponentsStyles.scss";
+import { UpdatePersonnage } from "../../../components/admin/CRUDPersonnages/updatePersonnage.js";
+import { GenericLink } from "../../../components/public/links/links.js";
+import { Footer } from "../../../components/public/footer/footer.js";
+import { CardsPersonnages } from "../../../components/public/cards/cardsEncyclopedie.js";
 
 
 export const PageOnePersonnage = () =>{
@@ -47,13 +45,12 @@ export const PageOnePersonnage = () =>{
 
     return (
         <section className="CRUD-One">  
-            <NavBar/>
             <main>
                 <Header text={personnage.nom} />
                 <GenericLink direction={"/admin/CRUD-Personnages"} class={"link"} text={"CRUD Personnages"}/>
+                <CardsPersonnages personnages={[personnage]}/>
                 <UpdatePersonnage personnage={personnage} id={id}/>
                 <DeleteOne text={"personnage"} direction={"Personnages"}/>
-                <CardsPersonnages personnages={[personnage]}/>
             </main>
             <Footer/>
         </section>

@@ -3,22 +3,23 @@ import { useNavigate } from 'react-router-dom';
 
 
 import { URL } from "../../../helpers/urlHelpers.js";
-import { appartenancesLieux } from "../categories.js";
-import { Loading } from "../../../components/shared/loading/loading.js";
+import { listeRomans, appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories.js";
+import { Loading } from "../../../components/public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
-import "../adminComponentsStyles.scss";
 
 
 export const UpdateLieu = (props) =>{
     
     const navigate = useNavigate();
     const [nom, setNom] = useState(props.lieu.nom);
-    const appartenances = appartenancesLieux;
+    const [roman, setRoman] = useState(props.lieu.roman);
+    const romans = listeRomans
+    const [appartenances, setAppartenances] = useState([]);
     const [appartenance, setAppartenance] = useState(props.lieu.appartenance);
     const [emplacement, setEmplacement] = useState(props.lieu.emplacement);
     const [description, setDescription] = useState(props.lieu.description);
     const [population, setPopulation] = useState(props.lieu.population);
-    const [images, setImages] = useState('');
+    const [image, setImage] = useState('');
     const [message, setMessage] = useState('');
     const [token, setToken] = useState('');
     const [dataLoaded, setDataLoaded] = useState(false);    
@@ -30,11 +31,12 @@ export const UpdateLieu = (props) =>{
         const formData = new FormData(); 
 
         formData.append('nom', nom);
+        formData.append('roman', roman);
         formData.append('appartenance', appartenance);
         formData.append('emplacement', emplacement);
         formData.append('description', description);
         formData.append('population', population);
-        formData.append('images', images);
+        formData.append('image', image);
 
         fetch(`${URL}/admin/update-lieu/${id}`, {
                 method: 'POST',
@@ -54,13 +56,21 @@ export const UpdateLieu = (props) =>{
 
     const handleFileUpload = (e) => {
         const file = e.target.files[0];
-        setImages(file);
+        setImage(file);
     };
 
     useEffect(() => {
+        if(roman === "Lux Fero"){
+            setAppartenances(appartenancesLuxFero)
+        }else if(roman === "Regina Magicae"){
+            setAppartenances(appartenancesReginaMagicae)
+        }else {
+            setAppartenances([])
+        }
+        
         setToken(getToken());
         setDataLoaded(true);
-    }, [setToken]);
+    }, [setAppartenances, roman, setDataLoaded, setToken]);
     
     
     if (!dataLoaded)
@@ -71,24 +81,37 @@ export const UpdateLieu = (props) =>{
             <h3>Modifier le lieu</h3>
             <div className="div-form">
                 <form onSubmit={handleSubmit} className="form" encType='multipart/form-data'>
-                    <label>Nom :</label>
+                    <label>Nom :
                         <input onChange={(e) => setNom(e.target.value)} value={nom} type="text" required/>
-                    <label>Appartenance : </label>
-                        <select onChange={(e) => setAppartenance(e.target.value)} value={appartenance} required>
-                            <option disabled={true} selected>-----</option>
+                    </label>
+                    <label>Roman : 
+                        <select onChange={(e) => setRoman(e.target.value)} value={roman}>
+                            <option>-----</option>
+                            {romans.map((appartenance, i) => {
+                                    return <option key={i}>{appartenance}</option>;
+                            })}
+                        </select>
+                    </label>
+                    <label>Appartenance : 
+                        <select onChange={(e) => setAppartenance(e.target.value)} value={appartenance}>
+                            <option>-----</option>
                             {appartenances.map((appartenance, i) => {
                                 return <option key={i}>{appartenance}</option>;
-                            })
-                            }
+                            })}
                         </select>
-                    <label>Emplacement : </label>
+                    </label>
+                    <label>Emplacement : 
                         <input onChange={(e) => setEmplacement(e.target.value)} value={emplacement} type="text" required/>
-                    <label>Description : </label>
+                    </label>
+                    <label>Description : 
                         <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" required/>
-                    <label>Population : </label>
+                    </label>
+                    <label>Population : 
                         <input onChange={(e) => setPopulation(e.target.value)} value={population} type="number" required/>
-                    <label>Images : </label>
+                    </label>
+                    <label>Image : 
                         <input onChange={handleFileUpload} placeholder={"image"} fileinput="multiple" type="file" required/>
+                    </label>
                     <button>Modifier</button>
                 </form>
             </div>

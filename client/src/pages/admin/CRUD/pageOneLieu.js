@@ -6,6 +6,7 @@ import { URL } from "../../../helpers/urlHelpers.js";
 import { Loading } from "../../../components/public/loading/loading.js";
 import { Header } from "../../../components/public/header/header.js";
 import { DeleteOne } from "../../../components/admin/CRUDGeneral/deleteOne.js";
+import { UpdateLieu } from "../../../components/admin/CRUDLieux/updateLieu.js";
 import { GenericLink } from "../../../components/public/links/links.js";
 import { Footer } from "../../../components/public/footer/footer.js";
 import { CardsLieux } from "../../../components/public/cards/cardsEncyclopedie.js";
@@ -47,8 +48,9 @@ export const PageOneLieu = () =>{
             <main>
                 <Header text={lieu.nom} />
                 <GenericLink direction={"/admin/CRUD-Lieux"} class={"link"} text={"CRUD Lieux"}/>
-                <DeleteOne text={"lieu"} direction={"Lieux"}/>
                 <CardsLieux lieux={[lieu]}/>
+                <UpdateLieu lieu={lieu}  id={id}/>
+                <DeleteOne text={"lieu"} direction={"Lieux"}/>
             </main>
             <Footer/>
         </section>
