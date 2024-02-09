@@ -13,11 +13,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Loading } from "../../../components/public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
+import { listeRomans, appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories.js";
 
 export const LieuForm = ({ initialValues, onSubmit, isCreation }) => {
     const navigate = useNavigate();
     const [nom, setNom] = useState(initialValues.nom || '');
     const [roman, setRoman] = useState(initialValues.roman || '');
+    const romans = listeRomans;
     const [appartenances, setAppartenances] = useState([]);
     const [appartenance, setAppartenance] = useState(initialValues.appartenance || '');
     const [emplacement, setEmplacement] = useState(initialValues.emplacement || '');
@@ -30,9 +32,9 @@ export const LieuForm = ({ initialValues, onSubmit, isCreation }) => {
 
     useEffect(() => {
         // Set default values for fields if initialValues are provided
-        if (initialValues.roman === "Lux Fero") {
+        if (initialValues.roman === "Lux Fero" || roman === "Lux Fero") {
             setAppartenances(appartenancesLuxFero);
-        } else if (initialValues.roman === "Regina Magicae") {
+        } else if (initialValues.roman === "Regina Magicae" || roman === "Regina Magicae") {
             setAppartenances(appartenancesReginaMagicae);
         } else {
             setAppartenances([]);
@@ -40,7 +42,7 @@ export const LieuForm = ({ initialValues, onSubmit, isCreation }) => {
 
         setToken(getToken());
         setDataLoaded(true);
-    }, [initialValues, setDataLoaded, setToken]);
+    }, [initialValues, setDataLoaded, setToken, setAppartenances, roman]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -55,8 +57,8 @@ export const LieuForm = ({ initialValues, onSubmit, isCreation }) => {
         formData.append('image', image);
 
         try {
-            await onSubmit(formData);
-            navigate("/admin/CRUD-Lieux");
+            await onSubmit("lieu", token, formData);
+            navigate("/admin");
         } catch (error) {
             console.log(error);
             setMessage(error);
@@ -105,7 +107,7 @@ export const LieuForm = ({ initialValues, onSubmit, isCreation }) => {
                         <input onChange={(e) => setPopulation(e.target.value)} value={population} type="number" required />
                     </label>
                     <label>Image :
-                        <input onChange={handleFileUpload} placeholder={"image"} fileinput="multiple" type="file" required />
+                        <input onChange={handleFileUpload} placeholder={"image"} fileinput="multiple" type="file" />
                     </label>
                     <button>{isCreation ? "Créer" : "Modifier"}</button>
                 </form>

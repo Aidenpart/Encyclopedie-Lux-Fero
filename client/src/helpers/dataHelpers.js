@@ -11,3 +11,20 @@ export const fetchData = async (spec) => {
         throw new Error('Failed to fetch data');
     }
 };
+
+
+export const createData = async(type, token, formData) => {
+    try {
+        const creation = await fetch(`${URL}/admin/create-${type}`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            },
+            body: formData
+        });
+        return creation.json();
+    } catch (error) {
+        console.log(error);
+        throw new Error('Failed to fetch data');
+    } 
+}

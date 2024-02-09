@@ -16,13 +16,12 @@ export const PageAccueil = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = "Acceuil Encyclopédie";
-        dispatch(deleteRoman())
+
     });
 
     useEffect(() => {
         if(!dataLoaded) {
-            fetchData(romans)
+            fetchData("romans")
             .then((data) => {
                 setRomans(data)
                 setDataLoaded(true);
@@ -31,9 +30,11 @@ export const PageAccueil = () => {
                 console.log(err)
             })
         }
-    }, [setRomans])
 
-    console.log(romans)
+        document.title = "Acceuil Encyclopédie";
+        dispatch(deleteRoman())
+    }, [setRomans, dataLoaded, dispatch])
+
 
     if (!dataLoaded)
     return <Loading />; 
