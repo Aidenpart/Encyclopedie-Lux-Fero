@@ -15,7 +15,7 @@ import { Loading } from "../../../components/public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
 import { listeRomans, appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories.js";
 
-export const LieuForm = ({ initialValues, onSubmit, isCreation }) => {
+export const LieuForm = ({ initialValues, onSubmit, isCreation, id }) => {
     const navigate = useNavigate();
     const [nom, setNom] = useState(initialValues.nom || '');
     const [roman, setRoman] = useState(initialValues.roman || '');
@@ -57,10 +57,9 @@ export const LieuForm = ({ initialValues, onSubmit, isCreation }) => {
         formData.append('image', image);
 
         try {
-            await onSubmit("lieu", token, formData);
-            navigate("/admin");
+            await onSubmit("lieu", token, formData, id);
         } catch (error) {
-            console.log(error);
+            alert(error);
             setMessage(error);
         }
     };
