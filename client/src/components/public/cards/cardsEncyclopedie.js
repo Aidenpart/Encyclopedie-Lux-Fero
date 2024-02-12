@@ -77,20 +77,21 @@ export const CardsLieux = (props) => {
                                     backgroundPosition: 'center', 
                                     backgroundSize: 'cover', 
                                     position: 'relative' }}>
-                                        <div className="greetings">
-                                            <p>Greetings from</p>
+                                        <div className="text">
+                                            <p className="greetings">Greetings from</p>
                                             <p className="nom-lieu">{lieu.nom}</p>
                                         </div>
                                 </div>
                             </div>
                             <div className="verso">
-                                <div className="description">{lieu.description}</div>
+                                <div className="description">Ce lieu contient : <br />{lieu.description}</div>
+                                <div className="separateur"></div>
                                 <div className="coordonnees">
-                                    <p>{lieu.nom}</p>
-                                    <p>{nomRoman}</p>
-                                    <p>{lieu.appartenance}</p>
-                                    <p>{lieu.emplacement}</p>
-                                    <p>{lieu.population}</p>
+                                    <p>Nom du lieu : <br />{lieu.nom}</p>
+                                    <p>Roman : <br />{nomRoman}</p>
+                                    <p>Appartenance : <br />{lieu.appartenance}</p>
+                                    <p>Emplacement : <br />{lieu.emplacement}</p>
+                                    <p>Population : <br />{lieu.population}</p>
                                 </div>
                             </div>
                         </div>

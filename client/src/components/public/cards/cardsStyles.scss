@@ -132,8 +132,9 @@
                 height: 100%;
                 overflow: hidden;
 
-                .greetings {
+                .text {
                     position: relative;
+                    margin: 0;
                     height: 100%;
                     width: 100%;
                     font-size: 1.35em;
@@ -144,26 +145,50 @@
                                 1px 1px 0 #000,
                                 1px -1px 0 #000,
                                 -1px -1px 0 #000;                   
-                }
-
-                .nom-lieu {
+                .greetings, .nom-lieu {
                     position: absolute;
                     width: 100%;
-                    bottom: 0;
+                }
+
+                .greetings {
+                    top: 0;
+                }
+                .nom-lieu {
+                    bottom: 20px;
                     margin: 0;
-                    font-size: 4em;
+                    font-size: 2.5em;
                 }
-                    
-                }
-            }
+            }   
         }
-            
-    
+        }
+
     .verso {
         transform: rotateY(180deg);
         background-color: #fff;
-        box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);  }
+        box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    
+        .coordonnees, .description, .separateur {
+            padding: 15px;
+        }
+
+        .separateur {
+            border: 1px solid black;
+            width: 80%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .coordonnees p {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
     }
+    }    
+}
 
 
 
@@ -186,17 +211,35 @@
         .interieur {  
             .recto {    
                 .image-BG {    
-                    .greetings {
-                        height: 50%;
+                    .text {
+                        height: 40%;
                         text-align: right;
                         position: absolute;
                         bottom: 0;
                         right: 75px;
 
+                        .greetings {
+                            margin: 0;
+                            bottom: -20px;
+                        }
+
                         .nom-lieu {
                             right: -50px;
+                            font-size: 2em;
                         }
                     }
+                }
+            }
+            .verso {
+                flex-direction: row;
+
+                .coordonnees {
+                    width: 90%;
+                }
+
+                .separateur {
+                    width: 0;
+                    height: 80%;
                 }
             }
         }
@@ -215,12 +258,16 @@
         .interieur {  
             .recto {    
                 .image-BG {    
-                    .greetings {
+                    .text {
+                        height: 35%;
                         font-size: 3em;
                         right: 100px;
-                        bottom: -40px;
+                        bottom: -20px;
                     }
                 }
+            }
+            .verso {
+                font-size: 1.5em;
             }
         }
     }
