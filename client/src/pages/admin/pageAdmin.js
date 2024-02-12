@@ -19,7 +19,8 @@ export const PageAdmin = () => {
         <>
             <p>avertissement : partie admin pas encore prévue mobile first</p>
             <p>Création Roman</p>
-            <p>Création Personnage</p>
+            <p>Création </p>
+            <GenericLink direction={"/admin/CRUD-Personnages"} class={"general-link"} text={"CRUD Personnage"}/>
             <GenericLink direction={"/admin/CRUD-Lieux"} class={"general-link"} text={"CRUD Lieux"}/>
         </>
     )

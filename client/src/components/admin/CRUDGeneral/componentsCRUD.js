@@ -1,20 +1,26 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import { Loading } from "../../../components/public/loading/loading.js";
+import { Loading } from "../../public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
 import { listeRomans, appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories.js";
 
 
-export const LieuForm = ({ initialValues, onSubmit, isCreation, id }) => {
-    const navigate = useNavigate();
+export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPersonnage, id }) => {
+    const romans = listeRomans;
+
     const [nom, setNom] = useState(initialValues.nom || '');
     const [roman, setRoman] = useState(initialValues.roman || '');
-    const romans = listeRomans;
     const [appartenances, setAppartenances] = useState([]);
     const [appartenance, setAppartenance] = useState(initialValues.appartenance || '');
     const [emplacement, setEmplacement] = useState(initialValues.emplacement || '');
     const [description, setDescription] = useState(initialValues.description || '');
     const [population, setPopulation] = useState(initialValues.population || '');
+    const [demeure, setDemeure] = useState(initialValues.demeure || '');
+    const [titrePrincipal, setTitrePrincipal] = useState(initialValues.titrePrincipal || '');
+    const [titresSecondaires, setTitresSecondaires] = useState(initialValues.titresSecondaires || '');
+    const [sexe, setSexe] = useState(initialValues.sexe || '');
+    const [attirance, setAttirance] = useState(initialValues.attirance || '');
+    const [specialite, setSpecialite] = useState(initialValues.specialite || '');
+    const [sousSpecialite, setSousSpecialite] = useState(initialValues.sousSpecialite || '');
     const [image, setImage] = useState('');
     const [message, setMessage] = useState('');
     const [token, setToken] = useState('');
@@ -63,7 +69,7 @@ export const LieuForm = ({ initialValues, onSubmit, isCreation, id }) => {
 
     return (
         <article className="update">
-            <h3>{isCreation ? "Créer un lieu" : "Modifier le lieu"}</h3>
+            <h3>{isCreation ? "Créer" : "Modifier"}</h3>
             <div className="div-form">
                 <form onSubmit={handleSubmit} className="form" encType='multipart/form-data'>
                     <label>Nom :
@@ -85,14 +91,40 @@ export const LieuForm = ({ initialValues, onSubmit, isCreation, id }) => {
                             })}
                         </select>
                     </label>
-                    <label>Emplacement :
-                        <input onChange={(e) => setEmplacement(e.target.value)} value={emplacement} type="text" required />
-                    </label>
+                    {isPersonnage && <>
+                        <label>Demeure :
+                            <input onChange={(e) => setDemeure(e.target.value)} value={demeure} type="text" required />
+                        </label>
+                        <label>Titre Principal :
+                            <input onChange={(e) => setTitrePrincipal(e.target.value)} value={titrePrincipal} type="number" required />
+                        </label>
+                        <label>Titres Secondaires :
+                            <input onChange={(e) => setTitresSecondaires(e.target.value)} value={titresSecondaires} type="number" required />
+                        </label>
+                        <label>Sexe :
+                            <input onChange={(e) => setSexe(e.target.value)} value={sexe} type="number" required />
+                        </label>
+                        <label>Attirance :
+                            <input onChange={(e) => setAttirance(e.target.value)} value={attirance} type="number" required />
+                        </label>
+                        <label>Specialité :
+                            <input onChange={(e) => setSpecialite(e.target.value)} value={specialite} type="number" required />
+                        </label>
+                        <label>Sous-Specialité :
+                            <input onChange={(e) => setSousSpecialite(e.target.value)} value={sousSpecialite} type="number" required />
+                        </label>
+                    </>}
+                    {!isPersonnage && <>
+                        <label>Emplacement :
+                            <input onChange={(e) => setEmplacement(e.target.value)} value={emplacement} type="text" required />
+                        </label>
+                        <label>Population :
+                            <input onChange={(e) => setPopulation(e.target.value)} value={population} type="number" required />
+                        </label>
+                    </>}
+
                     <label>Description :
-                        <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" required />
-                    </label>
-                    <label>Population :
-                        <input onChange={(e) => setPopulation(e.target.value)} value={population} type="number" required />
+                            <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" required />
                     </label>
                     <label>Image :
                         <input onChange={handleFileUpload} placeholder={"image"} fileinput="multiple" type="file" />

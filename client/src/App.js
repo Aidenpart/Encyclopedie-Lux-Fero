@@ -19,6 +19,8 @@ import { PageConnexion } from "./pages/admin/pageConnexion.js";
 import { PageAdmin } from "./pages/admin/pageAdmin.js";
 import { PageCRUDLieux } from "./pages/admin/CRUD/pageCRUDLieux.js";
 import { PageOneLieu } from "./pages/admin/CRUD/pageOneLieu.js";
+import { PageCRUDPersonnages } from "./pages/admin/CRUD/pageCRUDPersonnages.js";
+import { PageOnePersonnage } from "./pages/admin/CRUD/pageOnePersonnage.js";
 
 
 function App() {
@@ -63,6 +65,8 @@ function App() {
         <Route path="/admin" element={<AdminMiddleware> <PageAdmin /> </AdminMiddleware>} />
         <Route path="/admin/CRUD-Lieux" element={<AdminMiddleware> <PageCRUDLieux /> </AdminMiddleware>} />
         <Route path="/admin/CRUD-Lieux/lieu/:id" element={<AdminMiddleware> <PageOneLieu /> </AdminMiddleware>} />
+        <Route path="/admin/CRUD-Personnages" element={<AdminMiddleware> <PageCRUDPersonnages /> </AdminMiddleware>} />
+        <Route path="/admin/CRUD-Personnages/personnage/:id" element={<AdminMiddleware> <PageOnePersonnage /> </AdminMiddleware>} />
       </Routes>
   );
 };

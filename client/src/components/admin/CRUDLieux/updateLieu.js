@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { LieuForm } from "./componentsCRUD.js";
+import { CreateOrModifyForm } from "../CRUDGeneral/componentsCRUD.js";
 import { Loading } from "../../../components/public/loading/loading.js";
 import { updateData } from "../../../helpers/dataHelpers.js";
 
@@ -19,10 +19,11 @@ export const UpdateLieu = (props) =>{
     
     return (
         <>
-            <LieuForm 
+            <CreateOrModifyForm 
                 initialValues={initialValues} 
                 onSubmit={updateData} 
-                isCreation={false} 
+                isCreation={false}
+                isPersonnage={false} 
                 id={id}
             />
         </>

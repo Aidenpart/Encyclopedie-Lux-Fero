@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-
-import { URL } from "../../../helpers/urlHelpers";
+import { fetchData } from "../../../helpers/dataHelpers";
 
 
 export const GetOne = (props) => {
@@ -13,14 +12,7 @@ export const GetOne = (props) => {
     const [selectedData, setSelectedData] = useState("");
     
     useEffect(() => {
-        fetch(`${URL}/wiki/${props.dataSetter}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((response) => response.json())
+        fetchData(props.dataSetter)
         .then((data) => {
             setDatas(data);
         })
@@ -35,9 +27,8 @@ export const GetOne = (props) => {
         
         const foundData = datas.find(data => data.nom === selectedData);
 
-        if (foundData) {
+        if (foundData)
             navigate(`${props.textSetter}/${foundData._id}`);
-        }
    };
     
     return (

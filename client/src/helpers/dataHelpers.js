@@ -74,3 +74,20 @@ export const readData = async (type, id) => {
         return error
     }
 };
+
+
+export const deleteData = async (type, token, id) => {
+
+    try {
+        const response = await fetch(`${URL}/admin/delete-${type}/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+        return error
+    }
+};

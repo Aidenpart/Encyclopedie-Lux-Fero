@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate} from 'react-router-dom';
 
-
-import { URL } from "../../../helpers/urlHelpers.js";
 import { Loading } from "../../../components/public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
+import { deleteData } from "../../../helpers/dataHelpers.js";
 
 
 export const DeleteOne = (props) =>{
@@ -17,12 +16,7 @@ export const DeleteOne = (props) =>{
     
     const handleDelete = () => {
 
-        fetch(`${URL}/admin/delete-${props.text}/${id}`, {
-            method: 'DELETE',
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-        })
+        deleteData(props.text, token, id)
         .then((response) => { 
             navigate(`/admin/CRUD-${props.direction}`);
         })

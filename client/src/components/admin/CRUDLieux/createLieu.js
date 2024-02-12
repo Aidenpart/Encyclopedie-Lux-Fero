@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { Loading } from "../../../components/public/loading/loading.js";
-import { LieuForm } from "./componentsCRUD.js";
+import { Form } from "../CRUDGeneral/componentsCRUD.js";
 import { createData } from "../../../helpers/dataHelpers.js";
 
 
@@ -17,7 +17,7 @@ export const CreateLieu = () =>{
 
     return (
         <>
-            <LieuForm initialValues={""} onSubmit={createData} isCreation={true}/>
+            <Form initialValues={""} onSubmit={createData} isCreation={true} isPersonnage={false}/>
         </>
     );
 };

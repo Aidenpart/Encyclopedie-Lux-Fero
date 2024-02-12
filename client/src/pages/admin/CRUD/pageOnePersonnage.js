@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 
-import { URL } from "../../../helpers/urlHelpers.js";
+import { readData } from "../../../helpers/dataHelpers.js";
 import { Loading } from "../../../components/public/loading/loading.js";
 import { Header } from "../../../components/public/header/header.js";
 import { DeleteOne } from "../../../components/admin/CRUDGeneral/deleteOne.js";
@@ -20,14 +20,7 @@ export const PageOnePersonnage = () =>{
 
     useEffect(() => {
         
-        fetch(`${URL}/wiki/personnages/get-personnage/${id}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((response) => response.json())
+        readData("personnage", id)
         .then((data) => {
             setPersonnage(data);
             setDataLoaded(true);

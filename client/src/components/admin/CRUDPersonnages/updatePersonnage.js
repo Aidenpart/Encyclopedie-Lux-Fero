@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 import { URL } from "../../../helpers/urlHelpers.js";
-import { appartenancesPersonnages } from "../categories.js";
+import { appartenancesLuxFero } from "../../../helpers/categories.js";
 import { Loading } from "../../../components/public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
 
@@ -13,7 +13,7 @@ export const UpdatePersonnage = (props) =>{
     const navigate = useNavigate();    
     const [nom, setNom] = useState(props.personnage.nom);
     const [appartenance, setAppartenance] = useState(props.personnage.appartenance);
-    const appartenances = appartenancesPersonnages;
+    const appartenances = appartenancesLuxFero;
     const [titre, setTitre] = useState(props.personnage.titre);
     const [description, setDescription] = useState(props.personnage.description);
     const [image, setImage] = useState('');
