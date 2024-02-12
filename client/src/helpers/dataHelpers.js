@@ -29,6 +29,7 @@ export const createData = async(type, token, formData, id) => {
     } 
 }
 
+
 export const updateData = async(type, token, formData, id) => {
     try {
         const update = await fetch(`${URL}/admin/update-${type}/${id}`, {
@@ -44,3 +45,32 @@ export const updateData = async(type, token, formData, id) => {
         return error
     } 
 }
+
+
+export const readData = async (type, id) => {
+    let search
+
+    switch (type) {
+        case "roman":
+            search = "romans/get-roman"
+            break;
+        case "lieu":
+            search = "lieux/get-lieu"
+            break;
+        case "personnage":
+            search = "personnages/get-personnage"
+            break;
+        default:
+            search = ""
+            break;
+    }
+
+    try {
+        const response = await fetch(`${URL}/wiki/${search}/${id}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        return error
+    }
+};

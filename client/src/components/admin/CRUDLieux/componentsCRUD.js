@@ -1,19 +1,9 @@
-/*
-idée ChatGPT pour rendre le formulaire de lieu en composant,
-pour l'adapter en fonction de création ou de modification.
-
-nécéssiterait de refactoriser la fonction onSubmit, 
-pour qu'elle colle en fonction de la création ou de la modification du lieu
-*/
-
-
-
-
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Loading } from "../../../components/public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
 import { listeRomans, appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories.js";
+
 
 export const LieuForm = ({ initialValues, onSubmit, isCreation, id }) => {
     const navigate = useNavigate();
@@ -31,7 +21,6 @@ export const LieuForm = ({ initialValues, onSubmit, isCreation, id }) => {
     const [dataLoaded, setDataLoaded] = useState(false);
 
     useEffect(() => {
-        // Set default values for fields if initialValues are provided
         if (initialValues.roman === "Lux Fero" || roman === "Lux Fero") {
             setAppartenances(appartenancesLuxFero);
         } else if (initialValues.roman === "Regina Magicae" || roman === "Regina Magicae") {

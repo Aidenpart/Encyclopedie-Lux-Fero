@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 
 import { Loading } from "../loading/loading";
-import { URL } from "../../../helpers/urlHelpers";
 import { RomanNumber, getNomRoman } from "./componentsCard";
-import "./cardsStyles.scss";
 import { fetchData } from "../../../helpers/dataHelpers";
-
-
-
+import { URL } from "../../../helpers/urlHelpers";
+import "./cardsStyles.scss";
 
 
 export const CardsPersonnages = (props) => {
@@ -42,7 +39,6 @@ export const CardsPersonnages = (props) => {
 
 
 export const CardsLieux = (props) => {
-
     const [dataLoaded, setDataLoaded] = useState(false);
     const [romans, setRomans] = useState([])
     const spec = "romans"

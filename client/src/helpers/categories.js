@@ -1,4 +1,3 @@
-
 export const appartenancesRomans = ["Enfer", "Cieux", "Humanité", "Magie"];
 
 export const appartenancesReginaMagicae = ["Humanité", "Mages", "Autres"];
