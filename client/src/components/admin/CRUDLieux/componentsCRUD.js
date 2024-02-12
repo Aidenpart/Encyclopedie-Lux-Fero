@@ -45,6 +45,7 @@ export const LieuForm = ({ initialValues, onSubmit, isCreation, id }) => {
     }, [initialValues, setDataLoaded, setToken, setAppartenances, roman]);
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
 
         const formData = new FormData();
         formData.append('nom', nom);
