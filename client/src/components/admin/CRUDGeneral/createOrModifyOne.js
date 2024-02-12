@@ -39,6 +39,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
         setDataLoaded(true);
     }, [initialValues, setDataLoaded, setToken, setAppartenances, roman]);
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -46,13 +47,27 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
         formData.append('nom', nom);
         formData.append('roman', roman);
         formData.append('appartenance', appartenance);
-        formData.append('emplacement', emplacement);
         formData.append('description', description);
-        formData.append('population', population);
         formData.append('image', image);
+        if(!isPersonnage) {
+            formData.append('emplacement', emplacement);
+            formData.append('population', population);
+        }else {
+            formData.append('demeure', demeure);
+            formData.append('titrePrincipal', titrePrincipal);
+            formData.append('titresSecondaires', titresSecondaires);
+            formData.append('sexe', sexe);
+            formData.append('attirance', attirance);
+            formData.append('specialite', specialite);
+            formData.append('sousSpecialite', sousSpecialite);
+        }
+        console.log(formData)
 
         try {
-            await onSubmit("lieu", token, formData, id);
+            if(!isPersonnage)
+                await onSubmit("lieu", token, formData, id) 
+            else
+                await onSubmit("personnage", token, formData, id)
         } catch (error) {
             alert(error);
             setMessage(error);
@@ -96,22 +111,22 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                             <input onChange={(e) => setDemeure(e.target.value)} value={demeure} type="text" required />
                         </label>
                         <label>Titre Principal :
-                            <input onChange={(e) => setTitrePrincipal(e.target.value)} value={titrePrincipal} type="number" required />
+                            <input onChange={(e) => setTitrePrincipal(e.target.value)} value={titrePrincipal} type="text" required />
                         </label>
                         <label>Titres Secondaires :
-                            <input onChange={(e) => setTitresSecondaires(e.target.value)} value={titresSecondaires} type="number" required />
+                            <input onChange={(e) => setTitresSecondaires(e.target.value)} value={titresSecondaires} type="text" required />
                         </label>
                         <label>Sexe :
-                            <input onChange={(e) => setSexe(e.target.value)} value={sexe} type="number" required />
+                            <input onChange={(e) => setSexe(e.target.value)} value={sexe} type="text" required />
                         </label>
                         <label>Attirance :
-                            <input onChange={(e) => setAttirance(e.target.value)} value={attirance} type="number" required />
+                            <input onChange={(e) => setAttirance(e.target.value)} value={attirance} type="text" required />
                         </label>
                         <label>Specialité :
-                            <input onChange={(e) => setSpecialite(e.target.value)} value={specialite} type="number" required />
+                            <input onChange={(e) => setSpecialite(e.target.value)} value={specialite} type="text" required />
                         </label>
                         <label>Sous-Specialité :
-                            <input onChange={(e) => setSousSpecialite(e.target.value)} value={sousSpecialite} type="number" required />
+                            <input onChange={(e) => setSousSpecialite(e.target.value)} value={sousSpecialite} type="text" required />
                         </label>
                     </>}
                     {!isPersonnage && <>

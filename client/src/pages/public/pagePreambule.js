@@ -21,8 +21,9 @@ export const PagePreambule = () => {
     };
   
     useEffect(() => {
-      window.addEventListener("resize", updateMedia);
-      return () => window.removeEventListener("resize", updateMedia);
+        document.title = "Préambule";
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
     });
 
     return (

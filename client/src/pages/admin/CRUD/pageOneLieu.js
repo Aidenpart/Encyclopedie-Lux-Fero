@@ -9,7 +9,7 @@ import { GenericLink } from "../../../components/public/links/links.js";
 import { Footer } from "../../../components/public/footer/footer.js";
 import { CardsLieux } from "../../../components/public/cards/cardsEncyclopedie.js";
 import { readData } from "../../../helpers/dataHelpers.js";
-import { CreateOrModifyForm } from "../../../components/admin/CRUDGeneral/componentsCRUD.js";
+import { CreateOrModifyForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js";
 
 
 export const PageOneLieu = () =>{
