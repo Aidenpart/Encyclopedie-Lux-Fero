@@ -8,7 +8,7 @@ export const fetchData = async (spec) => {
         return data;
     } catch (error) {
         console.log(error);
-        throw new Error('Failed to fetch data');
+        return error
     }
 };
 
@@ -25,7 +25,7 @@ export const createData = async(type, token, formData, id) => {
         return creation.json();
     } catch (error) {
         console.log("dommage");
-        throw new Error('Failed to fetch data');
+        return error
     } 
 }
 
@@ -41,6 +41,6 @@ export const updateData = async(type, token, formData, id) => {
         return update.json();
     } catch (error) {
         console.log(error);
-        throw new Error('Failed to fetch data');
+        return error
     } 
 }

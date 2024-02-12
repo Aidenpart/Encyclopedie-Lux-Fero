@@ -108,7 +108,7 @@
 
 
     .interieur {
-        border: 2px black solid;
+        border: 1px black solid;
         position: relative;
         width: 100%;
         height: 100%; 
@@ -122,26 +122,48 @@
             margin: 0;
             backface-visibility: hidden; }
 
-        .white-margin {
+        .recto {
             background-color: #fff;
-            
-            .recto { 
-                box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);
-           
-                    p {
-                        margin: 0;
-                    }
+            padding: 15px;
+            box-sizing: border-box;
+
+            .image-BG {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+
+                .greetings {
+                    position: relative;
+                    height: 100%;
+                    width: 100%;
+                    font-size: 1.35em;
+                    color: #fff;
+                    font-style: italic;
+                    align-items: center;
+                    text-shadow: -1px 1px 0 #000,
+                                1px 1px 0 #000,
+                                1px -1px 0 #000,
+                                -1px -1px 0 #000;                   
                 }
-        }
+
+                .nom-lieu {
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    margin: 0;
+                    font-size: 4em;
+                }
+                    
+                }
+            }
         }
             
     
-        .verso {
-            transform: rotateY(180deg);
-            background-color: #caae98;
-            box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);  }
+    .verso {
+        transform: rotateY(180deg);
+        background-color: #fff;
+        box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);  }
     }
-
 
 
 
@@ -152,14 +174,54 @@
     
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 700px) {
     .card {
         width: 40%;
+    }
+
+    .post-card {
+        width: 450px;
+        height: 320px; 
+
+        .interieur {  
+            .recto {    
+                .image-BG {    
+                    .greetings {
+                        height: 50%;
+                        text-align: right;
+                        position: absolute;
+                        bottom: 0;
+                        right: 75px;
+
+                        .nom-lieu {
+                            right: -50px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 @media screen and (min-width: 1279px) {
    .card {
         width: 30%;
+    }
+
+    .post-card {
+        width: 898px;
+        height: 644px;
+        
+        .interieur {  
+            .recto {    
+                .image-BG {    
+                    .greetings {
+                        font-size: 3em;
+                        right: 100px;
+                        bottom: -40px;
+                    }
+                }
+            }
+        }
     }
 }

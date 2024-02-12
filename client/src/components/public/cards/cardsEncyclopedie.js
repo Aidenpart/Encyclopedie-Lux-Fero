@@ -71,9 +71,16 @@ export const CardsLieux = (props) => {
                 return (
                     <article key={i} className="post-card">
                         <div className="interieur">
-                            <div className="white-margin">
-                                <div className="recto" style={{ backgroundImage: `url(${URL}/${lieu.image})`, backgroundPosition: 'center', backgroundSize: 'contain' }}>
-                                    <p>Greetings from {lieu.name}</p>
+                            <div className="recto">
+                                <div className="image-BG" style={{ 
+                                    backgroundImage: `url(${URL}/${lieu.image})`, 
+                                    backgroundPosition: 'center', 
+                                    backgroundSize: 'cover', 
+                                    position: 'relative' }}>
+                                        <div className="greetings">
+                                            <p>Greetings from</p>
+                                            <p className="nom-lieu">{lieu.nom}</p>
+                                        </div>
                                 </div>
                             </div>
                             <div className="verso">

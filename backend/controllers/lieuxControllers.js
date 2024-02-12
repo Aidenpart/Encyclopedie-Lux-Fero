@@ -23,7 +23,7 @@ export const createLieu = async (req, res) => {
         if (files.image && files.image.length > 0) {
             newPath = await saveImage(files.image[0].filepath, files);
         } else {
-            newPath = "images/perso_default.png";
+            newPath = "images/lieu_default.png";
         };
 
         let informationsRoman = await infosRoman(fields.roman[0]);
@@ -88,7 +88,7 @@ export const updateLieu = async (req, res) => {
             newPath = await saveImage(files.image[0].filepath, files);
             await deleteImage(lieuModel, id);
         } else {
-            newPath = "images/perso_default.png";       
+            newPath = "images/lieu_default.png";       
             await deleteImage(lieuModel, id);
         };
 
