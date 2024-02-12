@@ -1,42 +1,6 @@
 @import "../../../pages/generalStyles.scss";
 
 
-.card {
-    margin: 30px auto;
-    text-align: center;
-    color: #fff;
-    background-color: $primary-color;
-    border: 1px solid $primary-color;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
-    
-    h1 {
-        font-size: 2em;
-        margin: 0;
-        font-family: $Kanit;
-    }
-    
-    .section-image {
-        margin: auto;
-        width: 90%;
-        height: 350px;
-        border: 1px solid $third-color;
-        border-radius: 10px;
-        
-        .image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-    }
-}
-
-
-
-
-
 .carte:hover .interieur {    transform: rotateY(180deg);  }
 .carte {
     box-sizing: border-box;
@@ -46,7 +10,6 @@
     perspective: 1000px;
     margin: 10px;
     text-align: center;
-
 
     .interieur {
         border: 2px black solid;
@@ -74,30 +37,28 @@
                 box-sizing: border-box;
                 padding: 0 5px;
     
-                p {
-                    margin: 0;
-                }
+                p { 
+                    margin: 0; }
             }
     
             .top {
-                font-size: 1.35em;}
+                font-size: 1.35em; }
         
             .bottom {
                 position: absolute;            
                 width: 100%;
                 bottom: 0;
-                font-size: 1.25em;}
+                font-size: 1.25em; }
         }
             
-    
         .verso {
             transform: rotateY(180deg);
             background-color: #caae98;
-            box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);  }
+            box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2); }
     }
 } 
 
-.post-card:hover .interieur {    transform: rotateY(180deg);  }
+
 .post-card {
     box-sizing: border-box;
     background-color: transparent;
@@ -105,7 +66,6 @@
     height: 450px; 
     margin: 10px;
     text-align: center;
-
 
     .interieur {
         border: 1px black solid;
@@ -144,65 +104,52 @@
                     text-shadow: -1px 1px 0 #000,
                                 1px 1px 0 #000,
                                 1px -1px 0 #000,
-                                -1px -1px 0 #000;                   
-                .greetings, .nom-lieu {
-                    position: absolute;
-                    width: 100%;
-                }
+                                -1px -1px 0 #000;    
 
-                .greetings {
-                    top: 0;
-                }
-                .nom-lieu {
-                    bottom: 20px;
-                    margin: 0;
-                    font-size: 2.5em;
-                }
-            }   
-        }
-        }
+                    .greetings, .nom-lieu {
+                        position: absolute;
+                        width: 100%; }
 
-    .verso {
-        transform: rotateY(180deg);
-        background-color: #fff;
-        box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-    
-        .coordonnees, .description, .separateur {
-            padding: 15px;
+                    .greetings {
+                        top: 0; }
+
+                    .nom-lieu {
+                        bottom: 20px;
+                        margin: 0;
+                        font-size: 2.5em; }
+                }   
+            }
         }
 
-        .separateur {
-            border: 1px solid black;
-            width: 80%;
-            padding: 0;
-            margin: 0;
-        }
+        .verso {
+            transform: rotateY(180deg);
+            background-color: #fff;
+            box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        
+            .coordonnees, .description, .separateur {
+                padding: 15px; }
 
-        .coordonnees p {
-            margin-top: 5px;
-            margin-bottom: 5px;
+            .separateur {
+                border: 1px solid black;
+                width: 80%;
+                padding: 0;
+                margin: 0; }
+
+            .coordonnees p {
+                margin-top: 5px;
+                margin-bottom: 5px; }
         }
-    }
     }    
 }
+.post-card:hover .interieur {
+    transform: rotateY(180deg); }
 
-
-
-@media screen and (min-width: 479px) {
-    .card {
-        width: 90%;
-    }
-    
-}
 
 @media screen and (min-width: 700px) {
-    .card {
-        width: 40%;
-    }
 
     .post-card {
         width: 450px;
@@ -220,36 +167,31 @@
 
                         .greetings {
                             margin: 0;
-                            bottom: -20px;
-                        }
+                            bottom: -20px; }
 
                         .nom-lieu {
                             right: -50px;
-                            font-size: 2em;
-                        }
+                            font-size: 2em; }
                     }
                 }
             }
+
             .verso {
                 flex-direction: row;
 
                 .coordonnees {
-                    width: 90%;
-                }
+                    width: 90%; }
 
                 .separateur {
                     width: 0;
-                    height: 80%;
-                }
+                    height: 80%; }
             }
         }
     }
 }
 
+
 @media screen and (min-width: 1279px) {
-   .card {
-        width: 30%;
-    }
 
     .post-card {
         width: 898px;
@@ -262,13 +204,11 @@
                         height: 35%;
                         font-size: 3em;
                         right: 100px;
-                        bottom: -20px;
-                    }
+                        bottom: -20px; }
                 }
             }
             .verso {
-                font-size: 1.5em;
-            }
+                font-size: 1.5em; }
         }
     }
 }
