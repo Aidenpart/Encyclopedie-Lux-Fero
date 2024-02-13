@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { Loading } from "../loading/loading";
-import { RomanNumber, getNomRoman } from "./componentsCard";
+import { RomanNumber, getNomRoman, adaptivePronoun } from "./componentsCard";
 import { fetchData } from "../../../helpers/dataHelpers";
 import { URL } from "../../../helpers/urlHelpers";
 import "./cardsStyles.scss";
@@ -80,14 +80,17 @@ export const CardsLieux = (props) => {
                                 </div>
                             </div>
                             <div className="verso">
-                                <div className="description">Ce lieu contient : <br />{lieu.description}</div>
+                                <div className="description">
+                                    <p>Venant du roman {nomRoman}, {lieu.nom} se trouve {adaptivePronoun(lieu.emplacement)+" "+lieu.emplacement} et abrîte {lieu.population} âmes.</p>
+                                    <p>Il contient notamment : <br />{lieu.description}</p>
+                                </div>
                                 <div className="separateur"></div>
                                 <div className="coordonnees">
-                                    <p>Nom du lieu : <br />{lieu.nom}</p>
-                                    <p>Roman : <br />{nomRoman}</p>
-                                    <p>Appartenance : <br />{lieu.appartenance}</p>
-                                    <p>Emplacement : <br />{lieu.emplacement}</p>
-                                    <p>Population : <br />{lieu.population}</p>
+                                    <p>Nom du lieu : {lieu.nom}</p>
+                                    <p>Roman : {nomRoman}</p>
+                                    <p>Appartenance : {lieu.appartenance}</p>
+                                    <p>Emplacement : {lieu.emplacement}</p>
+                                    <p>Population : {lieu.population}</p>
                                 </div>
                             </div>
                         </div>

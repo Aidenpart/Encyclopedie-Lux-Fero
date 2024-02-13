@@ -35,3 +35,15 @@ export const getNomRoman = (romans, id) => {
     const roman = romans.find(roman => roman._id === id);
     return roman ? roman.nom : '';
 };
+
+
+export const adaptivePronoun = (emplacement) => {
+	const premiereLettre = emplacement.substr(0,1);
+	const voyelles = "aeiouyAEIOUY";
+	const pronomConsonne = "au"
+	const pronomVoyelle = "à l'"
+	if (!voyelles.includes(premiereLettre))
+		return pronomConsonne
+	else
+		return pronomVoyelle
+}

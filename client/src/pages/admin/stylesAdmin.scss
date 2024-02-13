@@ -1,0 +1,19 @@
+.page-admin-principale {
+
+    .link-zone {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
+
+
+
+
+@media screen and (min-width: 700px) {
+    
+    .link-zone {
+        flex-direction: row;
+    }
+    
+}

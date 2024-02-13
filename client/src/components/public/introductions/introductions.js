@@ -1,4 +1,4 @@
-import { faBookJournalWhills } from '@fortawesome/free-solid-svg-icons';
+import { faBookJournalWhills, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./introductionsStyles.scss";
 
@@ -18,6 +18,31 @@ export const IntroductionAccueil = () => {
             <a className="lien-wattpad" rel="noreferrer" target="_blank" href="https://www.wattpad.com/story/318552524-lux-fero-le-porteur-de-lumi%C3%A8re">
                 <FontAwesomeIcon icon={faBookJournalWhills} /><span className="lire-roman">Lire le roman</span>
             </a>
+        </article>
+    );
+};
+
+
+export const IntroductionAdmin = () => {
+    
+    return (
+        <article className="intro-admin">
+            <p>Ici, c'est la zone d'ombre, <span>"le lieu que l'oeil ne voit pas"</span>. <br />
+                Ici, on répertorie les histoires, les personnages, les lieux, et peut-être plus tard, les anecdotes.
+                Nul besoin d'être avare de détails et toujours se souvenir de ces quelques points : 
+            </p>
+            <ul className="liste-admin">
+                <li><FontAwesomeIcon icon={faArrowRight} /><span>Est-ce mentionné dans le roman, ou les textes sacrés ?
+                    <br/>Si oui:</span>
+                        <ul  className="liste-admin">
+                            <li><FontAwesomeIcon icon={faArrowRight} /><span>Que dit le roman ?</span></li>
+                            <li><FontAwesomeIcon icon={faArrowRight} /><span>Que disent les textes sacrés ?</span></li>
+                        </ul>
+                </li>
+                <li><FontAwesomeIcon icon={faArrowRight} /><span>Est-ce cohérent avec la diégèse déjà existante ?</span></li>
+                <li><FontAwesomeIcon icon={faArrowRight} /><span>Si cela entre en conflit, comment cela peut être modifié pour correspondre ?</span></li>
+            </ul>
+            <p>Il est toujours plus simple d'écrire sur le clavier donc prioriser ce moyen mais le site est codé dans l'optique du mobile first. S'il devient un jour en ligne, il pourra ainsi être consulté qu'importe le média.</p>    
         </article>
     );
 };
