@@ -23,7 +23,7 @@ export const userSlice = createSlice({
                 id: action.payload._id,
                 email: action.payload.email,
                 pseudo : action.payload.pseudo,
-                images : action.payload.images,
+                image: action.payload.image,
                 isAdmin: action.payload.isAdmin,
                 isLogged: true
             };

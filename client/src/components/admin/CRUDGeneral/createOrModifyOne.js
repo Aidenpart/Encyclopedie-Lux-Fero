@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { Loading } from "../../public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
 import { listeRomans, appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories.js";
+import "./generalCRUD.scss"
 
 
 export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPersonnage, id }) => {
     const romans = listeRomans;
-
+    const nombreDeCaracteres = 300;
+    const [nombreDeCaracteresRestants, setNombreDeCaracteresRestants] = useState(300)
+    
     const [nom, setNom] = useState(initialValues.nom || '');
     const [roman, setRoman] = useState(initialValues.roman || '');
     const [appartenances, setAppartenances] = useState([]);
@@ -61,7 +64,6 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
             formData.append('specialite', specialite);
             formData.append('sousSpecialite', sousSpecialite);
         }
-        console.log(formData)
 
         try {
             if(!isPersonnage)
@@ -69,8 +71,8 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
             else
                 await onSubmit("personnage", token, formData, id)
         } catch (error) {
-            alert(error);
-            setMessage(error);
+            console.log(error)
+            setMessage(error.message);
         }
     };
 
@@ -79,14 +81,20 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
         setImage(file);
     };
 
+    const handleDescription = (e) => {
+        const description = e.target.value;
+        setDescription(description)
+        setNombreDeCaracteresRestants(nombreDeCaracteres-description.length)
+    }
+
     if (!dataLoaded)
         return <Loading />;
 
     return (
-        <article className="update">
+        <article >
             <h3>{isCreation ? "Créer" : "Modifier"}</h3>
-            <div className="div-form">
-                <form onSubmit={handleSubmit} className="form" encType='multipart/form-data'>
+            <div>
+                <form className="formulaire" onSubmit={handleSubmit} encType='multipart/form-data'>
                     <label>Nom :
                         <input onChange={(e) => setNom(e.target.value)} value={nom} type="text" required />
                     </label>
@@ -139,7 +147,8 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                     </>}
 
                     <label>Description :
-                            <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" required />
+                            <textarea onChange={handleDescription} value={description} required />
+                            <p className="caracteres-restants">Nombre de caractères restant : {nombreDeCaracteresRestants}</p>
                     </label>
                     <label>Image :
                         <input onChange={handleFileUpload} placeholder={"image"} fileinput="multiple" type="file" />
@@ -147,7 +156,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                     <button>{isCreation ? "Créer" : "Modifier"}</button>
                 </form>
             </div>
-            <div className={"err-message"}>
+            <div>
                 {message}
             </div>
         </article>

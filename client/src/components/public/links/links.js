@@ -25,7 +25,7 @@ export const GenericLink = (props) => {
 export const LinkPageAdmin = () => {
     
     return (
-        <Link className={"link link-page-admin"} to={"/admin"}>Page Administrateur</Link>
+        <Link to={"/admin"} className={"absconditus"} >Admin</Link>
     );
 };
 
@@ -85,7 +85,7 @@ export const LinkConditionalNavigation = () => {
                 sessionStorage.getItem('jwt')
                     ? user.isAdmin
                         ? <LinkPageAdmin />
-                        : <LinkProfil />
+                        : <GenericLink direction={"/"} class={"link-footer"} text={"Accueil"}/>
                     : <LinkConnexion />
             }
         </>

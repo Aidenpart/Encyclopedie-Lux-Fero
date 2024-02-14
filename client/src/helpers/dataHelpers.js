@@ -22,10 +22,14 @@ export const createData = async(type, token, formData, id) => {
             },
             body: formData
         });
+        if (!creation.ok) {
+            // Si le statut n'est pas OK (200), rejetez la promesse avec un objet d'erreur
+            throw new Error(`Erreur: ${creation.status} - ${creation.statusText}`);
+        }
+
         return creation.json();
     } catch (error) {
-        console.log("dommage");
-        return error
+        throw new Error(`Error: ${error.status} - ${error.statusText}`)
     } 
 }
 
@@ -41,8 +45,7 @@ export const updateData = async(type, token, formData, id) => {
         });
         return update.json();
     } catch (error) {
-        console.log(error);
-        return error
+        return error;
     } 
 }
 

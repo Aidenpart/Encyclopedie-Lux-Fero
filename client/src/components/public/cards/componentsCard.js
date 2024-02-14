@@ -43,7 +43,7 @@ export const adaptivePronoun = (emplacement) => {
 	const pronomConsonne = "au"
 	const pronomVoyelle = "à l'"
 	if (!voyelles.includes(premiereLettre))
-		return pronomConsonne
+		return `${pronomConsonne} ${emplacement}`
 	else
-		return pronomVoyelle
+		return `${pronomVoyelle} ${emplacement}`
 }

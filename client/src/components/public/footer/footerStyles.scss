@@ -1,6 +1,8 @@
 @import "../../../pages/generalStyles.scss";
 
 .footer {
+    font-size: 1em;
+    position:fixed;
     background-color: $footer;
     color: $secundary-color;
     margin-top: 50px;

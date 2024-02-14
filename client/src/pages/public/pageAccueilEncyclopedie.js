@@ -10,7 +10,6 @@ import { fetchData } from "../../helpers/dataHelpers";
 import { Loading } from "../../components/public/loading/loading";
 
 export const PageAccueil = () => {
-    
     const [dataLoaded, setDataLoaded] = useState(false);
     const [romans, setRomans] = useState([]);
     const dispatch = useDispatch();
@@ -30,10 +29,10 @@ export const PageAccueil = () => {
                 console.log(err)
             })
         }
-
         document.title = "Acceuil Encyclopédie";
         dispatch(deleteRoman())
-    }, [setRomans, dataLoaded, dispatch])
+        console.log(romans)
+    }, [setRomans, dataLoaded, dispatch, romans])
 
 
     if (!dataLoaded)

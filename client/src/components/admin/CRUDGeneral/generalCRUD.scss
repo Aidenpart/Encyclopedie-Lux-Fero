@@ -1,0 +1,32 @@
+@import "../../../pages/generalStyles.scss";
+
+.formulaire {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.25em;
+
+    label {
+        margin: 5px 0;
+
+        input, select, textarea {
+            margin: 0 5px;
+            border: 1px solid black;
+            border-radius: 2px;
+        }
+
+        input, select {
+            vertical-align: bottom;
+        }
+
+        textarea {
+            vertical-align: top;
+            width: 50%;
+        }
+
+        .caracteres-restants {
+            font-size: 0.75em;
+            margin: 0;
+        }
+
+    }
+}
