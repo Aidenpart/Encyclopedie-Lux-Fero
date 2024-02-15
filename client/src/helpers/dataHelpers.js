@@ -22,14 +22,9 @@ export const createData = async(type, token, formData, id) => {
             },
             body: formData
         });
-        if (!creation.ok) {
-            // Si le statut n'est pas OK (200), rejetez la promesse avec un objet d'erreur
-            throw new Error(`Erreur: ${creation.status} - ${creation.statusText}`);
-        }
-
         return creation.json();
     } catch (error) {
-        throw new Error(`Error: ${error.status} - ${error.statusText}`)
+        throw new Error(error.message)
     } 
 }
 
@@ -54,13 +49,13 @@ export const readData = async (type, id) => {
     let search
 
     switch (type) {
-        case "roman":
+        case "romans":
             search = "romans/get-roman"
             break;
-        case "lieu":
+        case "lieux":
             search = "lieux/get-lieu"
             break;
-        case "personnage":
+        case "personnages":
             search = "personnages/get-personnage"
             break;
         default:

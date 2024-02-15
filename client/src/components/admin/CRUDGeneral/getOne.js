@@ -32,7 +32,7 @@ export const GetOne = (props) => {
         const foundData = datas.find(data => data.nom === selectedData);
 
         if (foundData)
-            navigate(`${props.dataCategory}/${foundData._id}`);
+            navigate(`${props.dataCategory}/${foundData._id}`, {state: {dataCategory:props.dataCategory}});
    };
     
     return (

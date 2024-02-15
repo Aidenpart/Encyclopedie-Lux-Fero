@@ -17,12 +17,8 @@ import { PageRGPD } from "./pages/legal/pageRGPD.js";
 import { PageMentionsLegales } from "./pages/legal/pageMentionsLegales.js"
 import { PageConnexion } from "./pages/admin/pageConnexion.js";
 import { PageAdmin } from "./pages/admin/pageAdmin.js";
-import { PageCRUDLieux } from "./pages/admin/CRUD/pageCRUDLieux.js";
-import { PageOneLieu } from "./pages/admin/CRUD/pageOneLieu.js";
-import { PageCRUDPersonnages } from "./pages/admin/CRUD/pageCRUDPersonnages.js";
-import { PageOnePersonnage } from "./pages/admin/CRUD/pageOnePersonnage.js";
 import { PageCRUD } from "./pages/admin/CRUD/pageCRUD.js";
-import {  } from "./pages/admin/CRUD/pageOne.js";
+import { PageOne } from "./pages/admin/CRUD/pageOne.js";
 
 
 function App() {
@@ -65,13 +61,9 @@ function App() {
         <Route path="/connexion" element={<PageConnexion />} />
 
         <Route path="/admin" element={<AdminMiddleware> <PageAdmin /> </AdminMiddleware>} />
-        <Route path="/admin/CRUD-Lieux" element={<AdminMiddleware> <PageCRUDLieux /> </AdminMiddleware>} />
-        <Route path="/admin/CRUD-Lieux/lieu/:id" element={<AdminMiddleware> <PageOneLieu /> </AdminMiddleware>} />
-        <Route path="/admin/CRUD-Personnages" element={<AdminMiddleware> <PageCRUDPersonnages /> </AdminMiddleware>} />
-        <Route path="/admin/CRUD-Personnages/personnage/:id" element={<AdminMiddleware> <PageOnePersonnage /> </AdminMiddleware>} />
         <Route path="/admin/CRUD" element={<AdminMiddleware> <PageCRUD /> </AdminMiddleware>} />
-        <Route path="/admin/CRUD/lieux/:id" element={<AdminMiddleware> <PageOneLieu /> </AdminMiddleware>} />
-        <Route path="/admin/CRUD/personnages/:id" element={<AdminMiddleware> <PageOnePersonnage /> </AdminMiddleware>} />
+        <Route path="/admin/CRUD/lieux/:id" element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
+        <Route path="/admin/CRUD/personnages/:id" element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
 
       </Routes>
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import { Loading } from "../../../components/public/loading/loading.js";
 import { Header } from "../../../components/public/header/header.js";
@@ -13,31 +13,31 @@ import { CreateOrModifyForm } from "../../../components/admin/CRUDGeneral/create
 
 
 export const PageOne = () =>{
-    const { params, id } = useParams();
-    const [specData, setSpecData] = useState("")
-    const [card, setCard] = useState("")
-    const [data, setData] = useState([]);
+    const { id } = useParams();
+    const location = useLocation(); 
+    const state = location.state;
+    const specData = state.dataCategory;
+    const [card, setCard] = useState(false)
+    const [data, setData] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
 
-    console.log(params)
+    useEffect(() => {
+        if(!dataLoaded) {
+            readData(specData, id)
+            .then((response) => {
+                setData(response);
+                setDataLoaded(true);
+                specData === "personnages" ? setCard(true): setCard(false)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+    }, [data, id, specData, card, dataLoaded]);
 
     useEffect(() => {
-        setSpecData(params)
-    }, [setSpecData, params])
-
-    useEffect(() => {
-        readData(specData, id)
-        .then((response) => {
-            setData(response);
-            setDataLoaded(true);
-            params === "personnages" ? setCard(true): setCard(false)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-        console.log(data)
         document.title = `${data.nom}`;
-    }, [data.nom, id, params, specData]);
+    })
 
     if(!dataLoaded)
         return <Loading />;
@@ -49,21 +49,22 @@ export const PageOne = () =>{
                 <GenericLinkDynamicData 
                                     direction={"/admin/CRUD"} 
                                     class={"CRUD-link"} 
-                                    text={`CRUD ${params}`}
+                                    text={`CRUD`}
                                     setters={{
-                                        isCategoryPersonnage:params,
+                                        dataCategory:specData,
                                         isCreation:true,
-                                        isPersonnage:params
+                                        isPersonnage:specData
                                 }}/>
                 <CreateOrModifyForm 
                     initialValues={data} 
                     onSubmit={updateData} 
                     isCreation={false}
-                    isPersonnage={false} 
+                    isPersonnage={card} 
                     id={id}
                 />
-                
-                <DeleteOne text={"lieu"} direction={"Lieux"}/>
+                {card && <CardsPersonnages personnages={[data]} />}
+                {!card && <CardsLieux lieux={[data]} />}
+                <DeleteOne text={"lieu"} specData={specData}/>
             </main>
             <Footer/>
         </section>

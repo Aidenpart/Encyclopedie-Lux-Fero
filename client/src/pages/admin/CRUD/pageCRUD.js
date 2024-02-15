@@ -11,14 +11,12 @@ import { createData } from "../../../helpers/dataHelpers.js"
 export const PageCRUD = () => {
     const location = useLocation(); 
     const state = location.state;
-    console.log(state)
-    const [isCategoryPersonnage, setIsCategoryPersonnage] = useState()
+    const [isCategoryPersonnage, setIsCategoryPersonnage] = useState();
 
     useEffect(() => {
         state.dataCategory==="personnages"?setIsCategoryPersonnage(true):setIsCategoryPersonnage(false);
         document.title = `CRUD ${state.dataCategory}`;
-        console.log(isCategoryPersonnage)
-    }, [state.dataCategory, isCategoryPersonnage])
+    }, [state.dataCategory, isCategoryPersonnage]);
 
     return (
         <>  
@@ -32,5 +30,5 @@ export const PageCRUD = () => {
             />
             <GetOne dataCategory={state.dataCategory} />
         </>
-    )
-}
+    );
+};
