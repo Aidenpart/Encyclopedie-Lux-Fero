@@ -21,7 +21,7 @@ export const PageCRUDPersonnages = () => {
                 isCreation={true} 
                 isPersonnage={true}
             />
-            <GetOne dataSetter="personnages" textSetter="personnage"/>
+            <GetOne dataSetter="personnages"/>
         </>
     )
 }

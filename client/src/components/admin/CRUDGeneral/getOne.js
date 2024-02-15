@@ -7,12 +7,13 @@ import { fetchData } from "../../../helpers/dataHelpers";
 export const GetOne = (props) => {
     
     const navigate = useNavigate();
-    const [message, setMessage] = useState('');
+    const [text, setText] = useState("");
+    const [message, setMessage] = useState("");
     const [datas, setDatas] = useState([]);
     const [selectedData, setSelectedData] = useState("");
     
     useEffect(() => {
-        fetchData(props.dataSetter)
+        fetchData(props.dataCategory)
         .then((data) => {
             setDatas(data);
         })
@@ -20,7 +21,10 @@ export const GetOne = (props) => {
             console.log(err);
             setMessage(err);
         });
-    }, [setDatas, setMessage, props.dataSetter]);
+
+        props.dataCategory === "personnages" ? setText("personnage") : setText("lieu");
+
+    }, [setDatas, setMessage, props.dataCategory, setText]);
     
     const handleSubmitOne = (e) => {
         e.preventDefault();
@@ -28,15 +32,15 @@ export const GetOne = (props) => {
         const foundData = datas.find(data => data.nom === selectedData);
 
         if (foundData)
-            navigate(`${props.textSetter}/${foundData._id}`);
+            navigate(`${props.dataCategory}/${foundData._id}`);
    };
     
     return (
         <section className="article-CRUD">
-            <h3>Chercher un {props.textSetter}</h3>
+            <h3>Chercher un {text}</h3>
             <div className="div-form-admin">
                 <form onSubmit={handleSubmitOne}  className="form">
-                    <label>Nom du {props.textSetter}</label>
+                    <label>Nom du {text}</label>
                         <select onChange={(e) => setSelectedData(e.target.value)}>
                             <option disabled={true} selected>-----</option>
                             {datas.map((data, i) => {

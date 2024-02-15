@@ -21,6 +21,8 @@ import { PageCRUDLieux } from "./pages/admin/CRUD/pageCRUDLieux.js";
 import { PageOneLieu } from "./pages/admin/CRUD/pageOneLieu.js";
 import { PageCRUDPersonnages } from "./pages/admin/CRUD/pageCRUDPersonnages.js";
 import { PageOnePersonnage } from "./pages/admin/CRUD/pageOnePersonnage.js";
+import { PageCRUD } from "./pages/admin/CRUD/pageCRUD.js";
+import {  } from "./pages/admin/CRUD/pageOne.js";
 
 
 function App() {
@@ -67,6 +69,10 @@ function App() {
         <Route path="/admin/CRUD-Lieux/lieu/:id" element={<AdminMiddleware> <PageOneLieu /> </AdminMiddleware>} />
         <Route path="/admin/CRUD-Personnages" element={<AdminMiddleware> <PageCRUDPersonnages /> </AdminMiddleware>} />
         <Route path="/admin/CRUD-Personnages/personnage/:id" element={<AdminMiddleware> <PageOnePersonnage /> </AdminMiddleware>} />
+        <Route path="/admin/CRUD" element={<AdminMiddleware> <PageCRUD /> </AdminMiddleware>} />
+        <Route path="/admin/CRUD/lieux/:id" element={<AdminMiddleware> <PageOneLieu /> </AdminMiddleware>} />
+        <Route path="/admin/CRUD/personnages/:id" element={<AdminMiddleware> <PageOnePersonnage /> </AdminMiddleware>} />
+
       </Routes>
   );
 };

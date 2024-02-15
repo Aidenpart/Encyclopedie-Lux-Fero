@@ -130,10 +130,10 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                         <label>Attirance :
                             <input onChange={(e) => setAttirance(e.target.value)} value={attirance} type="text" required />
                         </label>
-                        <label>Specialité :
+                        <label>Spécialité :
                             <input onChange={(e) => setSpecialite(e.target.value)} value={specialite} type="text" required />
                         </label>
-                        <label>Sous-Specialité :
+                        <label>Sous-Spécialité :
                             <input onChange={(e) => setSousSpecialite(e.target.value)} value={sousSpecialite} type="text" required />
                         </label>
                     </>}
@@ -145,10 +145,11 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                             <input onChange={(e) => setPopulation(e.target.value)} value={population} type="number" required />
                         </label>
                     </>}
-
                     <label>Description :
-                            <textarea onChange={handleDescription} value={description} required />
-                            <p className="caracteres-restants">Nombre de caractères restant : {nombreDeCaracteresRestants}</p>
+                        <div>
+                            <textarea onChange={handleDescription} value={description} cols={"23"} required />
+                            <p className="caracteres-restants">Caractères restant : {nombreDeCaracteresRestants}</p>
+                        </div>
                     </label>
                     <label>Image :
                         <input onChange={handleFileUpload} placeholder={"image"} fileinput="multiple" type="file" />

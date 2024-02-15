@@ -15,7 +15,7 @@ export const Footer = () => {
                 <p>Tous droits réservés</p>            
             </span>
             <GenericLink direction={"/mentions-legales"} class={"link-footer"} text={"Mentions Légales"}/>
-            <LinkConditionalNavigation direction={"/connexion"} class={"absconditus"} text={"admin"}/>
+            <LinkConditionalNavigation />
             <GenericLink direction={"/cgu"} class={"link-footer"} text={"CGU"}/>
             <GenericLink direction={"/rgpd"} class={"link-footer"} text={"RGPD"}/>
         </footer>

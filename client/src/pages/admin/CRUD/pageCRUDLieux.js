@@ -22,7 +22,7 @@ export const PageCRUDLieux = () => {
                 isCreation={true} 
                 isPersonnage={false}
             />
-            <GetOne dataSetter="lieux" textSetter="lieu"/>
+            <GetOne dataSetter="lieux"/>
         </>
     )
 }

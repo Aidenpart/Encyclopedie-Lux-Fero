@@ -4,12 +4,8 @@
 $primary-color: #E1581E;
 $secundary-color: #fff;
 $third-color: #000;
-
-
 $bg-link-secundary : #EDA21B;
 $footer : #2E2B29;
-
-
 $Cinzel : 'Cinzel', serif;
 $Nunito : 'Nunito', sans-serif;
 $Kanit : 'Kanit', sans-serif;
@@ -29,6 +25,10 @@ body {
     
     main {
         margin-top: 50px;
+        font-size: 1.25em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     button {

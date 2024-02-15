@@ -86,7 +86,7 @@ export const LinkConditionalNavigation = () => {
                     ? user.isAdmin
                         ? <LinkPageAdmin />
                         : <GenericLink direction={"/"} class={"link-footer"} text={"Accueil"}/>
-                    : <LinkConnexion />
+                    : <GenericLink direction={"/connexion"} class={"absconditus"} text={"Connexion"}/>
             }
         </>
     );

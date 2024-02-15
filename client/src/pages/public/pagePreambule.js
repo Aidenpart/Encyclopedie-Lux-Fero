@@ -29,7 +29,7 @@ export const PagePreambule = () => {
     return (
         <section>
             <nav></nav>
-            <main className="main-preambule">
+            <main>
                 <article>
                     <Header text={"Préambule"}/>
                     <IntroductionAccueil/>              

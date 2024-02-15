@@ -5,3 +5,5 @@ export const appartenancesReginaMagicae = ["Humanité", "Mages", "Autres"];
 export const appartenancesLuxFero = ["Enfer", "Cieux", "Humanité"];
 
 export const listeRomans = ["Lux Fero", "Regina Magicae"]
+
+export const listDataCategories = ["lieux", "personnages"]

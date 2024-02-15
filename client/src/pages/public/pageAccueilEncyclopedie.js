@@ -31,7 +31,6 @@ export const PageAccueil = () => {
         }
         document.title = "Acceuil Encyclopédie";
         dispatch(deleteRoman())
-        console.log(romans)
     }, [setRomans, dataLoaded, dispatch, romans])
 
 
@@ -39,7 +38,7 @@ export const PageAccueil = () => {
     return <Loading />; 
 
     return (
-        <section>
+        <section className="page">
             <main>
                 <article>
                     <Header text={"Encyclopédie"}/>
