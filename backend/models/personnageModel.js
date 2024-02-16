@@ -16,6 +16,10 @@ const personnageSchema = new mongoose.Schema(
             type: String,
             required: [true, "Une appartenance est requise"]
         },
+        nature: {
+            type: String,
+            required: [true, "Une nature est requise"]
+        },
         demeure: {
             type: String,
             required: [true, "Une demeure est requise"]
