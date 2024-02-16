@@ -7,8 +7,8 @@ import "./generalCRUD.scss"
 
 export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPersonnage, id }) => {
     const romans = listeRomans;
-    const nombreDeCaracteres = 300;
-    const [nombreDeCaracteresRestants, setNombreDeCaracteresRestants] = useState(300)
+    const nombreDeCaracteres = 200;
+    const [nombreDeCaracteresRestants, setNombreDeCaracteresRestants] = useState(200)
     
     const [nom, setNom] = useState(initialValues.nom || '');
     const [roman, setRoman] = useState(initialValues.roman || '');
@@ -30,13 +30,12 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
     const [dataLoaded, setDataLoaded] = useState(false);
 
     useEffect(() => {
-        if (initialValues.roman === "Lux Fero" || roman === "Lux Fero") {
+        if (initialValues.roman === "Lux Fero" || roman === "Lux Fero")
             setAppartenances(appartenancesLuxFero);
-        } else if (initialValues.roman === "Regina Magicae" || roman === "Regina Magicae") {
+        else if (initialValues.roman === "Regina Magicae" || roman === "Regina Magicae")
             setAppartenances(appartenancesReginaMagicae);
-        } else {
-            setAppartenances([]);
-        }
+        else 
+            setAppartenances(["-----"]);
 
         setToken(getToken());
         setDataLoaded(true);
@@ -63,7 +62,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
             formData.append('attirance', attirance);
             formData.append('specialite', specialite);
             formData.append('sousSpecialite', sousSpecialite);
-        }
+        };
 
         try {
             if(!isPersonnage)
@@ -73,7 +72,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
         } catch (error) {
             console.log(error)
             setMessage(error.message);
-        }
+        };
     };
 
     const handleFileUpload = (e) => {
@@ -91,7 +90,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
         return <Loading />;
 
     return (
-        <article >
+        <article className="CRUD">
             <h3>{isCreation ? "Créer" : "Modifier"}</h3>
             <div>
                 <form className="formulaire" onSubmit={handleSubmit} encType='multipart/form-data'>
@@ -99,7 +98,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                         <input onChange={(e) => setNom(e.target.value)} value={nom} type="text" required />
                     </label>
                     <label>Roman :
-                        <select onChange={(e) => setRoman(e.target.value)} value={roman}>
+                        <select onChange={(e) => setRoman(e.target.value)} value={roman} required>
                             <option>-----</option>
                             {romans.map((roman, i) => {
                                 return <option key={i}>{roman}</option>;
@@ -107,8 +106,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                         </select>
                     </label>
                     <label>Appartenance :
-                        <select onChange={(e) => setAppartenance(e.target.value)} value={appartenance}>
-                            <option>-----</option>
+                        <select onChange={(e) => setAppartenance(e.target.value)} value={appartenance} required>
                             {appartenances.map((appartenance, i) => {
                                 return <option key={i}>{appartenance}</option>;
                             })}
@@ -147,7 +145,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                     </>}
                     <label>Description :
                         <div>
-                            <textarea onChange={handleDescription} value={description} cols={"23"} required />
+                            <textarea onChange={handleDescription} value={description} cols={"23"} maxLength={nombreDeCaracteres} required />
                             <p className="caracteres-restants">Caractères restant : {nombreDeCaracteresRestants}</p>
                         </div>
                     </label>

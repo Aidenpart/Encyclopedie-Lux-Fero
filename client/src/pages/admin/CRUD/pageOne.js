@@ -10,6 +10,7 @@ import { Footer } from "../../../components/public/footer/footer.js";
 import { CardsLieux, CardsPersonnages } from "../../../components/public/cards/cardsEncyclopedie.js";
 import { readData } from "../../../helpers/dataHelpers.js";
 import { CreateOrModifyForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js";
+import "../stylesAdmin.scss"
 
 
 export const PageOne = () =>{
@@ -43,18 +44,18 @@ export const PageOne = () =>{
         return <Loading />;
  
     return (
-        <section className="CRUD-One">  
-            <main>
-                <Header text={data.nom} />
-                <GenericLinkDynamicData 
-                                    direction={"/admin/CRUD"} 
-                                    class={"CRUD-link"} 
-                                    text={`CRUD`}
-                                    setters={{
-                                        dataCategory:specData,
-                                        isCreation:true,
-                                        isPersonnage:specData
-                                }}/>
+        <section>  
+            <Header text={data.nom} />
+            <GenericLinkDynamicData 
+                direction={"/admin/CRUD"} 
+                class={"CRUD-link"} 
+                text={`CRUD`}
+                setters={{
+                    dataCategory:specData,
+                    isCreation:true,
+                    isPersonnage:specData
+            }}/>
+            <main className="main-admin">
                 <CreateOrModifyForm 
                     initialValues={data} 
                     onSubmit={updateData} 

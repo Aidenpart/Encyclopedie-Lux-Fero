@@ -54,7 +54,6 @@ function App() {
         <Route path="/accueil-Lux-Fero" element={<PageAccueilLuxFero />} />
         <Route path="/accueil-Regina-Magicae" element={<PageAccueilReginaMagicae />} />
 
-
         <Route path="/cgu" element={<PageCGU />} />
         <Route path="/rgpd" element={<PageRGPD />} />
         <Route path="/mentions-legales" element={<PageMentionsLegales />} />
@@ -64,7 +63,6 @@ function App() {
         <Route path="/admin/CRUD" element={<AdminMiddleware> <PageCRUD /> </AdminMiddleware>} />
         <Route path="/admin/CRUD/lieux/:id" element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
         <Route path="/admin/CRUD/personnages/:id" element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
-
       </Routes>
   );
 };

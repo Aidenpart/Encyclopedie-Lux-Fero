@@ -30,6 +30,7 @@ export const PageAdmin = () => {
                     <p>Création Roman</p>
                     {listDataCategories.map((dataCategory, i) => {
                         return <GenericLinkDynamicData 
+                                    key={i}
                                     direction={"/admin/CRUD"} 
                                     class={"CRUD-link"} 
                                     text={`CRUD ${dataCategory}`}

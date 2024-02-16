@@ -1,4 +1,7 @@
 .main-admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 
     .link-zone {
         display: flex;

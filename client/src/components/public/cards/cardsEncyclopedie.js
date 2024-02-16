@@ -81,7 +81,7 @@ export const CardsLieux = (props) => {
                             </div>
                             <div className="verso">
                                 <div className="description">
-                                    <p>Venant du roman {nomRoman}, {lieu.nom} se trouve {adaptivePronoun(lieu.emplacement)} et abrîte {lieu.population} âmes.</p>
+                                    <p>Venant du roman {nomRoman}, {lieu.nom} se trouve {adaptivePronoun(lieu.emplacement)}.</p>
                                     <p>Il contient notamment : <br />{lieu.description}</p>
                                 </div>
                                 <div className="separateur"></div>
