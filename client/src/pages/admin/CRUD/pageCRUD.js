@@ -13,16 +13,17 @@ import "../stylesAdmin.scss"
 export const PageCRUD = () => {
     const location = useLocation(); 
     const state = location.state;
+    const specData = state.dataCategory;
     const [isCategoryPersonnage, setIsCategoryPersonnage] = useState();
 
     useEffect(() => {
-        state.dataCategory==="personnages"?setIsCategoryPersonnage(true):setIsCategoryPersonnage(false);
-        document.title = `CRUD ${state.dataCategory}`;
-    }, [state.dataCategory, isCategoryPersonnage]);
+        specData==="personnages"?setIsCategoryPersonnage(true):setIsCategoryPersonnage(false);
+        document.title = `CRUD ${specData}`;
+    }, [specData, isCategoryPersonnage]);
 
     return (
         <section>  
-            <Header text={state.dataCategory} />
+            <Header text={specData} />
             <GenericLink direction={"/admin"} class={"general-link"} text={"Page Admin"}/>
             <main className="main-admin">
                 <CreateOrModifyForm 
@@ -30,8 +31,9 @@ export const PageCRUD = () => {
                     onSubmit={createData} 
                     isCreation={state.isCreation} 
                     isPersonnage={isCategoryPersonnage}
+                    dataCategory={specData}
                 />
-                <GetOne dataCategory={state.dataCategory} />
+                <GetOne dataCategory={specData} />
             </main>
             <Footer />
         </section>

@@ -61,6 +61,7 @@ export const PageOne = () =>{
                     onSubmit={updateData} 
                     isCreation={false}
                     isPersonnage={card} 
+                    dataCategory={specData}
                     id={id}
                 />
                 {card && <CardsPersonnages personnages={[data]} />}

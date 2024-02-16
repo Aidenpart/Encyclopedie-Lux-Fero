@@ -6,7 +6,7 @@
     box-sizing: border-box;
     background-color: transparent;
     width: 308px;
-    height: 564px; 
+    height: 580px; 
     perspective: 1000px;
     margin: 10px;
     text-align: center;
@@ -54,7 +54,28 @@
         .verso {
             transform: rotateY(180deg);
             background-color: #caae98;
-            box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2); }
+            box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);
+            
+            h1 {
+                margin: 3px auto; }
+        
+            p, div {
+                width: 96%;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+
+                .categorie {
+                    text-align: left;
+                    text-decoration: underline; }
+
+                .description {
+                    text-align: right; }
+            }
+
+            div {
+                flex-direction: column; }
+        }
     }
 } 
 

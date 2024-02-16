@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Loading } from "../../public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
-import { listeRomans, appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories.js";
+import { listeRomans, appartenancesLuxFero, appartenancesReginaMagicae, naturesMages, naturesCelestes, naturesAutres, naturesInfernales } from "../../../helpers/categories.js";
 import "./generalCRUD.scss"
 
 
-export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPersonnage, id }) => {
+export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPersonnage, id, dataCategory }) => {
+    const navigate = useNavigate();
     const romans = listeRomans;
-    const nombreDeCaracteres = 200;
-    const [nombreDeCaracteresRestants, setNombreDeCaracteresRestants] = useState(200)
+    const nombreDeCaracteresLieu = 200;
+    const nombreDeCaracteresPersonnage = 100;
+    const [nombreDeCaracteresRestants, setNombreDeCaracteresRestants] = useState("")
     
     const [nom, setNom] = useState(initialValues.nom || '');
     const [roman, setRoman] = useState(initialValues.roman || '');
@@ -17,6 +21,8 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
     const [emplacement, setEmplacement] = useState(initialValues.emplacement || '');
     const [description, setDescription] = useState(initialValues.description || '');
     const [population, setPopulation] = useState(initialValues.population || '');
+    const [natures, setNatures] = useState([]);
+    const [nature, setNature] = useState(initialValues.nature || '');
     const [demeure, setDemeure] = useState(initialValues.demeure || '');
     const [titrePrincipal, setTitrePrincipal] = useState(initialValues.titrePrincipal || '');
     const [titresSecondaires, setTitresSecondaires] = useState(initialValues.titresSecondaires || '');
@@ -30,16 +36,39 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
     const [dataLoaded, setDataLoaded] = useState(false);
 
     useEffect(() => {
-        if (initialValues.roman === "Lux Fero" || roman === "Lux Fero")
+        if (initialValues.roman === "Lux Fero" || roman === "Lux Fero") {
             setAppartenances(appartenancesLuxFero);
-        else if (initialValues.roman === "Regina Magicae" || roman === "Regina Magicae")
+        }else if (initialValues.roman === "Regina Magicae" || roman === "Regina Magicae") {
             setAppartenances(appartenancesReginaMagicae);
-        else 
+        }else 
             setAppartenances(["-----"]);
 
         setToken(getToken());
         setDataLoaded(true);
     }, [initialValues, setDataLoaded, setToken, setAppartenances, roman]);
+
+    useEffect(() => {
+        switch (appartenance) {
+            case "Cieux":
+                setNatures(naturesCelestes)
+                break;
+            case "Enfer":
+                setNatures(naturesInfernales)
+                break;
+            case "Humanité":
+                setNatures(naturesAutres)
+                break;
+            case "Mages":
+                setNatures(naturesMages)
+                break;              
+            case "Autres":
+                setNatures(naturesAutres)
+                break;                                
+            default:
+                setNatures([""])
+                break;
+        }
+    }, [appartenance, setNatures]);
 
 
     const handleSubmit = async (e) => {
@@ -55,6 +84,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
             formData.append('emplacement', emplacement);
             formData.append('population', population);
         }else {
+            formData.append('nature', nature);
             formData.append('demeure', demeure);
             formData.append('titrePrincipal', titrePrincipal);
             formData.append('titresSecondaires', titresSecondaires);
@@ -66,9 +96,15 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
 
         try {
             if(!isPersonnage)
-                await onSubmit("lieu", token, formData, id) 
+                await onSubmit("lieu", token, formData, id)
+                .then((response) => { 
+                    navigate(`/admin/CRUD`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
+                }) 
             else
                 await onSubmit("personnage", token, formData, id)
+                .then((response) => { 
+                    navigate(`/admin/CRUD`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
+                })
         } catch (error) {
             console.log(error)
             setMessage(error.message);
@@ -83,7 +119,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
     const handleDescription = (e) => {
         const description = e.target.value;
         setDescription(description)
-        setNombreDeCaracteresRestants(nombreDeCaracteres-description.length)
+        isPersonnage? setNombreDeCaracteresRestants(nombreDeCaracteresPersonnage-description.length) : setNombreDeCaracteresRestants(nombreDeCaracteresLieu-description.length)
     }
 
     if (!dataLoaded)
@@ -107,12 +143,21 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                     </label>
                     <label>Appartenance :
                         <select onChange={(e) => setAppartenance(e.target.value)} value={appartenance} required>
+                            <option>-----</option>
                             {appartenances.map((appartenance, i) => {
                                 return <option key={i}>{appartenance}</option>;
                             })}
                         </select>
                     </label>
                     {isPersonnage && <>
+                        <label>Nature :
+                            <select onChange={(e) => setNature(e.target.value)} value={nature} required>
+                                <option>-----</option>
+                                {natures.map((nature, i) => {
+                                    return <option key={i}>{nature}</option>;
+                                })}
+                            </select>
+                        </label>                        
                         <label>Demeure :
                             <input onChange={(e) => setDemeure(e.target.value)} value={demeure} type="text" required />
                         </label>
@@ -145,7 +190,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
                     </>}
                     <label>Description :
                         <div>
-                            <textarea onChange={handleDescription} value={description} cols={"23"} maxLength={nombreDeCaracteres} required />
+                            <textarea onChange={handleDescription} value={description} cols={"23"} maxLength={isPersonnage? nombreDeCaracteresPersonnage : nombreDeCaracteresLieu} required />
                             <p className="caracteres-restants">Caractères restant : {nombreDeCaracteresRestants}</p>
                         </div>
                     </label>
