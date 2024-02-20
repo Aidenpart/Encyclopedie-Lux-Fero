@@ -66,7 +66,7 @@ export const PageOne = () =>{
                 />
                 {card && <CardsPersonnages personnages={[data]} />}
                 {!card && <CardsLieux lieux={[data]} />}
-                <DeleteOne text={"lieu"} specData={specData}/>
+                <DeleteOne specData={specData}/>
             </main>
             <Footer/>
         </section>

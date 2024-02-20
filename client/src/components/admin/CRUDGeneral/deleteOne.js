@@ -13,14 +13,16 @@ export const DeleteOne = (props) =>{
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [token, setToken] = useState('');
     const [dataLoaded, setDataLoaded] = useState(false);
+    const text = props.specData.substring(0,props.specData.length -1)
         
     useEffect(() => {
         setToken(getToken());
         setDataLoaded(true);
     }, [setToken]);
     
+
     const handleDelete = () => {
-        deleteData(props.text, token, id)
+        deleteData(text, token, id)
         .then((response) => { 
             navigate(`/admin/CRUD`, {state: { dataCategory:props.specData, isCreation:true, isPersonnage:props.specData  }});
         })
@@ -35,7 +37,7 @@ export const DeleteOne = (props) =>{
         
     return (
         <div className="delete">
-            <h2>Supprimer le {props.text}</h2>
+            <h2>Supprimer le {text}</h2>
             {modalIsOpen && (
                 <>
                     <button onClick={handleDelete}>Confirmer</button>

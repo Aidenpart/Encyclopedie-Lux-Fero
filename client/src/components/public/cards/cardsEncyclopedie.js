@@ -25,6 +25,8 @@ export const CardsPersonnages = (props) => {
         }
     }, [dataLoaded, setDataLoaded]);
 
+console.log(romans)
+
     if (!dataLoaded)
         return <Loading />; 
 
@@ -32,6 +34,7 @@ export const CardsPersonnages = (props) => {
         <>
             {props.personnages.map((personnage, i) => {
                 const nomRoman = getNomRoman(romans, personnage.roman)
+                console.log(personnage)
 
                 return (
                     <article key={i} className="carte">

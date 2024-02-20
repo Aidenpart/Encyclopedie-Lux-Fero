@@ -46,11 +46,11 @@ export const PageAccueil = () => {
                 </article>
                 <article>
                     <section>
-                        <LinkAccueil direction={""} image={"/images/link_Lux-Fero.jpg"} texte={"Lux Fero"}/>
+                        <LinkAccueil direction={"/accueil-Lux-Fero"} image={"/images/link_Lux-Fero.jpg"} texte={"Lux Fero"}/>
                         <p>Résumé Lux Fero</p>
                     </section>
                     <section>
-                        <LinkAccueil direction={""} image={"/images/link_Regina-Magicae.jpg"} texte={"Regina Magicae"}/>
+                        <LinkAccueil direction={"/accueil-Regina-Magicae"} image={"/images/link_Regina-Magicae.jpg"} texte={"Regina Magicae"}/>
                         <p>Résumé Regina Magicae</p>
                     </section>
                 </article>
