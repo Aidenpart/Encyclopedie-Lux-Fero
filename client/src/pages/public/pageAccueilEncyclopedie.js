@@ -6,36 +6,25 @@ import { LinkAccueil } from "../../components/public/links/links"
 import { Header } from "../../components/public/header/header";
 import { Footer } from "../../components/public/footer/footer";
 import { deleteRoman } from "../../store/slice/romanSlice";
-import { fetchData } from "../../helpers/dataHelpers";
+import { listeRomans } from "../../helpers/categories";
+import { IntroductionLuxFero, IntroductionReginaMagicae } from "../../components/public/introductions/introductions";
 import { Loading } from "../../components/public/loading/loading";
 
 export const PageAccueil = () => {
     const [dataLoaded, setDataLoaded] = useState(false);
-    const [romans, setRomans] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
-
-    });
-
-    useEffect(() => {
         if(!dataLoaded) {
-            fetchData("romans")
-            .then((data) => {
-                setRomans(data)
-                setDataLoaded(true);
-            })
-            .catch((err)=>{
-                console.log(err)
-            })
-        }
+            dispatch(deleteRoman());
+            setDataLoaded(true);
+        } 
+            
         document.title = "Acceuil Encyclopédie";
-        dispatch(deleteRoman())
-    }, [setRomans, dataLoaded, dispatch, romans])
-
-
+    }, [dataLoaded, dispatch])
+  
     if (!dataLoaded)
-    return <Loading />; 
+        return <Loading />; 
 
     return (
         <section className="page">
@@ -45,14 +34,21 @@ export const PageAccueil = () => {
                     <p>Introduction</p>
                 </article>
                 <article>
-                    <section>
-                        <LinkAccueil direction={"/accueil-Lux-Fero"} image={"/images/link_Lux-Fero.jpg"} texte={"Lux Fero"}/>
-                        <p>Résumé Lux Fero</p>
-                    </section>
-                    <section>
-                        <LinkAccueil direction={"/accueil-Regina-Magicae"} image={"/images/link_Regina-Magicae.jpg"} texte={"Regina Magicae"}/>
-                        <p>Résumé Regina Magicae</p>
-                    </section>
+                    {listeRomans.map((roman, i) => {
+                        return (
+                            <section>
+                                <LinkAccueil 
+                                    direction={`/accueil-${roman.replace(/\s/, "-")}`} 
+                                    image={`/images/link_${roman.replace(/\s/, "-")}.jpg`} 
+                                    texte={`${roman}`} 
+                                    setters={{roman:roman}}
+                                />
+                                {
+                                    roman === "Lux Fero" ? <IntroductionLuxFero /> : <IntroductionReginaMagicae />
+                                }
+                            </section>
+                        )
+                    })}
                 </article>
             </main>
             <Footer />

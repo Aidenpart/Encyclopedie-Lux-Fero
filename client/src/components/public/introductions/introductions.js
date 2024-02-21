@@ -1,5 +1,6 @@
 import { faBookJournalWhills, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { appartenancesLuxFero, appartenancesReginaMagicae, listeRomans } from '../../../helpers/categories';
 import "./introductionsStyles.scss";
 
 
@@ -46,3 +47,25 @@ export const IntroductionAdmin = () => {
         </article>
     );
 };
+
+export const IntroductionLuxFero = () => {
+
+    return (
+        <article className="intro-accueil">
+            <p className="introduction">
+                Ceci est le résumé du roman Lux Fero
+            </p>
+        </article>
+    )
+}
+
+export const IntroductionReginaMagicae = () => {
+
+    return (
+        <article className="intro-accueil">
+            <p className="introduction">
+                Ceci est le résumé du roman Regina Magicae
+            </p>
+        </article>
+    )
+}
