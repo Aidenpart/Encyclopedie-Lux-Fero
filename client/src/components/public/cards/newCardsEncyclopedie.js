@@ -64,7 +64,7 @@ const CardsPersonnages = (props) => {
                             <RomanNumber i={number}/><p>{personnage.nom}</p><RomanNumber i={number}/>
                         </div>
                         <div className="bottom">
-                            <RomanNumber i={number}/><p>{personnage.appartenance}</p><RomanNumber i={number}/>
+                            <RomanNumber i={number}/><p>{personnage.nature}</p><RomanNumber i={number}/>
                         </div>
                     </div>
                     <div className="verso">
