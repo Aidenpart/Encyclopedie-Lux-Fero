@@ -25,22 +25,22 @@ export const CardComponent = (props) => {
         }
     }, [dataLoaded, setDataLoaded]);
 
-
     if (!dataLoaded)
         return <Loading />; 
 
     return (
         <>
-            <p>ici</p>
             {props.datas.map((data, i) => {
                 const nomRoman = getNomRoman(romans, data.roman)
 
                 return (
-                props.spec === "personnages" ? 
+                props.type === "personnages" ? 
                     <CardsPersonnages personnage={data} delay={time*i} roman={nomRoman} number={i} /> 
                     : <CardsLieux lieu={data} delay={time * i} roman={nomRoman} />
-            )})}
-        </>)
+                )
+            })}
+        </>
+    )
 }
 
 

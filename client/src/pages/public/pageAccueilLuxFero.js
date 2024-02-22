@@ -28,6 +28,7 @@ export const PageAccueilLuxFero = () => {
                 .catch((err) => {
                     console.log(err);
                 });
+
             fetchData("lieux")
                 .then((response) => {
                     const lieux = response.filter((data) => data.roman === roman.id);
@@ -36,7 +37,8 @@ export const PageAccueilLuxFero = () => {
                 .catch((err) => {
                     console.log(err);
                 });
-                fetchData("personnages")
+
+            fetchData("personnages")
                 .then((response) => {
                     const personnages = response.filter((data) => data.roman === roman.id);
                     setPersonnages(personnages)
@@ -44,19 +46,16 @@ export const PageAccueilLuxFero = () => {
                 .catch((err) => {
                     console.log(err);
                 });
-
             }
+
         document.title = "Accueil Lux Fero";
     }, [dataLoaded, dispatch, roman, setLieux]);
-
-
-    
 
     if (!dataLoaded)
         return <Loading />;
 
     return (
-        <section>
+        <section className="page">
             <nav>
                 <GenericLink direction={"/accueil"} class={"general-link"} text={"Accueil Encyclopédie"}/>
             </nav>
@@ -66,7 +65,14 @@ export const PageAccueilLuxFero = () => {
                     <p>{roman.nom}</p>
                     <p>Il y a actuellement {lieux.length} lieux et {personnages.length} personnages dans cette Encyclopédie.</p>
                 </article>
-                <CardComponent datas={lieux}/>
+                <article>
+                    <h1>Les Lieux</h1>
+                    <div className="cards-article"><CardComponent datas={lieux} type={"lieux"}/></div>
+                </article>
+                <article>
+                    <h1>Les Personnages</h1>
+                    <div className="cards-article"><CardComponent datas={personnages} type={"personnages"}/></div>
+                </article>
             </main>
             <Footer />
         </section>

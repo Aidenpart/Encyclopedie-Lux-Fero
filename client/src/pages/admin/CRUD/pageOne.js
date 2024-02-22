@@ -7,6 +7,7 @@ import { DeleteOne } from "../../../components/admin/CRUDGeneral/deleteOne.js";
 import { updateData } from "../../../helpers/dataHelpers.js";
 import { GenericLinkDynamicData } from "../../../components/public/links/links.js";
 import { Footer } from "../../../components/public/footer/footer.js";
+import { CardComponent } from "../../../components/public/cards/newCardsEncyclopedie.js";
 import { CardsLieux, CardsPersonnages } from "../../../components/public/cards/cardsEncyclopedie.js";
 import { readData } from "../../../helpers/dataHelpers.js";
 import { CreateOrModifyForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js";
@@ -18,7 +19,6 @@ export const PageOne = () =>{
     const location = useLocation(); 
     const state = location.state;
     const specData = state.dataCategory;
-    const [card, setCard] = useState(false)
     const [data, setData] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -28,13 +28,12 @@ export const PageOne = () =>{
             .then((response) => {
                 setData(response);
                 setDataLoaded(true);
-                specData === "personnages" ? setCard(true): setCard(false)
             })
             .catch((err) => {
                 console.log(err);
             });
         }
-    }, [data, id, specData, card, dataLoaded]);
+    }, [data, id, specData, dataLoaded]);
 
     useEffect(() => {
         document.title = `${data.nom}`;
@@ -60,12 +59,13 @@ export const PageOne = () =>{
                     initialValues={data} 
                     onSubmit={updateData} 
                     isCreation={false}
-                    isPersonnage={card} 
+                    isPersonnage={specData === "personnages"? true : false} 
                     dataCategory={specData}
                     id={id}
                 />
-                {card && <CardsPersonnages personnages={[data]} />}
-                {!card && <CardsLieux lieux={[data]} />}
+                {specData === "personnages" ? 
+                    <CardComponent datas={[data]} type={specData}/> 
+                    : <CardComponent datas={[data]} type={specData}/>}
                 <DeleteOne specData={specData}/>
             </main>
             <Footer/>
