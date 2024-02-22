@@ -7,6 +7,7 @@ import { addRoman } from "../../store/slice/romanSlice";
 import { GenericLink } from "../../components/public/links/links";
 import { Footer } from "../../components/public/footer/footer";
 import { Loading } from "../../components/public/loading/loading";
+import { CardComponent } from "../../components/public/cards/newCardsEncyclopedie";
 
 
 export const PageAccueilLuxFero = () => {
@@ -27,28 +28,28 @@ export const PageAccueilLuxFero = () => {
                 .catch((err) => {
                     console.log(err);
                 });
+            fetchData("lieux")
+                .then((response) => {
+                    const lieux = response.filter((data) => data.roman === roman.id);
+                    setLieux(lieux)
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+                fetchData("personnages")
+                .then((response) => {
+                    const personnages = response.filter((data) => data.roman === roman.id);
+                    setPersonnages(personnages)
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
             }
         document.title = "Accueil Lux Fero";
-    }, [dataLoaded, dispatch, roman]);
+    }, [dataLoaded, dispatch, roman, setLieux]);
 
-    useEffect(() => {
-        fetchData("lieux")
-        .then((response) => {
-            const lieux = response.filter((data) => data.roman === roman.id);
-            setLieux(lieux)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-        fetchData("personnages")
-        .then((response) => {
-            const personnages = response.filter((data) => data.roman === roman.id);
-            setPersonnages(personnages)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }, [setLieux, roman])
+
     
 
     if (!dataLoaded)
@@ -65,6 +66,7 @@ export const PageAccueilLuxFero = () => {
                     <p>{roman.nom}</p>
                     <p>Il y a actuellement {lieux.length} lieux et {personnages.length} personnages dans cette Encyclopédie.</p>
                 </article>
+                <CardComponent datas={lieux}/>
             </main>
             <Footer />
         </section>

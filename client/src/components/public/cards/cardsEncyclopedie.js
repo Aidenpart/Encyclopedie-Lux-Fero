@@ -86,6 +86,7 @@ export const CardsLieux = (props) => {
                 console.log(err);
             });
         }
+        console.log(props.lieux)
     }, [dataLoaded, setDataLoaded]);
 
     if (!dataLoaded)

@@ -88,6 +88,8 @@
     margin: 10px;
     text-align: center;
 
+    animation: delay 1s;
+
     .interieur {
         border: 1px black solid;
         position: relative;
@@ -173,6 +175,13 @@
 }
 .post-card:hover .interieur {
     transform: rotateY(180deg); }
+
+
+@keyframes delay {
+    0% {  opacity: 0;    }
+    100% {    opacity: 1;    }
+}
+
 
 
 @media screen and (min-width: 700px) {
