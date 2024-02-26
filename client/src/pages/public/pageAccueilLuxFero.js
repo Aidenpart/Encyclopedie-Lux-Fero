@@ -7,7 +7,7 @@ import { addRoman } from "../../store/slice/romanSlice";
 import { GenericLink } from "../../components/public/links/links";
 import { Footer } from "../../components/public/footer/footer";
 import { Loading } from "../../components/public/loading/loading";
-import { CardComponent } from "../../components/public/cards/newCardsEncyclopedie";
+import { CardComponent } from "../../components/public/cards/cardsEncyclopedie";
 
 
 export const PageAccueilLuxFero = () => {

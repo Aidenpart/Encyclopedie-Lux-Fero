@@ -7,14 +7,14 @@ import { URL } from "../../../helpers/urlHelpers";
 import "./cardsStyles.scss";
 
 
-export const CardsPersonnages = (props) => {
+export const CardComponent = (props) => {
+    const time = 500;
     const [dataLoaded, setDataLoaded] = useState(false);
     const [romans, setRomans] = useState([])
-    const spec = "romans"
 
     useEffect(() => {
         if(!dataLoaded) {
-            fetchData(spec)
+            fetchData("romans")
             .then((data) => {
                 setRomans(data);
                 setDataLoaded(true);
@@ -24,112 +24,111 @@ export const CardsPersonnages = (props) => {
             });
         }
     }, [dataLoaded, setDataLoaded]);
-
-console.log(romans)
 
     if (!dataLoaded)
         return <Loading />; 
 
     return (
         <>
-            {props.personnages.map((personnage, i) => {
-                const nomRoman = getNomRoman(romans, personnage.roman)
-                console.log(personnage)
+            {props.datas.map((data, i) => {
+                const nomRoman = getNomRoman(romans, data.roman)
 
                 return (
-                    <article key={i} className="carte">
-                        <div className="interieur">
-                            <div className="recto" style={{ backgroundImage: `url(${URL}/${personnage.image})`, backgroundPosition: 'center', backgroundSize: 'contain' }}>
-                                <div className="top">
-                                    <RomanNumber i={i}/><p>{personnage.nom}</p><RomanNumber i={i}/>
-                                </div>
-                                <div className="bottom">
-                                    <RomanNumber i={i}/><p>{personnage.appartenance}</p><RomanNumber i={i}/>
-                                </div>
-                            </div>
-                            <div className="verso">
-                                <h1>{personnage.nom}</h1>
-                                <p><span className="categorie">Roman :</span><span className="description">{nomRoman}</span></p>
-                                <p><span className="categorie">Appartenance :</span><span className="description">{personnage.appartenance}</span></p>
-                                <p><span className="categorie">Nature :</span><span className="description">{personnage.nature}</span></p>
-                                <p><span className="categorie">Demeure :</span><span className="description">{personnage.demeure}</span></p>
-                                <div><span className="categorie">Titre Principal :</span><span className="description">{personnage.titrePrincipal}</span></div>
-                                <div><span className="categorie">Titres Secondaires :</span><span className="description">{personnage.titresSecondaires}</span></div>
-                                <p><span className="categorie">Sexe :</span><span className="description">{personnage.sexe}</span></p>
-                                <p><span className="categorie">Attirance :</span><span className="description">{personnage.attirance}</span></p>
-                                <p><span className="categorie">Spécialité :</span><span className="description">{personnage.specialite}</span></p>
-                                <p><span className="categorie">Sous-Spécialité :</span><span className="description">{personnage.sousSpecialite}</span></p>
-                                <div><span className="categorie">Description :</span><span className="description">{personnage.description}</span></div>
-                            </div>
-                        </div>
-                    </article>
-                );
+                props.type === "personnages" ? 
+                    <CardsPersonnages personnage={data} delay={time*i} roman={nomRoman} number={i} /> 
+                    : <CardsLieux lieu={data} delay={time * i} roman={nomRoman} />
+                )
             })}
-        </>  
-    );
+        </>
+    )
+}
+
+
+
+const CardsPersonnages = (props) => {
+    const [mounted, setMounted] = useState(false)
+    const personnage = props.personnage;
+    const number = props.number
+    const roman = props.roman
+
+    useEffect(() => {
+        setTimeout(() => setMounted(true), props.time)
+    })
+
+    return (
+        mounted && (
+            <article key={number} className="carte">
+                <div className="interieur">
+                    <div className="recto" style={{ backgroundImage: `url(${URL}/${personnage.image})`, backgroundPosition: 'center', backgroundSize: 'contain' }}>
+                        <div className="top">
+                            <RomanNumber i={number}/><p>{personnage.nom}</p><RomanNumber i={number}/>
+                        </div>
+                        <div className="bottom">
+                            <RomanNumber i={number}/><p>{personnage.nature}</p><RomanNumber i={number}/>
+                        </div>
+                    </div>
+                    <div className="verso">
+                        <h1>{personnage.nom}</h1>
+                        <p><span className="categorie">Roman :</span><span className="description">{roman}</span></p>
+                        <p><span className="categorie">Appartenance :</span><span className="description">{personnage.appartenance}</span></p>
+                        <p><span className="categorie">Nature :</span><span className="description">{personnage.nature}</span></p>
+                        <p><span className="categorie">Demeure :</span><span className="description">{personnage.demeure}</span></p>
+                        <div><span className="categorie">Titre Principal :</span><span className="description">{personnage.titrePrincipal}</span></div>
+                        <div><span className="categorie">Titres Secondaires :</span><span className="description">{personnage.titresSecondaires}</span></div>
+                        <p><span className="categorie">Sexe :</span><span className="description">{personnage.sexe}</span></p>
+                        <p><span className="categorie">Attirance :</span><span className="description">{personnage.attirance}</span></p>
+                        <p><span className="categorie">Spécialité :</span><span className="description">{personnage.specialite}</span></p>
+                        <p><span className="categorie">Sous-Spécialité :</span><span className="description">{personnage.sousSpecialite}</span></p>
+                        <div><span className="categorie">Description :</span><span className="description">{personnage.description}</span></div>
+                    </div>
+                </div>
+            </article>
+        )
+    )
 };
 
 
-export const CardsLieux = (props) => {
-    const [dataLoaded, setDataLoaded] = useState(false);
-    const [romans, setRomans] = useState([])
-    const spec = "romans"
+const CardsLieux = (props) => {
+    const [mounted, setMounted] = useState(false)
+    const lieu = props.lieu
+    const roman = props.roman
 
     useEffect(() => {
-        if(!dataLoaded) {
-            fetchData(spec)
-            .then((data) => {
-                setRomans(data);
-                setDataLoaded(true);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        }
-        console.log(props.lieux)
-    }, [dataLoaded, setDataLoaded]);
-
-    if (!dataLoaded)
-        return <Loading />;    
+        setTimeout(() => setMounted(true), props.delay)
+    }, [props.delay])
 
     return (
-        <>
-            {props.lieux.map((lieu, i) => {
-                const nomRoman = getNomRoman(romans, lieu.roman)
-
-                return (
-                    <article key={i} className="post-card">
-                        <div className="interieur">
-                            <div className="recto">
-                                <div className="image-BG" style={{ 
-                                    backgroundImage: `url(${URL}/${lieu.image})`, 
-                                    backgroundPosition: 'center', 
-                                    backgroundSize: 'cover', 
-                                    position: 'relative' }}>
-                                        <div className="text">
-                                            <p className="greetings">Greetings from</p>
-                                            <p className="nom-lieu">{lieu.nom}</p>
-                                        </div>
+        mounted && (
+            <article className="post-card">
+                <div className="interieur">
+                    <div className="recto">
+                        <div className="image-BG" style={{ 
+                            backgroundImage: `url(${URL}/${lieu.image})`, 
+                            backgroundPosition: 'center', 
+                            backgroundSize: 'cover', 
+                            position: 'relative' }}>
+                                <div className="text">
+                                    <p className="greetings">Greetings from</p>
+                                    <p className="nom-lieu">{lieu.nom}</p>
                                 </div>
-                            </div>
-                            <div className="verso">
-                                <div className="description">
-                                    <p>Venant du roman {nomRoman}, {lieu.nom} se trouve {adaptivePronoun(lieu.emplacement)}.</p>
-                                    <p>Il contient notamment : <br />{lieu.description}</p>
-                                </div>
-                                <div className="separateur"></div>
-                                <div className="coordonnees">
-                                    <p>Nom du lieu : {lieu.nom}</p>
-                                    <p>Roman : {nomRoman}</p>
-                                    <p>Appartenance : {lieu.appartenance}</p>
-                                    <p>Emplacement : {lieu.emplacement}</p>
-                                    <p>Population : {lieu.population}</p>
-                                </div>
-                            </div>
                         </div>
-                    </article>
-                );
-            })}
-        </>  
+                    </div>
+                    <div className="verso">
+                        <div className="description">
+                            <p>Venant du roman {roman}, {lieu.nom} se trouve {adaptivePronoun(lieu.emplacement)}.</p>
+                            <p>Il contient notamment : <br />{lieu.description}</p>
+                        </div>
+                        <div className="separateur"></div>
+                        <div className="coordonnees">
+                            <p>Nom du lieu : {lieu.nom}</p>
+                            <p>Roman : {roman}</p>
+                            <p>Appartenance : {lieu.appartenance}</p>
+                            <p>Emplacement : {lieu.emplacement}</p>
+                            <p>Population : {lieu.population}</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        )
     );
 };
