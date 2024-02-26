@@ -67,12 +67,12 @@ export const LinkLogOutBurger = () => {
         
         sessionStorage.removeItem('jwt')
         dispatch(deleteUser())
-        navigate("/")
+        navigate("/accueil")
 
     }
     
     return (
-        <a className="nav-link" href="/" onClick={handleLogOut}>Deconnexion</a>
+        <a className="absconditus" href="/" onClick={handleLogOut}>Deconnexion</a>
     )
 }
 
@@ -101,8 +101,8 @@ export const LinkConditionalNavigationBurger = () => {
                 sessionStorage.getItem('jwt')
                     ? user.isAdmin
                         ? <GenericLink direction={"/admin"} class={"nav-link"} text={"Admin"}/>
-                        : <GenericLink direction={"/profil"} class={"nav-link"} text={"Profil"}/>
-                    : <GenericLink direction={"/connexion"} class={"nav-link"} text={"Connexion"}/>
+                        : <p>Bienvenue !</p>
+                    : <p>Bienvenue !</p>
             }
         </>
     )

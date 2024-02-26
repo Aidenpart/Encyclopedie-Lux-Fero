@@ -13,6 +13,10 @@ $Kanit : 'Kanit', sans-serif;
 
 body {
     text-align: center;
+
+    .page {
+        position: relative;
+    }
     
     p {
         font-family: $Nunito;

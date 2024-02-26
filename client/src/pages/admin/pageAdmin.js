@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
+import { NavBar } from "../../components/public/navBar/navBar.js";
 import { Loading } from "../../components/public/loading/loading.js";
-import { GenericLink, GenericLinkDynamicData } from "../../components/public/links/links.js";
+import { GenericLinkDynamicData } from "../../components/public/links/links.js";
 import { IntroductionAdmin } from "../../components/public/introductions/introductions.js";
 import { Header } from "../../components/public/header/header.js";
 import { Footer } from "../../components/public/footer/footer.js";
@@ -22,9 +23,9 @@ export const PageAdmin = () => {
 
     return (
         <section>
-            <Header text={"Admin"}/>
-            <GenericLink direction={"/accueil"} class={"general-link"} text={"Retour à l'accueil"}/>
+            <NavBar />
             <main className="main-admin">
+                <Header text={"Admin"}/>
                 <IntroductionAdmin />
                 <div className="link-zone">
                     <p>Création Roman</p>

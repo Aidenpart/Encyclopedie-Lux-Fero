@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addUser } from "../../store/slice/userSlice.js";
 
 
+import { NavBar } from "../../components/public/navBar/navBar.js";
 import { URL } from "../../helpers/urlHelpers.js";
 import { Header } from "../../components/public/header/header.js";
 import { Footer } from "../../components/public/footer/footer.js";
@@ -48,6 +49,7 @@ export const PageConnexion = () => {
 
     return (
         <section className="main-auth">
+            <NavBar />
             <main>
                 <Header text={"Connexion"} />
                 <article className="links-place">

@@ -17,16 +17,18 @@ export const NavBar = () => {
 
     return (
         <nav className="navbar">
-            <LinkConditionalNavigationBurger />
             <ul className={mobileMenuClassName}>
                 <li className="nav-item">
-                    <GenericLink direction={"/"} class={"nav-link"} text={"Accueil"}/>
+                    <GenericLink direction={"/accueil"} class={"nav-link"} text={"Accueil"}/>
                 </li>
                 <li className="nav-item">
-                    <GenericLink direction={"/blog"} class={"nav-link"} text={"Blog"}/>
+                    <GenericLink direction={"/accueil-Lux-Fero"} class={"nav-link"} text={`Lux Fero`}/>
                 </li>
                 <li className="nav-item">
-                    <GenericLink direction={"/encyclopedie"} class={"nav-link"} text={"Encyclopédie"}/>
+                    <GenericLink direction={"/accueil-Regina-Magicae"} class={"nav-link"} text={"Regina Magicae"}/>
+                </li>
+                <li>
+                    <LinkConditionalNavigationBurger />
                 </li>
                 {
                 sessionStorage.getItem("jwt") ? 

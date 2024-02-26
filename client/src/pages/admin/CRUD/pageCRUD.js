@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+import { NavBar } from "../../../components/public/navBar/navBar.js";
 import { GetOne } from "../../../components/admin/CRUDGeneral/getOne.js"
 import { GenericLink } from "../../../components/public/links/links.js"
 import { CreateOrModifyForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js"
@@ -22,10 +23,10 @@ export const PageCRUD = () => {
     }, [specData, isCategoryPersonnage]);
 
     return (
-        <section>  
-            <Header text={specData} />
-            <GenericLink direction={"/admin"} class={"general-link"} text={"Page Admin"}/>
+        <section>
+            <NavBar />  
             <main className="main-admin">
+                <Header text={specData} />
                 <CreateOrModifyForm 
                     initialValues={""} 
                     onSubmit={createData} 

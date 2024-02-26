@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-
+import { NavBar } from "../../components/public/navBar/navBar";
 import { LinkAccueil } from "../../components/public/links/links"
 import { Header } from "../../components/public/header/header";
 import { Footer } from "../../components/public/footer/footer";
@@ -9,6 +9,7 @@ import { deleteRoman } from "../../store/slice/romanSlice";
 import { listeRomans } from "../../helpers/categories";
 import { IntroductionLuxFero, IntroductionReginaMagicae } from "../../components/public/introductions/introductions";
 import { Loading } from "../../components/public/loading/loading";
+
 
 export const PageAccueil = () => {
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -28,6 +29,7 @@ export const PageAccueil = () => {
 
     return (
         <section className="page">
+            <NavBar />
             <main>
                 <article>
                     <Header text={"Encyclopédie"}/>
