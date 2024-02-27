@@ -34,7 +34,7 @@ export const CardComponent = (props) => {
                 const nomRoman = getNomRoman(romans, data.roman)
 
                 return (
-                props.type === "personnages" ? 
+                props.type === "personnages" ?
                     <CardsPersonnages personnage={data} delay={time*i} roman={nomRoman} number={i} /> 
                     : <CardsLieux lieu={data} delay={time * i} roman={nomRoman} />
                 )
@@ -115,8 +115,7 @@ const CardsLieux = (props) => {
                     </div>
                     <div className="verso">
                         <div className="description">
-                            <p>Venant du roman {roman}, {lieu.nom} se trouve {adaptivePronoun(lieu.emplacement)}.</p>
-                            <p>Il contient notamment : <br />{lieu.description}</p>
+                            <p>{lieu.description}</p>
                         </div>
                         <div className="separateur"></div>
                         <div className="coordonnees">

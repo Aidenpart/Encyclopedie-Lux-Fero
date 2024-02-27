@@ -98,12 +98,12 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
             if(!isPersonnage)
                 await onSubmit("lieu", token, formData, id)
                 .then((response) => { 
-                    navigate(`/admin/CRUD`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
+                    navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
                 }) 
             else
                 await onSubmit("personnage", token, formData, id)
                 .then((response) => { 
-                    navigate(`/admin/CRUD`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
+                    navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
                 })
         } catch (error) {
             console.log(error)
@@ -112,6 +112,7 @@ export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPers
     };
 
     const handleFileUpload = (e) => {
+        console.log(e.target.files[0])
         const file = e.target.files[0];
         setImage(file);
     };
