@@ -20,7 +20,7 @@ export const createLieu = async (req, res) => {
             return res.status(400).json({ message: "La combinaison du nom et du roman doit être unique."});
 
         let newPath;
-        if (files.image && files.image.length > 0) {
+        if (files.image && files.image.length > 0 && files.image[0].originalFilename !== "lieu_default.png") {
             newPath = await saveImage(files.image[0].filepath, files);
         } else {
             newPath = "images/lieu_default.png";
@@ -84,7 +84,7 @@ export const updateLieu = async (req, res) => {
         });
 
         let newPath;
-        if (files.image && files.image.length > 0) {
+        if (files.image && files.image.length > 0 && files.image[0].originalFilename !== "lieu_default.png") {
             newPath = await saveImage(files.image[0].filepath, files);
             await deleteImage(lieuModel, id);
         } else {
