@@ -28,7 +28,6 @@ export const PageAdmin = () => {
                 <Header text={"Admin"}/>
                 <IntroductionAdmin />
                 <div className="link-zone">
-                    <p>Création Roman</p>
                     {listDataCategories.map((dataCategory, i) => {
                         return <GenericLinkDynamicData 
                                     key={i}

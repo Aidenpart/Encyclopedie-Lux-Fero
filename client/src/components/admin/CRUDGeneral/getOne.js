@@ -21,7 +21,23 @@ export const GetOne = (props) => {
             setMessage(err);
         });
 
-        props.dataCategory === "personnages" ? setText("personnage") : setText("lieu");
+        switch (props.dataCategory) {
+            case "personnages":
+                setText("un personnage")
+                break;
+            case "lieux":
+                setText("un lieu")
+                break;
+            case "fiches":
+                setText("une fiche")
+                break;
+            case "romans":
+                setText("un roman")
+                break;                                           
+            default:
+                setText("")
+                break;
+        }
     }, [setDatas, setMessage, props.dataCategory, setText]);
     
     const handleSubmitOne = (e) => {
@@ -34,10 +50,10 @@ export const GetOne = (props) => {
     
     return (
         <section className="CRUD">
-            <h3>Chercher un {text}</h3>
+            <h3>Chercher {text}</h3>
             <div>
                 <form onSubmit={handleSubmitOne} className="formulaire">
-                    <label>Nom du {text}
+                    <label>Nom d'{text}
                         <select onChange={(e) => setSelectedData(e.target.value)}>
                             <option disabled={true} selected>-----</option>
                             {datas.map((data, i) => {

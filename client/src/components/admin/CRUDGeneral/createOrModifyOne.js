@@ -7,7 +7,7 @@ import { listeRomans, appartenancesLuxFero, appartenancesReginaMagicae, naturesM
 import "./generalCRUD.scss"
 
 
-export const CreateOrModifyForm = ({ initialValues, onSubmit, isCreation, isPersonnage, id, dataCategory }) => {
+export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, isPersonnage, id, dataCategory }) => {
     const navigate = useNavigate();
     const romans = listeRomans;
     const nombreDeCaracteresLieu = 200;

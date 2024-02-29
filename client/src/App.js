@@ -1,24 +1,25 @@
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from "react";
-import { Loading } from "./components/public/loading/loading.js";
 
+import { Loading } from "./components/public/loading/loading.js";
 import { getUserbyToken } from "./helpers/authHelpers.js";
 import { AdminMiddleware } from "./router/authMiddleware.js";
-
 import { addUser } from "./store/slice/userSlice";
+import { listDataCategories } from "./helpers/categories.js";
+
 import { PagePreambule } from "./pages/public/pagePreambule.js";
-import { PageCGU } from "./pages/legal/pageCGU.js"
 import { PageAccueil } from "./pages/public/pageAccueilEncyclopedie.js";
 import { PageAccueilLuxFero } from "./pages/public/pageAccueilLuxFero.js";
 import { PageAccueilReginaMagicae } from "./pages/public/pageAccueilReginaMagicae.js";
-import { PageRGPD } from "./pages/legal/pageRGPD.js";
-import { PageMentionsLegales } from "./pages/legal/pageMentionsLegales.js"
 import { PageConnexion } from "./pages/admin/pageConnexion.js";
 import { PageAdmin } from "./pages/admin/pageAdmin.js";
 import { PageCRUD } from "./pages/admin/CRUD/pageCRUD.js";
 import { PageOne } from "./pages/admin/CRUD/pageOne.js";
 
+import { PageCGU } from "./pages/legal/pageCGU.js"
+import { PageRGPD } from "./pages/legal/pageRGPD.js";
+import { PageMentionsLegales } from "./pages/legal/pageMentionsLegales.js"
 
 function App() {
   
@@ -60,8 +61,9 @@ function App() {
 
         <Route path="/admin" element={<AdminMiddleware> <PageAdmin /> </AdminMiddleware>} />
         <Route path="/admin/CRUD" element={<AdminMiddleware> <PageCRUD /> </AdminMiddleware>} />
-        <Route path="/admin/CRUD/lieux/:id" element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
-        <Route path="/admin/CRUD/personnages/:id" element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
+        {listDataCategories.map((categorie) => {
+          return <Route path={`/admin/CRUD/${categorie}/:id`} element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
+        })}
       </Routes>
   );
 };

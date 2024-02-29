@@ -6,7 +6,7 @@ export const appartenancesLuxFero = ["Enfer", "Cieux", "Humanité"];
 
 export const listeRomans = ["Lux Fero", "Regina Magicae"]
 
-export const listDataCategories = ["lieux", "personnages"]
+export const listDataCategories = ["lieux", "personnages","romans", "fiches"]
 
 export const naturesCelestes = ["Archange", "Ange Primordial(e)", "Ange"];
 
@@ -15,3 +15,5 @@ export const naturesInfernales = ["Général(e) Infernal(e)", "Prince(sse) Démo
 export const naturesMages = ["Mage", "Sorcier(ère)", "Mère de la Magie"];
 
 export const naturesAutres = ["Humain(e)", "Cavalier"];
+
+export const listeDomaines = ["Architecture", "Magie", "Hierarchie", "Diégèse"]
