@@ -5,7 +5,6 @@ import {getRoman, readRomans} from '../controllers/romanControllers.js';
 import { getFiche, readFiches } from '../controllers/ficheController.js';
 
 
-
 const router = express.Router();
 
 router.get("/wiki/lieux", readLieux);
