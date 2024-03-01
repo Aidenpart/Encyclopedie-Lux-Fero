@@ -46,25 +46,8 @@ export const updateData = async(type, token, formData, id) => {
 
 
 export const readData = async (type, id) => {
-    let search
-
-    switch (type) {
-        case "romans":
-            search = "romans/get-roman"
-            break;
-        case "lieux":
-            search = "lieux/get-lieu"
-            break;
-        case "personnages":
-            search = "personnages/get-personnage"
-            break;
-        default:
-            search = ""
-            break;
-    }
-
     try {
-        const response = await fetch(`${URL}/wiki/${search}/${id}`);
+        const response = await fetch(`${URL}/wiki/${type}/get-${type.slice(0, -1)}/${id}`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -75,7 +58,6 @@ export const readData = async (type, id) => {
 
 
 export const deleteData = async (type, token, id) => {
-
     try {
         const response = await fetch(`${URL}/admin/delete-${type}/${id}`, {
             method: 'DELETE',

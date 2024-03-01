@@ -43,7 +43,7 @@ export const GetOne = (props) => {
     const handleSubmitOne = (e) => {
         e.preventDefault();
         
-        const foundData = datas.find(data => data.nom === selectedData);
+        const foundData = datas.find(data => data.nom || data.titre === selectedData);
         if (foundData)
             navigate(`${props.dataCategory}/${foundData._id}`, {state: {dataCategory:props.dataCategory}});
    };
@@ -57,7 +57,7 @@ export const GetOne = (props) => {
                         <select onChange={(e) => setSelectedData(e.target.value)}>
                             <option disabled={true} selected>-----</option>
                             {datas.map((data, i) => {
-                                return <option key={i}>{data.nom}</option>;
+                                return <option key={i}>{data.nom || data.titre}</option>;
                             })}
                         </select>
                     </label>

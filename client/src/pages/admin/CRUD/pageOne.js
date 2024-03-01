@@ -10,7 +10,7 @@ import { GenericLinkDynamicData } from "../../../components/public/links/links.j
 import { Footer } from "../../../components/public/footer/footer.js";
 import { CardComponent } from "../../../components/public/cards/newCardsEncyclopedie.js";
 import { readData } from "../../../helpers/dataHelpers.js";
-import { CreateOrModifyDataForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js";
+import { CreateOrModifyDataForm, CreateOrModifyTextForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js";
 import "../stylesAdmin.scss"
 
 
@@ -21,6 +21,9 @@ export const PageOne = () =>{
     const specData = state.dataCategory;
     const [data, setData] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [isData, setIsData] = useState(false);
+    const [isCategoryPersonnage, setIsCategoryPersonnage] = useState(false);
+    const [isCategoryFiche, setIsCategoryFiche] = useState(false);
 
     useEffect(() => {
         if(!dataLoaded) {
@@ -36,8 +39,29 @@ export const PageOne = () =>{
     }, [data, id, specData, dataLoaded]);
 
     useEffect(() => {
-        document.title = `${data.nom}`;
-    })
+        switch (specData) {
+            case "personnages":
+                setIsData(true)
+                setIsCategoryPersonnage(true)
+                break;
+            case "lieux":
+                setIsData(true)
+                setIsCategoryPersonnage(false)
+                break;
+            case "fiches":
+                setIsData(false)
+                setIsCategoryFiche(true)
+                break;
+            case "romans":
+                setIsData(false)
+                setIsCategoryFiche(false)
+                break;                                           
+            default:
+                setIsData(false)
+                break;
+        }
+        document.title = `${data.nom || data.titre}`;
+    }, [setIsData, data.nom, specData, data.titre])
 
     if(!dataLoaded)
         return <Loading />;
@@ -46,15 +70,25 @@ export const PageOne = () =>{
         <section>
             <NavBar />  
             <main className="main-admin">
-                <Header text={data.nom} />
-                <CreateOrModifyDataForm 
-                    initialValues={data} 
-                    onSubmit={updateData} 
-                    isCreation={false}
-                    isPersonnage={specData === "personnages"? true : false} 
-                    dataCategory={specData}
-                    id={id}
-                />
+                <Header text={data.nom || data.titre} />
+                {isData && 
+                    <CreateOrModifyDataForm 
+                        initialValues={""} 
+                        onSubmit={updateData} 
+                        isCreation={false} 
+                        isPersonnage={isCategoryPersonnage}
+                        dataCategory={specData}
+                        id={id}
+                />}
+                {!isData && 
+                    <CreateOrModifyTextForm 
+                        initialValues={""} 
+                        onSubmit={updateData} 
+                        isCreation={false} 
+                        isFiche={isCategoryFiche}
+                        dataCategory={specData}
+                        id={id}
+                />}
                 <CardComponent datas={[data]} type={specData}/> 
                 <DeleteOne specData={specData}/>
                 <GenericLinkDynamicData 

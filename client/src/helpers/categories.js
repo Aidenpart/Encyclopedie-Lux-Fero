@@ -16,4 +16,9 @@ export const naturesMages = ["Mage", "Sorcier(ère)", "Mère de la Magie"];
 
 export const naturesAutres = ["Humain(e)", "Cavalier"];
 
-export const listeDomaines = ["Architecture", "Magie", "Hierarchie", "Diégèse"]
+export const listeDomaines = [ 
+    {domaine:"Architecture", couleur:"#E77728"},
+    {domaine:"Magie", couleur:"green"},
+    {domaine:"Hierarchie", couleur:"blue"},
+    {domaine:"Diégèse", couleur:"yellow"}
+]

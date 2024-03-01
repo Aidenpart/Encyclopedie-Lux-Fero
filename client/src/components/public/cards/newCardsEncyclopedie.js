@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { Loading } from "../loading/loading";
-import { RomanNumber, getNomRoman, adaptivePronoun } from "./componentsCard";
+import { RomanNumber, getNomRoman } from "./componentsCard";
+import { listeDomaines } from "../../../helpers/categories";
 import { fetchData } from "../../../helpers/dataHelpers";
 import { URL } from "../../../helpers/urlHelpers";
 import "./cardsStyles.scss";
@@ -10,7 +11,10 @@ import "./cardsStyles.scss";
 export const CardComponent = (props) => {
     const time = 500;
     const [dataLoaded, setDataLoaded] = useState(false);
-    const [romans, setRomans] = useState([])
+    const [romans, setRomans] = useState([]);
+    const [isData, setIsData] = useState(false);
+    const [isCategoryPersonnage, setIsCategoryPersonnage] = useState(false);
+    const [isCategoryFiche, setIsCategoryFiche] = useState(false);
 
     useEffect(() => {
         if(!dataLoaded) {
@@ -18,12 +22,33 @@ export const CardComponent = (props) => {
             .then((data) => {
                 setRomans(data);
                 setDataLoaded(true);
+                switch (props.type) {
+                    case "personnages":
+                        setIsData(true)
+                        setIsCategoryPersonnage(true)
+                        break;
+                    case "lieux":
+                        setIsData(true)
+                        setIsCategoryPersonnage(false)
+                        break;
+                    case "fiches":
+                        setIsData(false)
+                        setIsCategoryFiche(true)
+                        break;
+                    case "romans":
+                        setIsData(false)
+                        setIsCategoryFiche(false)
+                        break;                                           
+                    default:
+                        setIsData(false)
+                        break;
+                }
             })
             .catch((err) => {
                 console.log(err);
             });
         }
-    }, [dataLoaded, setDataLoaded]);
+    }, [dataLoaded, setDataLoaded, props.type]);
 
     if (!dataLoaded)
         return <Loading />; 
@@ -33,16 +58,17 @@ export const CardComponent = (props) => {
             {props.datas.map((data, i) => {
                 const nomRoman = getNomRoman(romans, data.roman)
 
-                return (
-                props.type === "personnages" ?
-                    <CardsPersonnages personnage={data} delay={time*i} roman={nomRoman} number={i} /> 
-                    : <CardsLieux lieu={data} delay={time * i} roman={nomRoman} />
-                )
+                return isData ?
+                    isCategoryPersonnage ?
+                        <CardsPersonnages personnage={data} delay={time*i} roman={nomRoman} number={i} />
+                        : <CardsLieux lieu={data} delay={time * i} roman={nomRoman} />
+                    : isCategoryFiche ?
+                        <CardsFiche fiche={data} roman={nomRoman} />
+                        : <CardsRoman roman={data} />
             })}
         </>
     )
 }
-
 
 
 const CardsPersonnages = (props) => {
@@ -89,9 +115,9 @@ const CardsPersonnages = (props) => {
 
 
 const CardsLieux = (props) => {
-    const [mounted, setMounted] = useState(false)
-    const lieu = props.lieu
-    const roman = props.roman
+    const [mounted, setMounted] = useState(false);
+    const lieu = props.lieu;
+    const roman = props.roman;
 
     useEffect(() => {
         setTimeout(() => setMounted(true), props.delay)
@@ -131,3 +157,55 @@ const CardsLieux = (props) => {
         )
     );
 };
+
+
+const CardsFiche = (props) => {
+    const fiche = props.fiche;
+    const [couleurFiche, setCouleurFiche] = useState("")
+
+    useEffect(() => {
+        listeDomaines.forEach((domaine) => {
+            if(fiche.domaine === domaine.domaine)
+                setCouleurFiche(domaine.couleur)
+        })
+    }, [fiche.domaine, couleurFiche])
+
+    return (
+        <>
+            <article className="fiche" style={{ 
+                backgroundColor: `${couleurFiche}` }}>
+                <div className="header">
+                    <h1>{fiche.domaine}</h1>
+                    <h6>{props.roman}</h6>
+                </div>
+                <div className="corps">
+                    <div>
+                        <h2>{fiche.titre}</h2>
+                        <p>{fiche.contenuPrincipal}</p>
+                    </div>
+                    <div>
+                        <h3>{fiche.titreSecondaire}</h3>
+                        <p>{fiche.contenuSecondaire}</p>
+                    </div>
+                    <div>
+                        <h4>{fiche.remarque}</h4>
+                        <p>{fiche.contenuRemarque}</p>
+                    </div>
+                </div>
+            </article>
+        </>
+    )
+}
+
+const CardsRoman = (props) => {
+    const roman = props.roman;
+
+    return (
+        <>
+            <article >
+                <h1>{roman.nom}</h1>
+                <div></div>
+            </article>
+        </>
+    )
+}

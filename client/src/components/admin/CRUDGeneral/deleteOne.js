@@ -37,7 +37,7 @@ export const DeleteOne = (props) =>{
         
     return (
         <div className="delete">
-            <h2>Supprimer le {text}</h2>
+            <h2>Supprimer {text}</h2>
             {modalIsOpen && (
                 <>
                     <button onClick={handleDelete}>Confirmer</button>

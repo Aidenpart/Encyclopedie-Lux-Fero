@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom";
 
 import { NavBar } from "../../../components/public/navBar/navBar.js";
 import { GetOne } from "../../../components/admin/CRUDGeneral/getOne.js"
-import { CreateOrModifyTextForm } from "../../../components/admin/CRUDText/createOrModifyText.js";
-import { CreateOrModifyDataForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js"
+import { CreateOrModifyDataForm, CreateOrModifyTextForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js"
 import { Header } from "../../../components/public/header/header.js";
 import { Footer } from "../../../components/public/footer/footer.js";
 import { createData } from "../../../helpers/dataHelpers.js"
+import { GenericLink } from "../../../components/public/links/links.js";
 import "../stylesAdmin.scss"
 
 
@@ -66,6 +66,7 @@ export const PageCRUD = () => {
                         dataCategory={specData}
                 />}
                 <GetOne dataCategory={specData} />
+                <GenericLink direction={"/admin"} className={"link"} text={"Retour à l'admin"} />
             </main>
             <Footer />
         </section>
