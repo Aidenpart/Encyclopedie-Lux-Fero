@@ -50,7 +50,7 @@ export const deleteImage = async (model, id) => {
     const oldData = await model.findById(id);
     const oldImagePath = "./public/" + oldData.image;
 
-    if (oldImagePath !== "./public/images/perso_default.png" && oldImagePath !== "./public/images/lieu_default.png") {
+    if (oldImagePath !== "./public/images/perso_default.png" && oldImagePath !== "./public/images/lieu_default.png" && oldImagePath !== "./public/images/mage_default.png") {
         fs.unlink(oldImagePath, (err) => {
             if (err) throw err;
         });

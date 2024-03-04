@@ -20,7 +20,7 @@ export const createPersonnage = async (req, res) => {
             return res.status(400).json({ message: "La combinaison du nom et du roman doit être unique." });
 
         let newPath;
-        if (files.image && files.image.length > 0 && files.image[0].originalFilename !== "perso_default.png") {
+        if (files.image && files.image.length > 0 && files.image[0].originalFilename !== "perso_default.png" && files.image[0].originalFilename !== "mage_default.png") {
             newPath = await saveImage(files.image[0].filepath, files);
         } else {
             newPath = "images/perso_default.png";
@@ -96,7 +96,7 @@ export const updatePersonnage = async (req, res) => {
         });
 
         let newPath;
-        if (files.image && files.image.length > 0 && files.image[0].originalFilename !== "perso_default.png") {
+        if (files.image && files.image.length > 0 && files.image[0].originalFilename !== "perso_default.png" && files.image[0].originalFilename !== "mage_default.png") {
             newPath = await saveImage(files.image[0].filepath, files);           
             await deleteImage(personnageModel, id);
         } else {
@@ -138,5 +138,5 @@ export const deletePersonnage = async(req, res) => {
     await deleteImage(personnageModel, id)
     await personnageModel.findOneAndDelete({ _id: id })
     .then((data) => res.status(201).send(`${data.nom} a été supprimé`))
-    .catch(() => res.status(500).json({ message: "Problème lors de la suppression ou lieu introuvable"}));
+    .catch(() => res.status(500).json({ message: "Problème lors de la suppression ou personnage introuvable"}));
 };
