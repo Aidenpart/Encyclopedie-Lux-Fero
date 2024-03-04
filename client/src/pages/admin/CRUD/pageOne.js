@@ -9,7 +9,7 @@ import { updateData } from "../../../helpers/dataHelpers.js";
 import { GenericLinkDynamicData } from "../../../components/public/links/links.js";
 import { Footer } from "../../../components/public/footer/footer.js";
 import { CardComponent } from "../../../components/public/cards/newCardsEncyclopedie.js";
-import { readData } from "../../../helpers/dataHelpers.js";
+import { readOneData } from "../../../helpers/dataHelpers.js";
 import { CreateOrModifyDataForm, CreateOrModifyTextForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js";
 import "../stylesAdmin.scss"
 
@@ -27,7 +27,7 @@ export const PageOne = () =>{
 
     useEffect(() => {
         if(!dataLoaded) {
-            readData(specData, id)
+            readOneData(specData, id)
             .then((response) => {
                 setData(response);
                 setDataLoaded(true);
@@ -73,7 +73,7 @@ export const PageOne = () =>{
                 <Header text={data.nom || data.titre} />
                 {isData && 
                     <CreateOrModifyDataForm 
-                        initialValues={""} 
+                        initialValues={data} 
                         onSubmit={updateData} 
                         isCreation={false} 
                         isPersonnage={isCategoryPersonnage}
@@ -82,7 +82,7 @@ export const PageOne = () =>{
                 />}
                 {!isData && 
                     <CreateOrModifyTextForm 
-                        initialValues={""} 
+                        initialValues={data} 
                         onSubmit={updateData} 
                         isCreation={false} 
                         isFiche={isCategoryFiche}

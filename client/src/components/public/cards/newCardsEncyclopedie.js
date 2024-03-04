@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Loading } from "../loading/loading";
 import { RomanNumber, getNomRoman } from "./componentsCard";
 import { listeDomaines } from "../../../helpers/categories";
-import { fetchData } from "../../../helpers/dataHelpers";
+import { readData, filteredDataByRoman } from "../../../helpers/dataHelpers";
 import { URL } from "../../../helpers/urlHelpers";
 import "./cardsStyles.scss";
 
@@ -18,7 +18,7 @@ export const CardComponent = (props) => {
 
     useEffect(() => {
         if(!dataLoaded) {
-            fetchData("romans")
+            readData("romans")
             .then((data) => {
                 setRomans(data);
                 setDataLoaded(true);
@@ -199,12 +199,41 @@ const CardsFiche = (props) => {
 
 const CardsRoman = (props) => {
     const roman = props.roman;
+    const [dataLoaded, setDataLoaded] = useState(false);
+    const [dataRoman, setDataRoman] = useState();
+
+    useEffect(() => {
+        filteredDataByRoman(roman._id)
+        .then((response) => {
+            setDataRoman(response)
+            setDataLoaded(true);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    }, [dataLoaded, roman._id, setDataRoman]);
+
+
+    if(!dataLoaded)
+        return <Loading />;
 
     return (
         <>
             <article >
                 <h1>{roman.nom}</h1>
-                <div></div>
+                <div>
+                    <ul>Les lieux
+                        {dataRoman.lieux.map((lieu) => {
+                            return <li>{lieu.nom}</li>
+                        })}
+                    </ul>
+                    <ul>Les personnages
+                        {dataRoman.personnages.map((personnage) => {
+                            return <li>{personnage.nom}</li>
+                        })}
+                    </ul>
+                </div>
             </article>
         </>
     )

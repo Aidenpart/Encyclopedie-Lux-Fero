@@ -164,13 +164,13 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                             <input onChange={(e) => setTitrePrincipal(e.target.value)} value={titrePrincipal} type="text" required />
                         </label>
                         <label>Titres Secondaires :
-                            <input onChange={(e) => setTitresSecondaires(e.target.value)} value={titresSecondaires} type="text" required />
+                            <input onChange={(e) => setTitresSecondaires(e.target.value)} value={titresSecondaires} type="text"  />
                         </label>
                         <label>Sexe :
-                            <input onChange={(e) => setSexe(e.target.value)} value={sexe} type="text" required />
+                            <input onChange={(e) => setSexe(e.target.value)} value={sexe} type="text"  />
                         </label>
                         <label>Attirance :
-                            <input onChange={(e) => setAttirance(e.target.value)} value={attirance} type="text" required />
+                            <input onChange={(e) => setAttirance(e.target.value)} value={attirance} type="text"  />
                         </label>
                         <label>Spécialité :
                             <input onChange={(e) => setSpecialite(e.target.value)} value={specialite} type="text" required />
@@ -184,12 +184,12 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                             <input onChange={(e) => setEmplacement(e.target.value)} value={emplacement} type="text" required />
                         </label>
                         <label>Population :
-                            <input onChange={(e) => setPopulation(e.target.value)} value={population} type="number" required />
+                            <input onChange={(e) => setPopulation(e.target.value)} value={population} type="number" />
                         </label>
                     </>}
                     <label>Description :
                         <div>
-                            <textarea onChange={handleDescription} value={description} cols={"23"} maxLength={isPersonnage? nombreDeCaracteresPersonnage : nombreDeCaracteresLieu} required />
+                            <textarea onChange={handleDescription} value={description} cols={"23"} maxLength={isPersonnage? nombreDeCaracteresPersonnage : nombreDeCaracteresLieu} />
                             <p className="caracteres-restants">Caractères restant : {nombreDeCaracteresRestants}</p>
                         </div>
                     </label>
@@ -220,9 +220,9 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
     const [nom, setNom] = useState(initialValues.nom || '');
     const [nombreDePages, setNombreDePages] = useState(initialValues.nombreDePages || '');
     const [nombreDeMots, setNombreDeMots] = useState(initialValues.nombreDeMots || '');
-    const [nombreDeSEC, setNombreDeSEC] = useState('');
-    const [nombreDeParties, setNombreDeParties] = useState('');
-    const [nombreDeChapitres, setNombreDeChapitres] = useState('');
+    const [nombreDeSEC, setNombreDeSEC] = useState(initialValues.nombreDeSEC || '');
+    const [nombreDeParties, setNombreDeParties] = useState(initialValues.nombreDeParties || '');
+    const [nombreDeChapitres, setNombreDeChapitres] = useState(initialValues.nombreDeChapitres || '');
     const [isFini, setIsFini] = useState(false);
     const [message, setMessage] = useState('');
     const [token, setToken] = useState('');
@@ -303,10 +303,10 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
                             <textarea onChange={(e) => setContenuSecondaire(e.target.value)} value={contenuSecondaire} type="text" required />
                         </label>
                         <label>Remarque :
-                            <input onChange={(e) => setRemarque(e.target.value)} value={remarque} type="text" required />
+                            <input onChange={(e) => setRemarque(e.target.value)} value={remarque} type="text" />
                         </label>
                         <label>Contenu Remarque :
-                            <textarea onChange={(e) => setContenuRemarque(e.target.value)} value={contenuRemarque} type="text" required />
+                            <textarea onChange={(e) => setContenuRemarque(e.target.value)} value={contenuRemarque} type="text" />
                         </label>
                         <label>Roman :
                             <select onChange={(e) => setRoman(e.target.value)} value={roman} required>

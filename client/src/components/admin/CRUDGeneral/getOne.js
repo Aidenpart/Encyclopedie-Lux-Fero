@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { fetchData } from "../../../helpers/dataHelpers";
+import { readData } from "../../../helpers/dataHelpers";
 
 
 export const GetOne = (props) => {
@@ -12,7 +12,7 @@ export const GetOne = (props) => {
     const [selectedData, setSelectedData] = useState("");
     
     useEffect(() => {
-        fetchData(props.dataCategory)
+        readData(props.dataCategory)
         .then((data) => {
             setDatas(data);
         })
@@ -38,12 +38,14 @@ export const GetOne = (props) => {
                 setText("")
                 break;
         }
-    }, [setDatas, setMessage, props.dataCategory, setText]);
+
+        
+    }, [setDatas, setMessage, props.dataCategory, setText, selectedData]);
     
     const handleSubmitOne = (e) => {
         e.preventDefault();
         
-        const foundData = datas.find(data => data.nom || data.titre === selectedData);
+        const foundData = datas.find(data => data.nom === selectedData || data.titre === selectedData);
         if (foundData)
             navigate(`${props.dataCategory}/${foundData._id}`, {state: {dataCategory:props.dataCategory}});
    };

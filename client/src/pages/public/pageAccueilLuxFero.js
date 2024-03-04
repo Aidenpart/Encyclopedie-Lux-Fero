@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Header } from "../../components/public/header/header";
-import { fetchData } from "../../helpers/dataHelpers";
+import { readData } from "../../helpers/dataHelpers";
 import { addRoman } from "../../store/slice/romanSlice";
 import { GenericLink } from "../../components/public/links/links";
 import { Footer } from "../../components/public/footer/footer";
@@ -19,7 +19,7 @@ export const PageAccueilLuxFero = () => {
 
     useEffect(() => {
         if (!dataLoaded) {
-            fetchData("romans")
+            readData("romans")
                 .then((response) => {
                     const luxFeroRoman = response.filter((data) => data.nom === "Lux Fero");
                     dispatch(addRoman(luxFeroRoman[0]));
@@ -29,7 +29,7 @@ export const PageAccueilLuxFero = () => {
                     console.log(err);
                 });
 
-            fetchData("lieux")
+            readData("lieux")
                 .then((response) => {
                     const lieux = response.filter((data) => data.roman === roman.id);
                     setLieux(lieux)
@@ -38,7 +38,7 @@ export const PageAccueilLuxFero = () => {
                     console.log(err);
                 });
 
-            fetchData("personnages")
+            readData("personnages")
                 .then((response) => {
                     const personnages = response.filter((data) => data.roman === roman.id);
                     setPersonnages(personnages)
