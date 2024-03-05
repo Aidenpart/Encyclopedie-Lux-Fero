@@ -23,6 +23,9 @@ const romanSchema = new mongoose.Schema(
         nombreDeChapitres: {
             type: Number
         },
+        resume : {
+            type: String
+        },
         isFini: {
             type: Boolean
         }
