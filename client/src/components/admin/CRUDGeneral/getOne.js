@@ -2,10 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { readData } from "../../../helpers/dataHelpers";
+import { getNomRoman } from "../../public/cards/componentsCard";
 
 
 export const GetOne = (props) => {
     const navigate = useNavigate();
+    const romans = props.romans
     const [text, setText] = useState("");
     const [message, setMessage] = useState("");
     const [datas, setDatas] = useState([]);
@@ -59,7 +61,10 @@ export const GetOne = (props) => {
                         <select onChange={(e) => setSelectedData(e.target.value)}>
                             <option disabled={true} selected>-----</option>
                             {datas.map((data, i) => {
-                                return <option key={i}>{data.nom || data.titre}</option>;
+                                return(
+                                props.admin ? <option key={i}>{`(${getNomRoman(romans, data.roman)}) ${data.nom || data.titre}`}</option>
+                                    : <option key={i}>{data.nom || data.titre}</option>
+                                )
                             })}
                         </select>
                     </label>

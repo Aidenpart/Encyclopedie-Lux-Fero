@@ -6,7 +6,7 @@ import { GetOne } from "../../../components/admin/CRUDGeneral/getOne.js"
 import { CreateOrModifyDataForm, CreateOrModifyTextForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js"
 import { Header } from "../../../components/public/header/header.js";
 import { Footer } from "../../../components/public/footer/footer.js";
-import { createData } from "../../../helpers/dataHelpers.js"
+import { createData, readData } from "../../../helpers/dataHelpers.js"
 import { GenericLink } from "../../../components/public/links/links.js";
 import "../stylesAdmin.scss"
 
@@ -15,32 +15,37 @@ export const PageCRUD = () => {
     const location = useLocation(); 
     const state = location.state;
     const specData = state.dataCategory;
+    const [romans, setRomans] = useState([]);
     const [isData, setIsData] = useState(false);
     const [isCategoryPersonnage, setIsCategoryPersonnage] = useState(false);
     const [isCategoryFiche, setIsCategoryFiche] = useState(false);
 
     useEffect(() => {
-        switch (specData) {
-            case "personnages":
-                setIsData(true)
-                setIsCategoryPersonnage(true)
-                break;
-            case "lieux":
-                setIsData(true)
-                setIsCategoryPersonnage(false)
-                break;
-            case "fiches":
-                setIsData(false)
-                setIsCategoryFiche(true)
-                break;
-            case "romans":
-                setIsData(false)
-                setIsCategoryFiche(false)
-                break;                                           
-            default:
-                setIsData(false)
-                break;
-        }
+        readData("romans")
+        .then((data) => {
+            setRomans(data);
+            switch (specData) {
+                case "personnages":
+                    setIsData(true)
+                    setIsCategoryPersonnage(true)
+                    break;
+                case "lieux":
+                    setIsData(true)
+                    setIsCategoryPersonnage(false)
+                    break;
+                case "fiches":
+                    setIsData(false)
+                    setIsCategoryFiche(true)
+                    break;
+                case "romans":
+                    setIsData(false)
+                    setIsCategoryFiche(false)
+                    break;                                           
+                default:
+                    setIsData(false)
+                    break;
+            }
+        })  
         document.title = `CRUD ${specData}`;
     }, [specData, isCategoryPersonnage]);
 
@@ -65,7 +70,7 @@ export const PageCRUD = () => {
                         isFiche={isCategoryFiche}
                         dataCategory={specData}
                 />}
-                <GetOne dataCategory={specData} />
+                <GetOne dataCategory={specData} romans={romans} admin={true}/>
                 <GenericLink direction={"/admin"} className={"link"} text={"Retour à l'admin"} />
             </main>
             <Footer />

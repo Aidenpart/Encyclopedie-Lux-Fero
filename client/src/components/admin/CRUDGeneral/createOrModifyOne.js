@@ -206,10 +206,12 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
     );
 };
 
+
 export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, isFiche, id }) => {
     const navigate = useNavigate();
     const romans = listeRomans;
     const [roman, setRoman] = useState(initialValues.roman || '');
+    const [resume, setResume] = useState(initialValues.resume || '');
     const [domaine, setDomaine] = useState(initialValues.domaine || '');
     const [titre, setTitre] = useState(initialValues.titre || '');
     const [contenuPrincipal, setContenuPrincipal] = useState(initialValues.contenuPrincipal || '');
@@ -239,6 +241,7 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
         const formData = new FormData();
         if(!isFiche) {
             formData.append('nom', nom);
+            formData.append('resume', resume);
             formData.append('nombreDePages', nombreDePages);
             formData.append('nombreDeMots', nombreDeMots);
             formData.append('nombreDeSEC', nombreDeSEC);
@@ -272,6 +275,12 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
             setMessage(error.message);
         };
     };
+
+    const handleStatus = (status) => {
+        console.log(status)
+        status.value === "Achevé" ?
+            setIsFini(true) : setIsFini(false)
+    }
 
     if (!dataLoaded)
         return <Loading />;
@@ -321,6 +330,9 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
                         <label> Nom :
                             <input onChange={(e) => setNom(e.target.value)} value={nom} type="text" required />
                         </label>
+                        <label>Resumé :
+                            <textarea onChange={(e) => setResume(e.target.value)} value={resume} type="text" />
+                        </label>
                         <label> Nombre de Pages:
                             <input onChange={(e) => setNombreDePages(e.target.value)} value={nombreDePages} type="text" required />
                         </label>
@@ -337,7 +349,7 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
                             <input onChange={(e) => setNombreDeChapitres(e.target.value)} value={nombreDeChapitres} type="text" required />
                         </label>
                         <label> Statut :
-                            <select onChange={(e) => setIsFini(e.target.value)} value={isFini} required>
+                            <select onChange={handleStatus}required>
                                 <option>Achevé</option>
                                 <option>Inachevé</option>
                             </select>

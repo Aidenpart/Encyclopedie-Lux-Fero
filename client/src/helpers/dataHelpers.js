@@ -74,7 +74,6 @@ export const readOneData = async (type, id) => {
 
 
 export const filteredDataByRoman = async (idRoman) => {
-    console.log(idRoman)
     try {
         const personnages = await readData("personnages");
         const lieux = await readData("lieux")
@@ -84,4 +83,4 @@ export const filteredDataByRoman = async (idRoman) => {
         console.log(error);
         return error
     }
-}
+};
