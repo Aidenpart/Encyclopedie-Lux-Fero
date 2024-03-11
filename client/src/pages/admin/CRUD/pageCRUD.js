@@ -70,7 +70,7 @@ export const PageCRUD = () => {
                         isFiche={isCategoryFiche}
                         dataCategory={specData}
                 />}
-                <GetOne dataCategory={specData} romans={romans} admin={true}/>
+                <GetOne dataCategory={specData} romans={romans}/>
                 <GenericLink direction={"/admin"} className={"link"} text={"Retour à l'admin"} />
             </main>
             <Footer />

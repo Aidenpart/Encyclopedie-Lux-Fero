@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { readData } from "../../../helpers/dataHelpers";
-import { getNomRoman } from "../../public/cards/componentsCard";
 
 
 export const GetOne = (props) => {
@@ -12,11 +11,14 @@ export const GetOne = (props) => {
     const [message, setMessage] = useState("");
     const [datas, setDatas] = useState([]);
     const [selectedData, setSelectedData] = useState("");
+    const [isRoman, setIsRoman] = useState(false);
+    const [roman, setRoman] = useState("")
     
     useEffect(() => {
         readData(props.dataCategory)
-        .then((data) => {
-            setDatas(data);
+        .then((response) => {
+            !isRoman? setDatas(response.filter((data) => data.roman === roman)) 
+            : setDatas(response)
         })
         .catch((err) => {
             console.log(err);
@@ -25,28 +27,27 @@ export const GetOne = (props) => {
 
         switch (props.dataCategory) {
             case "personnages":
-                setText("un personnage")
+                setText("du personnage")
                 break;
             case "lieux":
-                setText("un lieu")
+                setText("du lieu")
                 break;
             case "fiches":
-                setText("une fiche")
+                setText("de la fiche")
                 break;
             case "romans":
-                setText("un roman")
+                setIsRoman(true)
+                setText("du roman")
                 break;                                           
             default:
                 setText("")
                 break;
         }
-
         
-    }, [setDatas, setMessage, props.dataCategory, setText, selectedData]);
-    
+    }, [setDatas, setMessage, props.dataCategory, setText, roman, romans, isRoman, setIsRoman]);
+
     const handleSubmitOne = (e) => {
         e.preventDefault();
-        
         const foundData = datas.find(data => data.nom === selectedData || data.titre === selectedData);
         if (foundData)
             navigate(`${props.dataCategory}/${foundData._id}`, {state: {dataCategory:props.dataCategory}});
@@ -57,14 +58,21 @@ export const GetOne = (props) => {
             <h3>Chercher {text}</h3>
             <div>
                 <form onSubmit={handleSubmitOne} className="formulaire">
-                    <label>Nom d'{text}
+                    {!isRoman && 
+                        <label> Roman :
+                            <select onChange={(e) => setRoman(e.target.value)}>
+                                <option disabled={true} selected>-----</option>
+                                {romans.map((roman,i) => {
+                                    return <option key={i} value={roman._id}>{roman.nom}</option>
+                                })}
+                            </select>
+                        </label>
+                    }
+                    <label>Nom {text}
                         <select onChange={(e) => setSelectedData(e.target.value)}>
                             <option disabled={true} selected>-----</option>
                             {datas.map((data, i) => {
-                                return(
-                                props.admin ? <option key={i}>{`(${getNomRoman(romans, data.roman)}) ${data.nom || data.titre}`}</option>
-                                    : <option key={i}>{data.nom || data.titre}</option>
-                                )
+                                return <option key={i}>{data.nom || data.titre}</option>
                             })}
                         </select>
                     </label>

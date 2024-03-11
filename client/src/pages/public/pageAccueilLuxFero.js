@@ -7,7 +7,7 @@ import { addRoman } from "../../store/slice/romanSlice";
 import { GenericLink } from "../../components/public/links/links";
 import { Footer } from "../../components/public/footer/footer";
 import { Loading } from "../../components/public/loading/loading";
-import { CardComponent } from "../../components/public/cards/newCardsEncyclopedie.js";
+import { CardComponent } from "../../components/public/cards/cardsEncyclopedie.js";
 
 
 export const PageAccueilLuxFero = () => {
@@ -48,7 +48,8 @@ export const PageAccueilLuxFero = () => {
                 });
             }
 
-        document.title = "Accueil Lux Fero";
+                console.log(roman)
+        document.title = `Accueil ${roman.nom}`;
     }, [dataLoaded, dispatch, roman, setLieux]);
 
     if (!dataLoaded)
@@ -72,6 +73,7 @@ export const PageAccueilLuxFero = () => {
                 <article>
                     <h1>Les Personnages</h1>
                     <div className="cards-article"><CardComponent datas={personnages} type={"personnages"}/></div>
+
                 </article>
             </main>
             <Footer />
