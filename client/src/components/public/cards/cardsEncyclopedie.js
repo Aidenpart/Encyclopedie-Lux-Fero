@@ -8,6 +8,59 @@ import { URL } from "../../../helpers/urlHelpers";
 import "./cardsStyles.scss";
 
 
+export const CardResumeGeneric = (props) => {
+    const type = props.type;
+    const data = props.datas;
+    const [dataLoaded, setDataLoaded] = useState(false);
+    const [dataRoman, setDataRoman] = useState();
+
+    useEffect(() => {
+        if(type === "romans") {
+            filteredDataByRoman(data._id)
+            .then((response) => {
+                setDataRoman(response)
+                setDataLoaded(true);
+            })
+            .catch((err) => {
+                console.log(err);
+            });        
+        }else
+            setDataLoaded(true)
+        
+    }, [dataLoaded, data._id, setDataRoman, type]);
+
+
+    if(!dataLoaded)
+        return <Loading />;
+
+    return (
+        <article className="card-generic">
+            <div>
+                {Object.keys(data).map((key) => (
+                    <p key={key}><span className="key">{key.toLocaleUpperCase()}</span><span className="data">{data[key]}</span></p>
+                ))}
+            </div>
+            {dataRoman &&
+                <>
+                    <h2>Les lieux</h2>
+                    <ul>
+                        {dataRoman.lieux.map((lieu) => {
+                            return <li>{lieu.nom}</li>
+                        })}
+                    </ul>
+                    <h2>Les personnages</h2>
+                    <ul> 
+                        {dataRoman.personnages.map((personnage) => {
+                            return <li>{personnage.nom}</li>
+                        })}
+                    </ul>
+                </> 
+            }
+        </article>
+    )
+};
+
+
 export const CardComponent = (props) => {
     const time = 500;
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -69,60 +122,6 @@ export const CardComponent = (props) => {
         </>
     )
 };
-
-
-export const CardResumeGeneric = (props) => {
-    const type = props.type;
-    const data = props.datas;
-    const [dataLoaded, setDataLoaded] = useState(false);
-    const [dataRoman, setDataRoman] = useState();
-
-    useEffect(() => {
-        if(type === "romans") {
-            filteredDataByRoman(data._id)
-            .then((response) => {
-                setDataRoman(response)
-                setDataLoaded(true);
-            })
-            .catch((err) => {
-                console.log(err);
-            });        
-        }else
-            setDataLoaded(true)
-        
-    }, [dataLoaded, data._id, setDataRoman, type]);
-
-
-    if(!dataLoaded)
-        return <Loading />;
-
-    return (
-        <article className="card-generic">
-            <div>
-                {Object.keys(data).map((key) => (
-                    <p key={key}><span className="key">{key.toLocaleUpperCase()}</span><span className="data">{data[key]}</span></p>
-                ))}
-            </div>
-            {dataRoman &&
-                <>
-                    <h2>Les lieux</h2>
-                    <ul>
-                        {dataRoman.lieux.map((lieu) => {
-                            return <li>{lieu.nom}</li>
-                        })}
-                    </ul>
-                    <h2>Les données</h2>
-                    <ul>Les personnages
-                        {dataRoman.personnages.map((personnage) => {
-                            return <li>{personnage.nom}</li>
-                        })}
-                    </ul>
-                </> 
-            }
-        </article>
-    )
-};
-
 
 const CardsPersonnages = (props) => {
     const [mounted, setMounted] = useState(false)

@@ -7,6 +7,7 @@ import { addRoman } from "../../store/slice/romanSlice";
 import { GenericLink } from "../../components/public/links/links";
 import { Footer } from "../../components/public/footer/footer";
 import { Loading } from "../../components/public/loading/loading";
+import { DataBloc, ReadAll } from "../../components/public/blocs/blocs.js";
 import { CardComponent } from "../../components/public/cards/cardsEncyclopedie.js";
 
 
@@ -21,8 +22,8 @@ export const PageAccueilLuxFero = () => {
         if (!dataLoaded) {
             readData("romans")
                 .then((response) => {
-                    const luxFeroRoman = response.filter((data) => data.nom === "Lux Fero");
-                    dispatch(addRoman(luxFeroRoman[0]));
+                    const luxFeroRoman = response.find((data) => data.nom === "Lux Fero");
+                    dispatch(addRoman(luxFeroRoman));
                     setDataLoaded(true);
                 })
                 .catch((err) => {
@@ -48,9 +49,10 @@ export const PageAccueilLuxFero = () => {
                 });
             }
 
-                console.log(roman)
         document.title = `Accueil ${roman.nom}`;
-    }, [dataLoaded, dispatch, roman, setLieux]);
+    }, [dataLoaded, dispatch, roman, setLieux, ]);
+
+
 
     if (!dataLoaded)
         return <Loading />;
@@ -68,7 +70,10 @@ export const PageAccueilLuxFero = () => {
                 </article>
                 <article>
                     <h1>Les Lieux</h1>
-                    <div className="cards-article"><CardComponent datas={lieux} type={"lieux"}/></div>
+                    <div className="cards-article">
+                        <DataBloc datas={lieux} type={"lieux"} />
+                        <ReadAll datas={lieux} type={"lieux"} />
+                    </div>
                 </article>
                 <article>
                     <h1>Les Personnages</h1>
