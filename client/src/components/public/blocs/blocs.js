@@ -1,45 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CardComponent } from "../cards/cardsEncyclopedie";
 import { appartenancesLuxFero } from "../../../helpers/categories";
 
 export const DataBloc = (props) => {
-    const datas = props.datas;
-    const type = props.type;
-    const text = type.slice(0, -1);
+    const [text, setText] = useState("");
+    const [datas, setDatas] = useState(props.datas);
+    const [type, setType] = useState(props.type);
+    const [filter, setFilter] = useState("");
     const [selectedData, setSelectedData] = useState("");
     const [specifiedData, setSpecifiedData] = useState([]);
 
+    useEffect(() => {
+        setDatas(props.datas);
+        setType(props.type);
+        setText(type.slice(0, -1))
+    }, [props, type]);
 
-    const handleSubmitOne = (e) => {
+    const handleSubmitOne = (e, filter) => {
         e.preventDefault();
-        
-        const foundData = datas.filter((data) => selectedData === data.nom || selectedData === data.appartenance);
-        
-        if (foundData.length > 2) {
-            setSpecifiedData(foundData)
-            console.log(specifiedData) 
-        }else{
-            setSpecifiedData(foundData)
-            console.log(specifiedData)
-        }
+        setSpecifiedData(datas.filter((data) => selectedData === data[filter]))    
     };
 
+    const handleChange = (e, filter) => {
+        setFilter(filter)
+        setSelectedData(e.target.value)
+    };
 
     return(
         <article>
             <div>
-                <form onSubmit={handleSubmitOne}>
+                <form onSubmit={(e) => handleSubmitOne(e, filter)}>
                     <label>Nom du {text}
-                        <select onChange={(e) => setSelectedData(e.target.value)}>
-                            <option disabled={true} selected>-----</option>
+                        <select onChange={(e) => handleChange(e, "nom")}>
+                            <option disabled={true} value={"default"} selected>-----</option>
                                 {datas.map((data, i) => {
                                     return <option key={i}>{data.nom}</option>;
                                 })}
                         </select>
                     </label>
                     <label>Appartenance du {text}
-                        <select onChange={(e) => setSelectedData(e.target.value)}>
+                        <select onChange={(e) => handleChange(e, "appartenance")}>
                             <option disabled={true} selected>-----</option>
                                 {appartenancesLuxFero.map((data, i) => {
                                     return <option key={i}>{data}</option>;
@@ -53,8 +54,8 @@ export const DataBloc = (props) => {
                 <CardComponent datas={specifiedData} type={type}/>
             )}
         </article>
-    )
-}
+    );
+};
 
 
 export const ReadAll = (props) => {
@@ -86,7 +87,12 @@ export const ReadAll = (props) => {
     );
 };
 
-/*
+
+/**
+
+
+
+
 import React, { useState } from "react";
 import { CardComponent } from "../cards/cardsEncyclopedie";
 import { appartenancesLuxFero } from "../../../helpers/categories";
