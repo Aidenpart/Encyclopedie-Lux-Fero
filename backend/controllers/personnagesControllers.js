@@ -17,7 +17,7 @@ export const createPersonnage = async (req, res) => {
 
         const isUnique = await isCombinationUnique(personnageModel, fields.nom[0], fields.roman[0]);
         if (!isUnique)
-            return res.status(400).json({ message: "La combinaison du nom et du roman doit être unique." });
+            return res.status(409).json({ message: "La combinaison du nom et du roman doit être unique." });
 
         let newPath;
         if (files.image && files.image.length > 0 && files.image[0].originalFilename !== "perso_default.png" && files.image[0].originalFilename !== "mage_default.png") {
