@@ -6,12 +6,11 @@ import { Loading } from "./components/public/loading/loading.js";
 import { getUserbyToken } from "./helpers/authHelpers.js";
 import { AdminMiddleware } from "./router/authMiddleware.js";
 import { addUser } from "./store/slice/userSlice";
-import { listDataCategories } from "./helpers/categories.js";
+import { listDataCategories, listeRomans } from "./helpers/categories.js";
 
 import { PagePreambule } from "./pages/public/pagePreambule.js";
 import { PageAccueil } from "./pages/public/pageAccueilEncyclopedie.js";
-import { PageAccueilLuxFero } from "./pages/public/pageAccueilLuxFero.js";
-import { PageAccueilReginaMagicae } from "./pages/public/pageAccueilReginaMagicae.js";
+import { PageAccueilRoman } from "./pages/public/pageAccueilRoman.js";
 import { PageConnexion } from "./pages/admin/pageConnexion.js";
 import { PageAdmin } from "./pages/admin/pageAdmin.js";
 import { PageCRUD } from "./pages/admin/CRUD/pageCRUD.js";
@@ -51,9 +50,11 @@ function App() {
       <Routes>
         <Route path="/" element={<PagePreambule />} />
         <Route path="/accueil" element={<PageAccueil />} />
-        <Route path="/accueil-Lux-Fero" element={<PageAccueilLuxFero />} />
-        <Route path="/accueil-Regina-Magicae" element={<PageAccueilReginaMagicae />} />
 
+        {listeRomans.map((roman, i) => {
+          return <Route key={i} path={`/accueil-${roman.replace(/\s/, "-")}`} element={<PageAccueilRoman />}/>
+        })}
+        
         <Route path="/cgu" element={<PageCGU />} />
         <Route path="/rgpd" element={<PageRGPD />} />
         <Route path="/mentions-legales" element={<PageMentionsLegales />} />
@@ -61,8 +62,8 @@ function App() {
 
         <Route path="/admin" element={<AdminMiddleware> <PageAdmin /> </AdminMiddleware>} />
         <Route path="/admin/CRUD" element={<AdminMiddleware> <PageCRUD /> </AdminMiddleware>} />
-        {listDataCategories.map((categorie) => {
-          return <Route path={`/admin/CRUD/${categorie}/:id`} element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
+        {listDataCategories.map((categorie, i) => {
+          return <Route key={i} path={`/admin/CRUD/${categorie}/:id`} element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
         })}
       </Routes>
   );

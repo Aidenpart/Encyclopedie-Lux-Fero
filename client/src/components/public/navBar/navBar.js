@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-
-import { GenericLink, LinkConditionalNavigationBurger, LinkLogOutBurger } from "../links/links.js";
+import { listeRomans } from '../../../helpers/categories.js';
+import { GenericLinkDynamicData, GenericLink, LinkConditionalNavigationBurger, LinkLogOutBurger } from "../links/links.js";
 import "./navBar.scss";
 
 
@@ -21,12 +21,17 @@ export const NavBar = () => {
                 <li className="nav-item">
                     <GenericLink direction={"/accueil"} class={"nav-link"} text={"Accueil"}/>
                 </li>
-                <li className="nav-item">
-                    <GenericLink direction={"/accueil-Lux-Fero"} class={"nav-link"} text={`Lux Fero`}/>
-                </li>
-                <li className="nav-item">
-                    <GenericLink direction={"/accueil-Regina-Magicae"} class={"nav-link"} text={"Regina Magicae"}/>
-                </li>
+                {listeRomans.map((roman, i) => {
+                    return (
+                        <li className="nav-item" key={i}>
+                            <GenericLinkDynamicData 
+                                direction={`/accueil-${roman.replace(/\s/, "-")}`} 
+                                class={"nav-link"} 
+                                text={roman} 
+                                setters={{roman:roman}}/>
+                        </li>
+                    )
+                })}
                 <li>
                     <LinkConditionalNavigationBurger />
                 </li>

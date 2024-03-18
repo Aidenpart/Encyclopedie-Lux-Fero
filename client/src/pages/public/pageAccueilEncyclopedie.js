@@ -38,8 +38,8 @@ export const PageAccueil = () => {
                 <article>
                     {listeRomans.map((roman, i) => {
                         return (
-                            <section>
-                                <LinkAccueil 
+                            <section key={i}>
+                                <LinkAccueil
                                     direction={`/accueil-${roman.replace(/\s/, "-")}`} 
                                     image={`/images/link_${roman.replace(/\s/, "-")}.jpg`} 
                                     texte={`${roman}`} 

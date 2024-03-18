@@ -92,21 +92,25 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
             formData.append('sousSpecialite', sousSpecialite);
         };
 
-        try {
-            if(!isPersonnage)
-                await onSubmit("lieu", token, formData, id)
-                .then((response) => { 
-                    navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
-                }) 
-            else
-                await onSubmit("personnage", token, formData, id)
-                .then((response) => { 
-                    navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
-                })
-        } catch (error) {
-            console.log(error)
-            setMessage(error.message);
-        };
+        if(!isPersonnage) {
+            await onSubmit("lieu", token, formData, id)
+            .then((response) => { 
+                navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
+            })
+            .catch((error) => {
+                console.log(error)
+                setMessage(error.message);
+            }) 
+        }else{
+            await onSubmit("personnage", token, formData, id)
+            .then((response) => {
+                navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
+            })
+            .catch((error) => {
+                console.log(error)
+                setMessage(error.message);
+            })
+        }
     };
 
     const handleFileUpload = (e) => {
@@ -200,7 +204,7 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                 </form>
             </div>
             <div>
-                {message}
+                <p className="error">{message}</p>
             </div>
         </article>
     );

@@ -1,21 +1,45 @@
 import { useEffect, useState } from "react";
 
+import {capitalizeFirstLetter} from "./componentsBloc.js"
 import { CardComponent } from "../cards/cardsEncyclopedie";
-import { appartenancesLuxFero } from "../../../helpers/categories";
+import { appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories";
+
 
 export const DataBloc = (props) => {
-    const [text, setText] = useState("");
-    const [datas, setDatas] = useState(props.datas);
-    const [type, setType] = useState(props.type);
+    const datas = props.datas;
+    const dataType = props.dataType;
+    const romanName = props.roman ;
+
+
+    return(
+        <article>
+            <h1>Les {capitalizeFirstLetter(`${dataType}`)}</h1>
+            <div className="cards-article">
+                <SortData datas={datas} type={dataType} roman={romanName}/>
+                <ReadAll datas={datas} type={dataType}/>
+            </div>
+        </article>
+    );
+};
+
+
+
+export const SortData = (props) => {
+    const [appartenances, setAppartenances] = useState([])
+    const datas = props.datas;
+    const type = props.type;
+    const text = `${type}`.slice(0, -1)
     const [filter, setFilter] = useState("");
     const [selectedData, setSelectedData] = useState("");
     const [specifiedData, setSpecifiedData] = useState([]);
 
+
     useEffect(() => {
-        setDatas(props.datas);
-        setType(props.type);
-        setText(type.slice(0, -1))
-    }, [props, type]);
+        props.roman === "Lux Fero" ? 
+            setAppartenances(appartenancesLuxFero) 
+            : setAppartenances(appartenancesReginaMagicae)
+
+    }, [props.roman, appartenances]);
 
     const handleSubmitOne = (e, filter) => {
         e.preventDefault();
@@ -28,7 +52,7 @@ export const DataBloc = (props) => {
     };
 
     return(
-        <article>
+        <section>
             <div>
                 <form onSubmit={(e) => handleSubmitOne(e, filter)}>
                     <label>Nom du {text}
@@ -42,7 +66,7 @@ export const DataBloc = (props) => {
                     <label>Appartenance du {text}
                         <select onChange={(e) => handleChange(e, "appartenance")}>
                             <option disabled={true} selected>-----</option>
-                                {appartenancesLuxFero.map((data, i) => {
+                                {appartenances.map((data, i) => {
                                     return <option key={i}>{data}</option>;
                                 })}
                         </select>
@@ -53,7 +77,7 @@ export const DataBloc = (props) => {
             {specifiedData && (
                 <CardComponent datas={specifiedData} type={type}/>
             )}
-        </article>
+        </section>
     );
 };
 
@@ -86,105 +110,3 @@ export const ReadAll = (props) => {
         </section>
     );
 };
-
-
-/**
-
-
-
-
-import React, { useState } from "react";
-import { CardComponent } from "../cards/cardsEncyclopedie";
-import { appartenancesLuxFero } from "../../../helpers/categories";
-
-export const DataBloc = (props) => {
-    const datas = props.datas;
-    const type = props.type;
-    const text = type.slice(0, -1);
-    const [selectedNom, setSelectedNom] = useState("");
-    const [selectedAppartenance, setSelectedAppartenance] = useState("");
-    const [specifiedData, setSpecifiedData] = useState([]);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        // Filtre en fonction du nom et/ou de l'appartenance sélectionnée
-        const foundData = datas.filter(data => {
-            if (selectedNom && selectedAppartenance) {
-                return selectedNom === data.nom && selectedAppartenance === data.appartenance;
-            } else if (selectedNom) {
-                return selectedNom === data.nom;
-            } else if (selectedAppartenance) {
-                return selectedAppartenance === data.appartenance;
-            }
-            return true; // Aucune sélection
-        });
-        
-        setSpecifiedData(foundData);
-    };
-
-    const handleSelectChange = (e) => {
-        setSelectedNom("");
-        setSelectedAppartenance("");
-        if (e.target.name === "nom") {
-            setSelectedNom(e.target.value);
-        } else if (e.target.name === "appartenance") {
-            setSelectedAppartenance(e.target.value);
-        }
-    };
-
-    return (
-        <article>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <label>Nom du {text}
-                        <select name="nom" onChange={handleSelectChange} value={selectedNom}>
-                            <option value="">-----</option>
-                            {datas.map((data, i) => (
-                                <option key={i}>{data.nom}</option>
-                            ))}
-                        </select>
-                    </label>
-                    <label>Appartenance du {text}
-                        <select name="appartenance" onChange={handleSelectChange} value={selectedAppartenance}>
-                            <option value="">-----</option>
-                            {appartenancesLuxFero.map((data, i) => (
-                                <option key={i}>{data}</option>
-                            ))}
-                        </select>
-                    </label>
-                    <button type="submit">Chercher le {text}</button>
-                </form>
-            </div>
-            {specifiedData.length > 0 && (
-                <CardComponent datas={specifiedData} type={type}/>
-            )}
-        </article>
-    );
-};
-
-export const ReadAll = (props) => {
-    const type = props.type;
-    const datas = props.datas;
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-
-    const handleClick = () => {
-        setModalIsOpen(false);
-    };
-
-    return (
-        <section>
-            <h3>Voir les {type}</h3>
-            {modalIsOpen && (
-                <div>
-                    <button onClick={handleClick}>Cacher</button>
-                    <div>
-                        <CardComponent datas={datas} type={type}/>
-                    </div>
-                </div>
-            )}
-            {!modalIsOpen && (<button onClick={() => setModalIsOpen(true)}>Afficher tous les {type}</button>)}
-        </section>
-    );
-};
-*/

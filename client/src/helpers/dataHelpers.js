@@ -2,18 +2,19 @@ import { URL } from "./urlHelpers";
 
 
 export const createData = async(type, token, formData, id) => {
-    try {
-        const creation = await fetch(`${URL}/admin/create-${type}`, {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${token}`
-            },
-            body: formData
-        });
-        return creation.json();
-    } catch (error) {
-        throw new Error(error.message)
-    } 
+
+    const creation = await fetch(`${URL}/admin/create-${type}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        body: formData
+    });
+    const response = await creation.json();
+    if (creation.ok)
+        return response
+    else
+        throw new Error(response.message)
 }
 
 
