@@ -111,6 +111,6 @@ export const LinkConditionalNavigationBurger = () => {
 export const GenericLinkDynamicData = (props) => {
     
     return (
-        <Link to={props.direction} state={props.setters} className={props.class}>{props.text}</Link>
+        <Link reloadDocument to={props.direction} state={props.setters} className={props.class}>{props.text}</Link>
     );
 };

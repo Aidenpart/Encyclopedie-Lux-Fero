@@ -13,28 +13,28 @@ import { DataBloc } from "../../components/public/blocs/blocs.js";
 
 export const PageAccueilRoman = () => {
     const location = useLocation(); 
-    const urlTitle = location.state;
+    const urlTitle = location.pathname.slice(9).replace( "-", " ");
     const dispatch = useDispatch();
     const roman = useSelector(state => state.roman);
     const [personnages, setPersonnages] = useState([]);
     const [lieux, setLieux] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
   
-    
     useEffect(() => {
+        
         if (!dataLoaded) {
             setDataLoaded(true);
 
             readData("romans")
             .then((response) => {
-                dispatch(addRoman(response.find((data) => data.nom === urlTitle.roman)));
+                dispatch(addRoman(response.find((data) => data.nom === urlTitle)));
             })
             .catch((err) => {
                 console.log(err);
             });
         }
         
-    }, [dataLoaded, dispatch, urlTitle.roman]);
+    }, [dataLoaded, dispatch, urlTitle]);
 
     
     useEffect(() => {
