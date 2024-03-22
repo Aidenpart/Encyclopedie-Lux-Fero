@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import {capitalizeFirstLetter} from "./componentsBloc.js"
 import { CardComponent } from "../cards/cardsEncyclopedie";
 import { appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories";
-
 import "./blocsStyles.scss"
 
 
@@ -14,7 +13,7 @@ export const DataBloc = (props) => {
 
 
     return(
-        <article>
+        <article className="data-bloc">
             <h1>Les {capitalizeFirstLetter(`${dataType}`)}</h1>
             <SortData datas={datas} type={dataType} roman={romanName}/>
             <ReadAll datas={datas} type={dataType}/>
@@ -89,15 +88,15 @@ const SortData = (props) => {
         <section>
             <div>
                 <form onSubmit={(e) => handleSubmit(e, filter)}>
-                    <label>Nom du {text}
+                    <label>Nom du {text} :
                         <select value={selectValues.nom} onChange={(e) => handleChange(e.target.value, 'nom')}>
                             <option value={""}>-----</option>
                             {datas.map((data, i) => {
                                 return <option key={i}>{data.nom}</option>;
                             })}
                         </select>                    
-                </label>
-                    <label>Appartenance du {text}
+                    </label>
+                    <label>Appartenance du {text} : 
                         <select value={selectValues.appartenance} onChange={(e) => handleChange(e.target.value, 'appartenance')}>
                             <option value={""}>-----</option>
                                 {appartenances.map((data, i) => {
