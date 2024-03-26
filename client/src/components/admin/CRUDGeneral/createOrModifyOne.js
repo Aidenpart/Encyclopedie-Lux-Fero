@@ -44,6 +44,7 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
 
         setToken(getToken());
         setDataLoaded(true);
+        console.log(isCreation)
     }, [initialValues, setDataLoaded, setToken, setAppartenances, roman]);
 
     useEffect(() => {
@@ -95,7 +96,9 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
         if(!isPersonnage) {
             await onSubmit("lieu", token, formData, id)
             .then((response) => { 
-                navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
+                isCreation? 
+                navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }}) 
+                : navigate(`/admin/CRUD`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
             })
             .catch((error) => {
                 console.log(error)
@@ -104,8 +107,9 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
         }else{
             await onSubmit("personnage", token, formData, id)
             .then((response) => {
-                navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
-            })
+                isCreation? 
+                navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }}) 
+                : navigate(`/admin/CRUD`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});            })
             .catch((error) => {
                 console.log(error)
                 setMessage(error.message);

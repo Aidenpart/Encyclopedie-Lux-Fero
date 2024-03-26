@@ -60,6 +60,7 @@ export const PageOne = () =>{
                 setIsData(false)
                 break;
         }
+
         document.title = `${data.nom || data.titre}`;
     }, [setIsData, data.nom, specData, data.titre])
 

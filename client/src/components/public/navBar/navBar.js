@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { listeRomans } from '../../../helpers/categories.js';
-import { GenericLinkDynamicData, GenericLink, LinkConditionalNavigationBurger, LinkLogOutBurger } from "../links/links.js";
+import { ReloadLinkDynamicData, GenericLink, LinkConditionalNavigationBurger, LinkLogOutBurger } from "../links/links.js";
 import "./navBar.scss";
 
 
@@ -24,7 +24,7 @@ export const NavBar = () => {
                 {listeRomans.map((roman, i) => {
                     return (
                         <li className="nav-item" key={i}>
-                            <GenericLinkDynamicData 
+                            <ReloadLinkDynamicData 
                                 direction={`/accueil-${roman.replace(/\s/, "-")}`} 
                                 class={"nav-link"} 
                                 text={roman} 
@@ -37,7 +37,7 @@ export const NavBar = () => {
                 </li>
                 {
                 sessionStorage.getItem("jwt") ? 
-                    <li className="nav-item">
+                    <li className="nav-link">
                         <LinkLogOutBurger />
                     </li>
                 : ""    

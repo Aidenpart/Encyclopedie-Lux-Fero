@@ -16,6 +16,7 @@ export const PageAdmin = () => {
     useEffect(() => {       
         setDataLoaded(true);
         document.title = "Page Administrateur";
+
     }, [setDataLoaded]);
 
     if (!dataLoaded)
@@ -31,7 +32,7 @@ export const PageAdmin = () => {
                     {listDataCategories.map((dataCategory, i) => {
                         return <GenericLinkDynamicData 
                                     key={i}
-                                    direction={"/admin/CRUD"} 
+                                    direction={`/admin/CRUD`} 
                                     class={"CRUD-link"} 
                                     text={`CRUD ${dataCategory}`}
                                     setters={{
