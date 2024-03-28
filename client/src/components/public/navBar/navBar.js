@@ -19,7 +19,7 @@ export const NavBar = () => {
         <nav className="navbar">
             <ul className={mobileMenuClassName}>
                 <li className="nav-item">
-                    <GenericLink direction={"/accueil"} class={"nav-link"} text={"Accueil"}/>
+                    <GenericLink direction={"/"} class={"nav-link"} text={"Accueil"}/>
                 </li>
                 {listeRomans.map((roman, i) => {
                     return (

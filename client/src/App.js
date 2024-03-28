@@ -8,8 +8,7 @@ import { AdminMiddleware } from "./router/authMiddleware.js";
 import { addUser } from "./store/slice/userSlice";
 import { listDataCategories, listeRomans } from "./helpers/categories.js";
 
-import { PagePreambule } from "./pages/public/pagePreambule.js";
-import { PageAccueil } from "./pages/public/pageAccueilEncyclopedie.js";
+import { PageAccueil } from "./pages/public/pageAccueil.js";
 import { PageAccueilRoman } from "./pages/public/pageAccueilRoman.js";
 import { PageConnexion } from "./pages/admin/pageConnexion.js";
 import { PageAdmin } from "./pages/admin/pageAdmin.js";
@@ -48,8 +47,7 @@ function App() {
 
   return (
       <Routes>
-        <Route path="/" element={<PagePreambule />} />
-        <Route path="/accueil" element={<PageAccueil />} />
+        <Route path="/" element={<PageAccueil />} />
 
         {listeRomans.map((roman, i) => {
           return <Route key={i} path={`/accueil-${roman.replace(/\s/, "-")}`} element={<PageAccueilRoman />}/>

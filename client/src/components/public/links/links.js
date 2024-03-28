@@ -6,11 +6,12 @@ import "./linkStyles.scss"
 
 
 export const LinkAccueil = (props) => {
+    const roman = `${props.roman}`;
 
     return (
-        <Link to={props.direction} className="lien-accueil" state={props.setters}>
-            <img className="image" src={props.image} alt="image_lien"/>
-            <div className="texte-lien-accueil">{props.texte}</div>
+        <Link to={`/accueil-${roman.replace(/\s/, "-")}`} className="lien-accueil" state={{roman:roman}}>
+            <img className="image" src={`/images/link_${roman.replace(/\s/, "-")}.jpg`} alt="image_lien"/>
+            <div className="texte-lien-accueil">{roman}</div>
         </Link>
     )
 }
