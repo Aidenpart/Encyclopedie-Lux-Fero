@@ -1,22 +1,31 @@
 @import "../generalStyles.scss";
 
-.center-link-preambule {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
 .page {
     main {
-        margin-bottom: 50px;      
+        margin-bottom: 100px;
 
-        article {
-            section {
-                a {
-                    margin: auto;
-                }
+        .article-liens-pages-romans {
+            width: 100%;
+            margin-top: 50px;
+            
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    .article-liens-pages-romans {
+        width: 100%;
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-around;
+
+        .liens-pages-romans {
+            h2 {
+                font-family: $Kanit;
+                font-size: 3em;
             }
         }
     }
+    
 }

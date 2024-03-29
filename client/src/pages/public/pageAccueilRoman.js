@@ -16,6 +16,7 @@ export const PageAccueilRoman = () => {
     const urlTitle = location.pathname.slice(9).replace( "-", " ");
     const dispatch = useDispatch();
     const roman = useSelector(state => state.roman);
+    const nomRoman = roman.nom;
     const [personnages, setPersonnages] = useState([]);
     const [lieux, setLieux] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -54,8 +55,8 @@ export const PageAccueilRoman = () => {
             console.log(err);
         });
 
-        document.title = `Accueil ${roman.nom}`;
-    }, [roman])
+        document.title = `Accueil ${nomRoman}`;
+    }, [roman, nomRoman])
 
 
     if (!dataLoaded && lieux.length===0 && personnages.length===0)
@@ -65,9 +66,9 @@ export const PageAccueilRoman = () => {
         <section className="page">
             < NavBar/>
             <main>
-                <HeaderEncyclopedie roman={roman.nom} lieux={lieux.length} personnages={personnages.length} />
-                <DataBloc datas={lieux} dataType={"lieux"} roman={roman.nom}/>
-                <DataBloc datas={personnages} dataType={"personnages"} roman={roman.nom}/>
+                <HeaderEncyclopedie roman={nomRoman} lieux={lieux.length} personnages={personnages.length} />
+                <DataBloc datas={lieux} dataType={"lieux"} roman={nomRoman}/>
+                <DataBloc datas={personnages} dataType={"personnages"} roman={nomRoman}/>
             </main>
             <Footer />
         </section>

@@ -1,3 +1,6 @@
+
+export const listSexes = ["mâle", "femelle", "autre"]
+
 export const appartenancesRomans = ["Enfer", "Cieux", "Humanité", "Magie"];
 
 export const appartenancesReginaMagicae = ["Humanité", "Mages", "Autres"];

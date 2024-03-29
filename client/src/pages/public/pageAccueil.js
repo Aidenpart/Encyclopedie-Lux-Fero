@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import { NavBar } from "../../components/public/navBar/navBar";
 import { Header } from "../../components/public/header/header";
 import { LinkAccueil } from "../../components/public/links/links";
+import { LatestDataAdd } from "../../components/public/blocs/blocs";
 import { Door } from "../../components/public/door/door";
 import { Footer } from "../../components/public/footer/footer";
 import { IntroductionAccueil } from "../../components/public/introductions/introductions";
 import { IntroductionLuxFero, IntroductionReginaMagicae } from "../../components/public/introductions/introductions";
-import { listeRomans } from "../../helpers/categories";
+import { listeRomans, listDataCategories } from "../../helpers/categories";
 
 import "./pagesAccueilStyles.scss"
 
@@ -31,17 +32,23 @@ export const PageAccueil = () => {
     });
 
     return (
-        <section>
+        <section className="page">
             <NavBar />
             <main>
                 <article>
                     <Header text={"Bienvenu"}/>
-                    <IntroductionAccueil/>              
+                    <IntroductionAccueil/>     
+                     {listDataCategories.map((model) => {
+                        return (<LatestDataAdd type={model}/>)
+                        
+                     })
+
+                     }        
                 </article>
-                <article>
+                <article className="article-liens-pages-romans">
                     {listeRomans.map((roman, i) => {
                         return (
-                            <section key={i}>
+                            <section key={i} className="liens-pages-romans">
                                 {isMobile && 
                                     <>
                                         <LinkAccueil roman={roman} />
@@ -60,6 +67,7 @@ export const PageAccueil = () => {
                                 }
                                 {isDesktop && 
                                     <>
+                                        <h2 className="titre-roman">{roman}</h2>
                                         <Door roman={roman} />
                                         {
                                             roman === "Lux Fero" ? <IntroductionLuxFero /> : <IntroductionReginaMagicae />

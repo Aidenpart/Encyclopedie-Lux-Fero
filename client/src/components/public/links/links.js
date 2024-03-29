@@ -13,8 +13,8 @@ export const LinkAccueil = (props) => {
             <img className="image" src={`/images/link_${roman.replace(/\s/, "-")}.jpg`} alt="image_lien"/>
             <div className="texte-lien-accueil">{roman}</div>
         </Link>
-    )
-}
+    );
+};
 
 export const GenericLink = (props) => {
     
@@ -63,19 +63,16 @@ export const LinkLogOutBurger = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     
-    
     const handleLogOut = () => {
-        
         sessionStorage.removeItem('jwt')
         dispatch(deleteUser())
         navigate("/accueil")
-
-    }
+    };
     
     return (
         <a className="absconditus" href="/" onClick={handleLogOut}>Deconnexion</a>
-    )
-}
+    );
+};
 
 export const LinkConditionalNavigation = () => {
     const user = useSelector(state => state.user);
@@ -98,16 +95,12 @@ export const LinkConditionalNavigationBurger = () => {
 
     return (
         <>
-            {
-                sessionStorage.getItem('jwt')
-                    ? user.isAdmin
-                        ? <GenericLink direction={"/admin"} class={"nav-link"} text={"Admin"}/>
-                        : <p>Bienvenue !</p>
-                    : <p>Bienvenue !</p>
-            }
+            {sessionStorage.getItem('jwt') && user.isAdmin ? 
+                <GenericLink direction={"/admin"} class={"nav-link"} text={"Admin"}/>
+                : "" }
         </>
-    )
-}
+    );
+};
 
 export const ReloadLinkDynamicData = (props) => {
     

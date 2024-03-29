@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Loading } from "../../public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
-import { listeRomans, listeDomaines, appartenancesLuxFero, appartenancesReginaMagicae, naturesMages, naturesCelestes, naturesAutres, naturesInfernales } from "../../../helpers/categories.js";
+import { listSexes, listeRomans, listeDomaines, appartenancesLuxFero, appartenancesReginaMagicae, naturesMages, naturesCelestes, naturesAutres, naturesInfernales } from "../../../helpers/categories.js";
 import "./generalCRUD.scss"
 
 
@@ -44,7 +44,6 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
 
         setToken(getToken());
         setDataLoaded(true);
-        console.log(isCreation)
     }, [initialValues, setDataLoaded, setToken, setAppartenances, roman]);
 
     useEffect(() => {
@@ -175,7 +174,12 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                             <input onChange={(e) => setTitresSecondaires(e.target.value)} value={titresSecondaires} type="text"  />
                         </label>
                         <label>Sexe :
-                            <input onChange={(e) => setSexe(e.target.value)} value={sexe} type="text"  />
+                            <select onChange={(e) => setSexe(e.target.value)} value={sexe}>
+                                <option>-----</option>
+                                {listSexes.map((sexe, i) => {
+                                    return <option key={i}>{sexe}</option>;
+                                })}
+                            </select>
                         </label>
                         <label>Attirance :
                             <input onChange={(e) => setAttirance(e.target.value)} value={attirance} type="text"  />
@@ -184,7 +188,7 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                             <input onChange={(e) => setSpecialite(e.target.value)} value={specialite} type="text" required />
                         </label>
                         <label>Sous-Spécialité :
-                            <input onChange={(e) => setSousSpecialite(e.target.value)} value={sousSpecialite} type="text" required />
+                            <input onChange={(e) => setSousSpecialite(e.target.value)} value={sousSpecialite} type="text" />
                         </label>
                     </>}
                     {!isPersonnage && <>
