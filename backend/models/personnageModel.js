@@ -43,7 +43,6 @@ const personnageSchema = new mongoose.Schema(
         },
         sousSpecialite: {
             type: String,
-            required: [true, "Une ou des sous-specialites sont requises"]
         },              
         description: {
             type: String
