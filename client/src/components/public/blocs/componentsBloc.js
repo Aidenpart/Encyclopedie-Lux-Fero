@@ -123,14 +123,8 @@ export const LatestData = (props) => {
         })
     }, [type])
 
-    useEffect(() => {
-        console.log(latestDataFound)
-    })
 
     return(
-        <div>
-            <h3>{capitalizeFirstLetter(`${type}`)}</h3>
-            <p>{latestDataFound.nom}</p>
-        </div>
-    )
-}
+        <li>{capitalizeFirstLetter(`${type}`)} : {latestDataFound.nom || latestDataFound.titre}</li>
+    );
+};

@@ -1,4 +1,5 @@
 import {capitalizeFirstLetter, ReadAll, SortData, LatestData} from "./componentsBloc.js"
+import { listDataCategories } from "../../../helpers/categories.js";
 import "./blocsStyles.scss"
 
 
@@ -18,12 +19,16 @@ export const DataBloc = (props) => {
 };
 
 
-export const LatestDataAdd = (props) => {
-    const type = props.type;
+export const LatestDataAdd = () => {
 
     return (
         <article>
-            <LatestData type={type}/>
+            <p>Les dernières données ajoutées : </p>
+            <ul>
+                {listDataCategories.map((categorie, i) => {
+                    return (<LatestData type={categorie} key={i}/>)
+                })}            
+            </ul>
         </article>
     );
 };

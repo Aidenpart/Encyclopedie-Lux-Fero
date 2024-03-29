@@ -9,7 +9,7 @@ import { Door } from "../../components/public/door/door";
 import { Footer } from "../../components/public/footer/footer";
 import { IntroductionAccueil } from "../../components/public/introductions/introductions";
 import { IntroductionLuxFero, IntroductionReginaMagicae } from "../../components/public/introductions/introductions";
-import { listeRomans, listDataCategories } from "../../helpers/categories";
+import { listeRomans } from "../../helpers/categories";
 
 import "./pagesAccueilStyles.scss"
 
@@ -38,12 +38,7 @@ export const PageAccueil = () => {
                 <article>
                     <Header text={"Bienvenu"}/>
                     <IntroductionAccueil/>     
-                     {listDataCategories.map((model) => {
-                        return (<LatestDataAdd type={model}/>)
-                        
-                     })
-
-                     }        
+                    <LatestDataAdd />
                 </article>
                 <article className="article-liens-pages-romans">
                     {listeRomans.map((roman, i) => {
