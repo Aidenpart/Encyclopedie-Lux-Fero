@@ -36,6 +36,25 @@
     }
 }
 
+.latest-add {
+    margin-top: 50px;
+
+    table, th, td {
+        background-color: #fff;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    table {
+        margin: auto;
+    }
+
+    th, td {
+        padding: 5px;
+    }
+   
+}
+
 
 @media screen and (min-width: 700px) {
     

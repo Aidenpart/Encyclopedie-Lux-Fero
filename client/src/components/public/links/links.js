@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser } from "../../../store/slice/userSlice.js";
-import "./navigationStyle.scss";
 import "./linkStyles.scss"
 
 

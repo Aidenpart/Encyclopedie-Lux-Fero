@@ -1,6 +1,5 @@
 import { faBookJournalWhills, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { appartenancesLuxFero, appartenancesReginaMagicae, listeRomans } from '../../../helpers/categories';
 import "./introductionsStyles.scss";
 
 
@@ -9,16 +8,14 @@ export const IntroductionAccueil = () => {
     return (
         <article className="intro-accueil">
             <p className="introduction">
-                Lecteurs, Lectrices, curieux et curieuses de tous horizons
+                Lecteurs, lectrices, curieux et curieuses de tous horizons
                 <br /><span className="bienvenu">Bienvenue sur l'encyclopédie officielle de</span>
                 <br /><span className="titre-LF">L'Univers Lux Fero</span>
-                <br />Ici, vous trouverez une encyclopédie des personnages et lieux des romans de l'univers Lux-Fero. Si vous découvrez cet endroit, un lien pour lire le premier tome de "Lux Fero - Le Porteur de Lumière" se trouve à la suite de ce paragraphe, en accès sur la plateforme Wattpad.
+                <br />Ici, vous trouverez une encyclopédie des personnages et lieux des romans de l'univers Lux-Fero. Si vous découvrez cet endroit, un lien pour lire le premier tome de "Lux Fero - Le Porteur de Lumière" se trouve plus bas, en accès sur la plateforme Wattpad.
                 <br />Alors, comme il m'est l'habitude de le dire, que vous voguiez ici, ou là-bas...
                 <br />Bonne Lecture ! 
             </p>
-            <a className="lien-wattpad" rel="noreferrer" target="_blank" href="https://www.wattpad.com/story/318552524-lux-fero-le-porteur-de-lumi%C3%A8re">
-                <FontAwesomeIcon icon={faBookJournalWhills} /><span className="lire-roman">Lire le roman</span>
-            </a>
+
         </article>
     );
 };
@@ -53,8 +50,13 @@ export const IntroductionLuxFero = () => {
     return (
         <article className="intro-accueil">
             <p className="introduction">
-                Ceci est le résumé du roman Lux Fero
+                Depuis dix ans, Lucifer s’est exilé chez l'Humanité mais lorsqu’il stoppe les crimes d’un serviteur d'un de ses Généraux Infernaux, il comprend que son Royaume est troublé. 
+                <br />Hélas, il entraîne dans son périple Abigail, une humaine à laquelle il s'attache ; leurs destins liés, celle-ci découvrira qu’au-delà des fables, anges et démons existent réellement.  
+                <br />Mais si à l'aube de toute légende réside une vérité, celle-ci peut s'avérer pire que son mythe.
             </p>
+            <a className="lien-wattpad" rel="noreferrer" target="_blank" href="https://www.wattpad.com/story/318552524-lux-fero-le-porteur-de-lumi%C3%A8re">
+                <FontAwesomeIcon icon={faBookJournalWhills} /><span className="lire-roman">Lire sur Wattpad</span>
+            </a>
         </article>
     )
 }
@@ -64,7 +66,8 @@ export const IntroductionReginaMagicae = () => {
     return (
         <article className="intro-accueil">
             <p className="introduction">
-                Ceci est le résumé du roman Regina Magicae
+                L'Apocalypse complétée, Mähr découvre la vie d'un père et peine à équilibrer découverte de ses pouvoirs et nature divine de sa fille. Voulant se faire pardonner d'un nouvel écart auprès de Siohe, il décide l'emmener voir la plus grande bibliothèque d'Europe. 
+                <br />Hélas, un fantôme de son passé ressurgit et tous deux se retrouvent embarqués dans un périple duquel ce premier se serait bien passé mais dont la seconde ne pouvait que rêver.
             </p>
         </article>
     )

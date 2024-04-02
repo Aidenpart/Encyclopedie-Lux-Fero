@@ -125,6 +125,9 @@ export const LatestData = (props) => {
 
 
     return(
-        <li>{capitalizeFirstLetter(`${type}`)} : {latestDataFound.nom || latestDataFound.titre}</li>
+        <tr>
+            <th>{capitalizeFirstLetter(`${type}`)}</th>
+            <td>{latestDataFound.nom || latestDataFound.titre}</td>
+        </tr>
     );
 };

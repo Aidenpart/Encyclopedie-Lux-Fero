@@ -11,7 +11,7 @@ export const naturesAutres = ["Humain(e)", "Cavalier"];
 export const listSexes = ["mâle", "femelle", "autre"];
 
 
-export const listDataCategories = ["lieux", "personnages","romans", "fiches"];
+export const listDataCategories = ["lieux", "personnages", "fiches", "romans"];
 export const listeDomaines = [ 
     {domaine:"Architecture", couleur:"#E77728"},
     {domaine:"Magie", couleur:"green"},
