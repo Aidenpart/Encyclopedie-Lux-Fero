@@ -57,7 +57,9 @@ export const SortData = (props) => {
 
     const handleSubmit = (e, filter) => {
         e.preventDefault();
-        setSelectedData(datas.filter((data) => selectValues[filter] === data[filter]));    
+        if(e.target[0].value || e.target[1].value !== "" )
+            setSelectedData(datas.filter((data) => selectValues[filter] === data[filter]));
+                   
     };
 
     const handleChange = (selectedValue, selectName) => {
@@ -107,27 +109,39 @@ export const SortData = (props) => {
 
 export const LatestData = (props) => {
     const type = props.type;
+    const roman = props.roman
     const [latestDataFound, setLatestDataFound] = useState("")
 
     useEffect(() => {
         readData(type)
         .then((response) => {
-            let mostRecentDate = new Date(Math.max.apply(null, response.map( e => {
-                return new Date(e.updatedAt);
-             })));
-            let mostRecentObject = response.filter( e => { 
-                let d = new Date( e.updatedAt ); 
-                return d.getTime() === mostRecentDate.getTime();
-            })[0];
-            setLatestDataFound(mostRecentObject)
+
+            if (roman !== undefined && roman.id !== "") {
+                setLatestDataFound(filterRecentData(response.filter((data) => data.roman === roman.id)))
+            }else
+                setLatestDataFound(filterRecentData(response))
         })
-    }, [type])
+    }, [type, roman, latestDataFound])
 
 
     return(
         <tr>
             <th>{capitalizeFirstLetter(`${type}`)}</th>
-            <td>{latestDataFound.nom || latestDataFound.titre}</td>
+            {latestDataFound === "" || latestDataFound === undefined ? 
+                <td>Pas de données</td>
+                :<td>{latestDataFound.nom || latestDataFound.titre}</td>}
         </tr>
     );
+};
+
+
+function filterRecentData (data) {
+    let mostRecentDate = new Date(Math.max.apply(null, data.map( e => {
+        return new Date(e.updatedAt);
+     })));
+    let mostRecentObject = data.filter( e => { 
+        let d = new Date( e.updatedAt ); 
+        return d.getTime() === mostRecentDate.getTime();
+    })[0];
+    return mostRecentObject
 };

@@ -1,20 +1,35 @@
 import { useEffect, useState } from "react";
 
+import { readData } from "../../../helpers/dataHelpers.js";
 import {capitalizeFirstLetter, ReadAll, SortData, LatestData} from "./componentsBloc.js"
 import { listDataCategories } from "../../../helpers/categories.js";
 import "./blocsStyles.scss"
 
 
 export const DataBloc = (props) => {
-    const datas = props.datas;
+    const [datas, setDatas] = useState([]);
     const dataType = props.dataType;
-    const romanName = props.roman;
+    const roman = props.roman;
+
+    useEffect(() => {
+        readData(dataType)
+        .then((response) => {
+            setDatas(response.filter((data) => data.roman === roman.id))
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, [roman.id, dataType, datas])
 
 
     return(
         <article className="data-bloc">
             <h1>Les {capitalizeFirstLetter(`${dataType}`)}</h1>
-            <SortData datas={datas} type={dataType} roman={romanName}/>
+            {datas.length !== 0 ?
+                <p>Il y a actuellement {`${datas.length} ${datas.length !== 1 ? dataType: dataType.slice(0, -1)}`} dans cette encyclopédie.</p>
+                :<p>Il n'y a pas encore de {dataType} dans cette encyclopédie.</p>
+            }
+            <SortData datas={datas} type={dataType} roman={roman.nom}/>
             <ReadAll datas={datas} type={dataType}/>
         </article>
     );
@@ -22,11 +37,13 @@ export const DataBloc = (props) => {
 
 
 export const LatestDataAdd = (props) => {
-    const [categories, setCategories] = useState([listDataCategories])
+    const [categories, setCategories] = useState(listDataCategories)
     const roman = props.roman
 
     useEffect(() => {
-        if(roman !== "")
+        if(roman === undefined)
+            setCategories(listDataCategories)
+        else
             setCategories(listDataCategories.slice(0,-1))
     }, [setCategories, roman])
 
@@ -36,7 +53,7 @@ export const LatestDataAdd = (props) => {
             <table>
                 <tbody>
                     {categories.map((categorie, i) => {
-                        return (<LatestData type={categorie} key={i}/>)
+                        return (<LatestData type={categorie} key={i} roman={roman}/>)
                     })}
                 </tbody>
             </table>

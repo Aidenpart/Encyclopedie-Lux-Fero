@@ -108,7 +108,6 @@
     height: 450px; 
     margin: 10px;
     text-align: center;
-
     animation: delay 1s;
 
     .interieur {
@@ -160,7 +159,7 @@
                     .nom-lieu {
                         bottom: 20px;
                         margin: 0;
-                        font-size: 2.5em; }
+                        font-size: 2em; }
                 }   
             }
         }
@@ -246,10 +245,12 @@
 
                         .greetings {
                             margin: 0;
-                            bottom: -20px; }
+                            top: -80px;
+                            left: -150px; }
 
                         .nom-lieu {
                             right: -50px;
+                            bottom: 0;
                             font-size: 2em; }
                     }
                 }
@@ -270,7 +271,7 @@
 }
 
 
-@media screen and (min-width: 1279px) {
+@media screen and (min-width: 1000px) {
 
     .post-card {
         width: 598px;
@@ -280,10 +281,18 @@
             .recto {    
                 .image-BG {    
                     .text {
-                        height: 35%;
                         font-size: 1.5em;
-                        right: 100px;
-                        bottom: -20px; }
+                    
+                        .greetings {
+                            width: 50%;
+                            margin: 0;
+                            left: 0;
+                            top: -40px; }
+
+                        .nom-lieu {
+                            right: -50px;
+                            font-size: 2em; }
+                    }
                 }
             }
             .verso {

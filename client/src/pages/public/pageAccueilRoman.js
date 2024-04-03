@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { NavBar } from "../../components/public/navBar/navBar.js";
-import { HeaderEncyclopedie } from "../../components/public/header/header.js";
+import { listDataCategories } from "../../helpers/categories.js";
+import { Header } from "../../components/public/header/header.js";
 import { readData } from "../../helpers/dataHelpers.js";
 import { addRoman } from "../../store/slice/romanSlice.js";
 import { Footer } from "../../components/public/footer/footer.js";
 import { Loading } from "../../components/public/loading/loading.js";
-import { DataBloc } from "../../components/public/blocs/blocs.js";
+import { DataBloc, LatestDataAdd } from "../../components/public/blocs/blocs.js";
 
 
 export const PageAccueilRoman = () => {
@@ -17,8 +18,6 @@ export const PageAccueilRoman = () => {
     const dispatch = useDispatch();
     const roman = useSelector(state => state.roman);
     const nomRoman = roman.nom;
-    const [personnages, setPersonnages] = useState([]);
-    const [lieux, setLieux] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
   
     useEffect(() => {
@@ -33,42 +32,24 @@ export const PageAccueilRoman = () => {
             .catch((err) => {
                 console.log(err);
             });
-        }
-        
-    }, [dataLoaded, dispatch, urlTitle]);
+        };
 
-    
-    useEffect(() => {
-        readData("lieux")
-        .then((response) => {
-            setLieux(response.filter((data) => data.roman === roman.id))
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-
-        readData("personnages")
-        .then((response) => {
-            setPersonnages(response.filter((data) => data.roman === roman.id))
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-
-        document.title = `Accueil ${nomRoman}`;
-    }, [roman, nomRoman])
+        document.title = `Accueil ${nomRoman}`
+    }, [dataLoaded, dispatch, urlTitle, nomRoman]);
 
 
-    if (!dataLoaded && lieux.length===0 && personnages.length===0)
+    if (!dataLoaded)
         return <Loading />;
 
     return (
         <section className="page">
             < NavBar/>
             <main>
-                <HeaderEncyclopedie roman={nomRoman} lieux={lieux.length} personnages={personnages.length} />
-                <DataBloc datas={lieux} dataType={"lieux"} roman={nomRoman}/>
-                <DataBloc datas={personnages} dataType={"personnages"} roman={nomRoman}/>
+                <Header text={nomRoman} />
+                <LatestDataAdd roman={roman}/>
+                {listDataCategories.slice(0, -1).map((categorie, i) => {
+                    return (<DataBloc datas={categorie} dataType={`${categorie}`} key={i} roman={roman}/>)
+                })}
             </main>
             <Footer />
         </section>
