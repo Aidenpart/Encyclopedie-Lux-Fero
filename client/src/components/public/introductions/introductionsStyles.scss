@@ -1,7 +1,7 @@
 @import "../../../pages/generalStyles.scss";
 
 
-.intro-accueil, .intro-encyclopedie, .preambule, .intro-register {
+.intro-accueil, .resume-accueil {
     
    .lien-wattpad {
         box-sizing: border-box;
@@ -14,7 +14,7 @@
         margin: auto;
     }
 
-    .introduction {
+    .introduction, .resume {
         box-sizing: border-box;
         padding: 15px 20px;
         margin: 5px auto;

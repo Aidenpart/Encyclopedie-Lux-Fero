@@ -10,30 +10,37 @@ export const Door = (props) => {
 
     useEffect(() => {
         if(roman === "Lux Fero") {
-            setPanelColor("linear-gradient(green, yellow)")
+            setPanelColor("green, yellow")
             setDoorColor("linear-gradient(blue, green)")
         }else {
-            setPanelColor("linear-gradient(#9198e5, #e66465)")
+            setPanelColor("#020024 0%, #ffb60a 35%, #006cff 100%")
             setDoorColor("linear-gradient(#e66465, #9198e5)")
         }
     }, [roman])
 
 
     return (
-        <Link to={`/accueil-${roman.replace(/\s/, "-")}`} state={{roman:roman}}>
-            <div className="lintel">
+        <div className="lintel">
+            <Link to={`/accueil-${roman.replace(/\s/, "-")}`} state={{roman:roman}}>
                 <img src={`/images/link_${roman.replace(/\s/, "-")}.jpg`} alt="image_lien"/>
-                <div id="left-door" className="door"  style={{background: doorColor}}>
-                    <div className="shape" style={{background: panelColor}}></div>
-                    <div className="shape" style={{background: panelColor}}></div>
-                    <div id="left-knob" className="knob"></div>
-                </div>
-                <div id="right-door" className="door"  style={{background: doorColor}}>
-                    <div className="shape" style={{background: panelColor}}></div>
-                    <div className="shape" style={{background: panelColor}}></div>
-                    <div id="right-knob" className="knob"></div>
-                </div>
+            </Link>
+            <div id="left-door" className="door"  style={{background: doorColor}}>
+                <div className="shape" style={{background: setStylePanel("135", panelColor)}}></div>
+                <div className="shape" style={{background: setStylePanel("45", panelColor)}}></div>
+                <div id="left-knob" className="knob"></div>
             </div>
-        </Link>
+            <div id="right-door" className="door"  style={{background: doorColor}}>
+                <div className="shape" style={{background: setStylePanel("225", panelColor)}}></div>
+                <div className="shape" style={{background: setStylePanel("315", panelColor)}}></div>
+                <div id="right-knob" className="knob"></div>
+            </div>
+        </div>
     )
+}
+
+
+function setStylePanel (orientation, colors) {
+    let style = `linear-gradient(${orientation}deg, ${colors}`
+
+    return  style
 }

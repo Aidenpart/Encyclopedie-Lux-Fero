@@ -8,7 +8,7 @@ import { LatestDataAdd } from "../../components/public/blocs/blocs";
 import { Door } from "../../components/public/door/door";
 import { Footer } from "../../components/public/footer/footer";
 import { IntroductionAccueil } from "../../components/public/introductions/introductions";
-import { IntroductionLuxFero, IntroductionReginaMagicae } from "../../components/public/introductions/introductions";
+import { ResumeLuxFero, ResumeReginaMagicae } from "../../components/public/introductions/introductions";
 import { listeRomans } from "../../helpers/categories";
 
 import "./pagesAccueilStyles.scss"
@@ -48,7 +48,7 @@ export const PageAccueil = () => {
                                     <>
                                         <LinkAccueil roman={roman} />
                                         {
-                                            roman === "Lux Fero" ? <IntroductionLuxFero /> : <IntroductionReginaMagicae />
+                                            roman === "Lux Fero" ? <ResumeLuxFero /> : <ResumeReginaMagicae />
                                         }
                                     </>
                                 }
@@ -56,7 +56,7 @@ export const PageAccueil = () => {
                                     <>
                                         <LinkAccueil roman={roman} />
                                         {
-                                            roman === "Lux Fero" ? <IntroductionLuxFero /> : <IntroductionReginaMagicae />
+                                            roman === "Lux Fero" ? <ResumeLuxFero /> : <ResumeReginaMagicae />
                                         }
                                     </>
                                 }
@@ -65,7 +65,7 @@ export const PageAccueil = () => {
                                         <h2 className="titre-roman">{roman}</h2>
                                         <Door roman={roman} />
                                         {
-                                            roman === "Lux Fero" ? <IntroductionLuxFero /> : <IntroductionReginaMagicae />
+                                            roman === "Lux Fero" ? <ResumeLuxFero /> : <ResumeReginaMagicae />
                                         }
                                     </>
                                 }

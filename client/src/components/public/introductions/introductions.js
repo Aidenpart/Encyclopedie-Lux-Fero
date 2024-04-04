@@ -45,11 +45,11 @@ export const IntroductionAdmin = () => {
     );
 };
 
-export const IntroductionLuxFero = () => {
+export const ResumeLuxFero = () => {
 
     return (
-        <article className="intro-accueil">
-            <p className="introduction">
+        <article className="resume-accueil">
+            <p className="resume">
                 Depuis dix ans, Lucifer s’est exilé chez l'Humanité mais lorsqu’il stoppe les crimes d’un serviteur d'un de ses Généraux Infernaux, il comprend que son Royaume est troublé. 
                 <br />Hélas, il entraîne dans son périple Abigail, une humaine à laquelle il s'attache ; leurs destins liés, celle-ci découvrira qu’au-delà des fables, anges et démons existent réellement.  
                 <br />Mais si à l'aube de toute légende réside une vérité, celle-ci peut s'avérer pire que son mythe.
@@ -61,11 +61,11 @@ export const IntroductionLuxFero = () => {
     )
 }
 
-export const IntroductionReginaMagicae = () => {
+export const ResumeReginaMagicae = () => {
 
     return (
-        <article className="intro-accueil">
-            <p className="introduction">
+        <article className="resume-accueil">
+            <p className="resume">
                 L'Apocalypse complétée, Mähr découvre la vie d'un père et peine à équilibrer découverte de ses pouvoirs et nature divine de sa fille. Voulant se faire pardonner d'un nouvel écart auprès de Siohe, il décide l'emmener voir la plus grande bibliothèque d'Europe. 
                 <br />Hélas, un fantôme de son passé ressurgit et tous deux se retrouvent embarqués dans un périple duquel ce premier se serait bien passé mais dont la seconde ne pouvait que rêver.
             </p>
