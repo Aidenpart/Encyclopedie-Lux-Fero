@@ -10,10 +10,10 @@ export const Door = (props) => {
 
     useEffect(() => {
         if(roman === "Lux Fero") {
-            setPanelColor("green, yellow")
-            setDoorColor("linear-gradient(blue, green)")
+            setPanelColor("darkred, yellow")
+            setDoorColor("linear-gradient(darkgrey, black)")
         }else {
-            setPanelColor("#020024 0%, #ffb60a 35%, #006cff 100%")
+            setPanelColor("#020024 0%, #dae7f9 80%")
             setDoorColor("linear-gradient(#e66465, #9198e5)")
         }
     }, [roman])
@@ -43,4 +43,37 @@ function setStylePanel (orientation, colors) {
     let style = `linear-gradient(${orientation}deg, ${colors}`
 
     return  style
+}
+
+
+export const Fireflies = () => {
+
+
+    return (
+        <div className="body-fireflies">
+            <ul class="fireflies"> 
+                <li className="red"></li> 
+                <li className="red"></li> 
+                <li className="yellow"></li> 
+                <li className="red"></li> 
+                <li className="yellow"></li> 
+                <li className="red"></li> 
+                <li className="yellow"></li> 
+                <li className="yellow"></li> 
+                <li className="red"></li> 
+                <li className="yellow"></li> 
+                <li className="yellow"></li> 
+                <li className="yellow"></li> 
+                <li className="red"></li> 
+                <li className="yellow"></li> 
+                <li className="yellow"></li> 
+                <li className="red"></li> 
+                <li className="yellow"></li> 
+                <li className="yellow"></li> 
+                <li className="red"></li> 
+                <li className="yellow"></li> 
+            </ul>        
+        </div>
+
+    )
 }
