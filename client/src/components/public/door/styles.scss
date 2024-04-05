@@ -54,30 +54,25 @@
     #right-door {
         right: 0;
         transform-origin: right;
-    }    
-}
-
-.lintel:hover {
-    #left-door { transform: rotateY(-140deg); }
-    #right-door { transform: rotateY(140deg); }
+    }   
+    
+    &:hover {
+        #left-door { transform: rotateY(-140deg); }
+        #right-door { transform: rotateY(140deg); }
+    }
 }
 
 
 .body-fireflies {
-    background-color: black;
-    width: 500px;
-    height: 500px;
+
 
     .fireflies {
         list-style: none;
-        width: 100%;
-        height: 100%;
 
         li {
             border-radius: 50%; 
-            
-            height: 5px; 
-            width: 5px; 
+            height: 3px; 
+            width: 3px; 
             top: -20px; 
             position: absolute;
             animation: leftright 24s infinite cubic-bezier(0.39, 0, 0.63, 1), 
@@ -94,8 +89,8 @@
                             rgb(252, 191, 7) 60%); 
             box-shadow: 
                 0 0 5px 2px rgb(250, 193, 93), 
-                0 0 20px 10px rgb(255, 228, 140), 
-                0 0 40px 15px rgb(255, 219, 41); 
+                0 0 10px 5px rgb(255, 228, 140), 
+                0 0 20px 8px rgb(255, 219, 41); 
         }
 
         .red {
@@ -106,8 +101,8 @@
                             rgb(252, 64, 7) 60%); 
             box-shadow: 
                 0 0 5px 2px rgb(187, 10, 10), 
-                0 0 20px 10px rgb(146, 24, 24), 
-                0 0 40px 15px rgb(167, 21, 21); 
+                0 0 10px 5px rgb(146, 24, 24), 
+                0 0 20px 8px rgb(167, 21, 21); 
         }
 
         @for $i from 1 through 10 {
@@ -120,8 +115,8 @@
 
         @for $i from 11 through 20 {
             li:nth-of-type(#{$i}) { 
-                animation-delay: ($i * 1s); 
-                animation-duration: 88s, 79s, 0.3s; 
+                animation-delay: ($i *  0.3333s); 
+                animation-duration: 88s, 79s, 0.7s; 
             } 
         }
 
@@ -164,7 +159,7 @@
   
     0%, 
     100% { 
-        top: 10px; 
+        top: 100%; 
     } 
   
     25% { 

@@ -15,13 +15,13 @@ import "./pagesAccueilStyles.scss"
 
 
 export const PageAccueil = () => {
-    const [isDesktop, setDesktop] = useState(window.innerWidth > 1081);
-    const [isTablet, setTablet] = useState(window.innerWidth > 500 && window.innerWidth < 1080);
+    const [isDesktop, setDesktop] = useState(window.innerWidth > 1080);
+    const [isTablet, setTablet] = useState(window.innerWidth > 500 && window.innerWidth < 1081);
     const [isMobile, setMobile] = useState(window.innerWidth < 500);
   
     const updateMedia = () => {
-      setDesktop(window.innerWidth > 1081);
-      setTablet(window.innerWidth > 500 && window.innerWidth < 1080);
+      setDesktop(window.innerWidth > 1080);
+      setTablet(window.innerWidth > 500 && window.innerWidth < 1081);
       setMobile(window.innerWidth < 500);
     };
   
@@ -73,7 +73,6 @@ export const PageAccueil = () => {
                         )
                     })}
                 </article>
-            <Fireflies />
             </main>
             <Footer />
         </section>

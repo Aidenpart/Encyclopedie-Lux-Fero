@@ -34,6 +34,8 @@ export const Door = (props) => {
                 <div className="shape" style={{background: setStylePanel("315", panelColor)}}></div>
                 <div id="right-knob" className="knob"></div>
             </div>
+            <Fireflies/>
+
         </div>
     )
 }
@@ -48,10 +50,9 @@ function setStylePanel (orientation, colors) {
 
 export const Fireflies = () => {
 
-
     return (
         <div className="body-fireflies">
-            <ul class="fireflies"> 
+            <ul className="fireflies"> 
                 <li className="red"></li> 
                 <li className="red"></li> 
                 <li className="yellow"></li> 

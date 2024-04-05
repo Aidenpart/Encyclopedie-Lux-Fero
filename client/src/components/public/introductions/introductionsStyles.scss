@@ -1,23 +1,26 @@
 @import "../../../pages/generalStyles.scss";
 
 
+%box-size {
+    box-sizing: border-box;
+    margin: 5px auto;
+}
+
 .intro-accueil, .resume-accueil {
     
    .lien-wattpad {
-        box-sizing: border-box;
+        @extend %box-size;
         background-color: $primary-color;
         padding: 5px 10px;
         font-size: 1.5em;
         text-decoration: none;
         color: $secundary-color;
         width: 50%;
-        margin: auto;
     }
 
     .introduction, .resume {
-        box-sizing: border-box;
+        @extend %box-size;
         padding: 15px 20px;
-        margin: 5px auto;
         width: 85%;
         border-radius: 10px;
     }
@@ -66,21 +69,21 @@
     }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 780px) {
     .lien-wattpad {
         width: 30%;
     }    
 }
 
-@media screen and (min-width: 1279px) {
+@media screen and (min-width: 1080px) {
     .lien-wattpad {
         width: 25%;
-    }   
-    
-    .lien-wattpad:hover {
-        background-color: $secundary-color;
-        color: $primary-color;
-        font-size: 2em;
-        transition: 0.5s;
+        transition: all 0.5s ease;
+
+        &:hover {
+            background-color: $secundary-color;
+            color: $primary-color;
+            font-size: 2em;
+        }
     }   
 }
