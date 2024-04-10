@@ -5,7 +5,7 @@ import { NavBar } from "../../components/public/navBar/navBar";
 import { Header } from "../../components/public/header/header";
 import { LinkAccueil } from "../../components/public/links/links";
 import { LatestDataAdd } from "../../components/public/blocs/blocs";
-import { Door, Fireflies } from "../../components/public/door/door";
+import { Door } from "../../components/public/door/door";
 import { Footer } from "../../components/public/footer/footer";
 import { IntroductionAccueil } from "../../components/public/introductions/introductions";
 import { ResumeLuxFero, ResumeReginaMagicae } from "../../components/public/introductions/introductions";

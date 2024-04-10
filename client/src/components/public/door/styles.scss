@@ -62,97 +62,157 @@
     }
 }
 
-
 .body-fireflies {
-
-
     .fireflies {
         list-style: none;
 
         li {
             border-radius: 50%; 
-            height: 3px; 
-            width: 3px; 
-            top: -20px; 
-            position: absolute;
-            animation: leftright 24s infinite cubic-bezier(0.39, 0, 0.63, 1), 
-                        updown 8s infinite 1.25s cubic-bezier(0.39, 0, 0.63, 1); 
-                        /*blinking 3s infinite;*/ /*blinking forces the color*/
-
-        }
-
-        .yellow {
             background-color: rgb(255, 255, 73); 
-            background-image: 
-            radial-gradient(rgb(249, 206, 36) 5%, 
-                            rgb(254, 179, 4) 25%, 
-                            rgb(252, 191, 7) 60%); 
-            box-shadow: 
-                0 0 5px 2px rgb(250, 193, 93), 
-                0 0 10px 5px rgb(255, 228, 140), 
-                0 0 20px 8px rgb(255, 219, 41); 
+            background-image: radial-gradient(rgb(249, 206, 36) 5%, 
+                                            rgb(254, 179, 4) 25%, 
+                                            rgb(252, 191, 7) 60%); 
+            box-shadow: 0 0 5px 2px rgb(250, 193, 93),  
+                        0 0 10px 10px rgb(255, 228, 140), 
+                        0 0 20px 15px rgb(255, 219, 41); 
+            height: 5px; 
+            width: 5px; 
+            top: -20px; 
+            position: absolute; 
+            animation: leftright 24s infinite cubic-bezier(0.39, 0, 0.63, 1), 
+                        updown 8s infinite 1.25s cubic-bezier(0.39, 0, 0.63, 1), 
+                        blinking 3s infinite; 
         }
 
-        .red {
-            background-color: red; 
-            background-image: 
-            radial-gradient(rgb(249, 36, 36) 5%, 
-                            rgb(180, 31, 31) 25%, 
-                            rgb(252, 64, 7) 60%); 
-            box-shadow: 
-                0 0 5px 2px rgb(187, 10, 10), 
-                0 0 10px 5px rgb(146, 24, 24), 
-                0 0 20px 8px rgb(167, 21, 21); 
-        }
-
-        @for $i from 1 through 10 {
-            li:nth-of-type(#{$i}) { 
-                animation-delay: ($i * 1s); 
-                animation-duration: 65s, 81s, 0.5s; 
-                animation-fill-mode: backwards, backwards; 
-            } 
-        }
-
-        @for $i from 11 through 20 {
-            li:nth-of-type(#{$i}) { 
-                animation-delay: ($i *  0.3333s); 
-                animation-duration: 88s, 79s, 0.7s; 
-            } 
-        }
+        li:nth-of-type(1) { 
+            animation-delay: 1s; 
+            animation-duration: 65s, 81s, 0.9s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
+          
+        li:nth-of-type(2) { 
+            animation-delay: 0.5s; 
+            animation-duration: 80s, 75s, 0.7s; 
+        } 
+          
+        li:nth-of-type(3) { 
+            animation-delay: 1.5s; 
+            animation-duration: 70s, 60s, 0.9s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
+          
+        li:nth-of-type(4) { 
+            animation-delay: 2.5s; 
+            animation-duration: 90s, 80s, 0.8s; 
+        } 
+          
+        li:nth-of-type(5) { 
+            animation-delay: 0.3s; 
+            animation-duration: 55s, 75s, 0.6s; 
+        } 
+          
+        li:nth-of-type(6) { 
+            animation-delay: 2.2s; 
+            animation-duration: 79s, 63s, 0.3s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
+          
+        li:nth-of-type(7) { 
+            animation-delay: 0.9s; 
+            animation-duration: 70s, 80s, 0.1s; 
+        } 
+          
+        li:nth-of-type(8) { 
+            animation-delay: 1.6s; 
+            animation-duration: 50s, 40s, 0.9s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
+          
+        li:nth-of-type(9) { 
+            animation-delay: 1.8s; 
+            animation-duration: 77s, 88s, 1s; 
+        } 
+          
+        li:nth-of-type(10) { 
+            animation-delay: 3s; 
+            animation-duration: 87s, 73s, 0.8s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
+          
+        /* last 10 */
+        li:nth-of-type(11) { 
+            animation-delay: 1s; 
+            animation-duration: 60s, 78s, 0.7s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
+          
+        li:nth-of-type(12) { 
+            animation-delay: 0.5s; 
+            animation-duration: 85s, 80s, 0.5s; 
+        } 
+          
+        li:nth-of-type(13) { 
+            animation-delay: 1.5s; 
+            animation-duration: 75s, 66s, 2s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
+          
+        li:nth-of-type(14) { 
+            animation-delay: 2.5s; 
+            animation-duration: 87s, 75s, 0.1s; 
+        } 
+          
+        li:nth-of-type(15) { 
+            animation-delay: 0.3s; 
+            animation-duration: 69s, 85s, 1s; 
+        } 
+          
+        li:nth-of-type(16) { 
+            animation-delay: 2.2s; 
+            animation-duration: 80s, 77s, 0.4s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
+          
+        li:nth-of-type(17) { 
+            animation-delay: 0.9s; 
+            animation-duration: 65s, 88s, 0.3; 
+        } 
+          
+        li:nth-of-type(18) { 
+            animation-delay: 1.6s; 
+            animation-duration: 59s, 63s, 0.7s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
+          
+        li:nth-of-type(19) { 
+            animation-delay: 1.8s; 
+            animation-duration: 88s, 79s, 0.6s; 
+        } 
+          
+        li:nth-of-type(20) { 
+            animation-delay: 3s; 
+            animation-duration: 59s, 75s, 0.3s; 
+            animation-fill-mode: backwards, backwards; 
+        } 
 
     }
 
 }
 
-
-
-
 @keyframes leftright { 
   
     0%, 
-    100% { 
-        left: 80%; 
-    } 
+    100% { left: 80%; } 
   
-    16.666% { 
-        left: 95%; 
-    } 
+    16.666% { left: 95%; } 
   
-    33.333% { 
-        left: 10%; 
-    } 
+    33.333% { left: 10%; } 
   
-    50% { 
-        left: 60%; 
-    } 
+    50% { left: 60%; } 
   
-    66.666% { 
-        left: 70%; 
-    } 
+    66.666% { left: 70%; } 
   
-    83.333% { 
-        left: 5%; 
-    } 
+    83.333% { left: 5%; } 
 } 
   
 @keyframes updown { 
@@ -175,21 +235,20 @@
     } 
 } 
   
-/* It will create the blinking effect */
 @keyframes blinking { 
     0%, 
     100% { 
         box-shadow: 0 0 5px 2px rgb(250, 193, 93),  
                       0 0 10px 5px rgb(255, 242, 63), 
-                    0 0 30px 10px rgb(255, 219, 41); 
+                    0 0 20px 10px rgb(255, 219, 41); 
         height: 0; 
         width: 0; 
     } 
   
     50% { 
         box-shadow: 0 0 5px 2px rgb(250, 193, 93),  
-                      0 0 20px 10px rgb(255, 228, 140), 
-                    0 0 40px 15px rgb(255, 219, 41); 
+                      0 0 10px 10px rgb(255, 228, 140), 
+                    0 0 20px 15px rgb(255, 219, 41); 
     } 
   
     75% { 
@@ -198,3 +257,5 @@
                     0 0 0px 0px rgb(255, 219, 41); 
     } 
 }
+
+

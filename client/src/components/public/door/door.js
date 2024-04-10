@@ -1,4 +1,5 @@
 import "./styles.scss";
+import "./stylesAnimations.scss"
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -18,7 +19,6 @@ export const Door = (props) => {
         }
     }, [roman])
 
-
     return (
         <div className="lintel">
             <Link to={`/accueil-${roman.replace(/\s/, "-")}`} state={{roman:roman}}>
@@ -34,7 +34,9 @@ export const Door = (props) => {
                 <div className="shape" style={{background: setStylePanel("315", panelColor)}}></div>
                 <div id="right-knob" className="knob"></div>
             </div>
-            <Fireflies/>
+            <Flames roman={roman} />
+
+            
 
         </div>
     )
@@ -52,27 +54,61 @@ export const Fireflies = () => {
 
     return (
         <div className="body-fireflies">
-            <ul className="fireflies"> 
-                <li className="red"></li> 
-                <li className="red"></li> 
-                <li className="yellow"></li> 
-                <li className="red"></li> 
-                <li className="yellow"></li> 
-                <li className="red"></li> 
-                <li className="yellow"></li> 
-                <li className="yellow"></li> 
-                <li className="red"></li> 
-                <li className="yellow"></li> 
-                <li className="yellow"></li> 
-                <li className="yellow"></li> 
-                <li className="red"></li> 
-                <li className="yellow"></li> 
-                <li className="yellow"></li> 
-                <li className="red"></li> 
-                <li className="yellow"></li> 
-                <li className="yellow"></li> 
-                <li className="red"></li> 
-                <li className="yellow"></li> 
+            <ul className="fireflies">
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+                <li></li> 
+            </ul>        
+        </div>
+
+    )
+}
+
+export const Flames = (props) => {
+    const [colorOne, setColorOne] = useState("")
+    const [colorTwo, setColorTwo] = useState("")
+    const [numberOfFlames, setNumberOfFlames] = useState()
+
+    useEffect(() => {
+        setNumberOfFlames(Math.random()*33)
+
+        if(props.roman === "Lux Fero") {
+            setColorOne("color-one-LF");
+            setColorTwo("color-two-LF");
+        }else {
+            setColorOne("color-one-RM");
+            setColorTwo("color-two-RM");
+        }
+    }, [props.roman])
+
+    useEffect(() => {
+        console.log(numberOfFlames)
+    })
+
+    
+
+    return (
+        <div className="body-flames">
+            <ul className="flames">
+                {Array.from({length:numberOfFlames}, () => <li className={`${colorOne}`}></li>) }
+                {Array.from({length:numberOfFlames}, () => <li className={`${colorTwo}`}></li>) }              
             </ul>        
         </div>
 
