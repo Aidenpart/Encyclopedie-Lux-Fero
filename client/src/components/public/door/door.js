@@ -86,8 +86,11 @@ export const Flames = (props) => {
     const [colorTwo, setColorTwo] = useState("")
     const [numberOfFlames, setNumberOfFlames] = useState()
 
+
+
+
     useEffect(() => {
-        setNumberOfFlames(Math.random()*33)
+        setNumberOfFlames(setRandomNumberOfFlames(10, 20))
 
         if(props.roman === "Lux Fero") {
             setColorOne("color-one-LF");
@@ -113,4 +116,8 @@ export const Flames = (props) => {
         </div>
 
     )
+}
+
+function setRandomNumberOfFlames (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
