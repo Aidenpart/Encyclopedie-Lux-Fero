@@ -15,14 +15,14 @@ import "./pagesAccueilStyles.scss"
 
 
 export const PageAccueil = () => {
-    const [isDesktop, setDesktop] = useState(window.innerWidth > 1080);
-    const [isTablet, setTablet] = useState(window.innerWidth > 500 && window.innerWidth < 1081);
-    const [isMobile, setMobile] = useState(window.innerWidth < 500);
+    const [isDesktop, setDesktop] = useState(window.innerWidth > 1023);
+    const [isTablet, setTablet] = useState(window.innerWidth > 480 && window.innerWidth < 1024);
+    const [isMobile, setMobile] = useState(window.innerWidth < 481);
   
     const updateMedia = () => {
-      setDesktop(window.innerWidth > 1080);
-      setTablet(window.innerWidth > 500 && window.innerWidth < 1081);
-      setMobile(window.innerWidth < 500);
+      setDesktop(window.innerWidth > 1023);
+      setTablet(window.innerWidth > 481 && window.innerWidth < 1024);
+      setMobile(window.innerWidth < 480);
     };
   
     useEffect(() => {

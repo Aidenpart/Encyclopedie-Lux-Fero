@@ -9,13 +9,13 @@
 }
 
 
-@media screen and (min-width: 780px) {
+@media #{$Min-Medium-Size} {
     .header {
         font-size: 3em;
     }
 }
 
-@media screen and (min-width: 1080px) {
+@media #{$Min-Large-Size} {
     .header {
         width: 85%;
         font-size: 4.5em;

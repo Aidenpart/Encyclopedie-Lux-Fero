@@ -1,3 +1,5 @@
+@import "../generalStyles.scss";
+
 .main-admin {
     display: flex;
     flex-direction: column;
@@ -12,12 +14,9 @@
 }
 
 
-
-
-@media screen and (min-width: 700px) {
+@media #{$Min-Medium-Size}  {
     
     .link-zone {
         flex-direction: row;
     }
-    
 }

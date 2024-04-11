@@ -1,28 +1,29 @@
-
+%padding { padding: 5px; }
+%margin { margin: auto; }
+%flex-column { display: flex; flex-direction: column; }
+@import "../../../pages/generalStyles.scss";
 
 .data-bloc {
+    @extend %flex-column;
     width: 100%;
-    display: flex;
-    flex-direction: column;
     padding-bottom: 50px;
 
     p {
         width: 90%;
-        margin: auto;
+        @extend %margin;
     }
 
     button {
+        @extend %padding;
+        @extend %margin;
         width: 50%;
-        padding: 5px;
-        margin: auto;
     }
 
     form {
-        display: flex;
-        flex-direction: column;
+        @extend %flex-column;
 
         label {
-            padding: 5px;
+            @extend %padding;
 
             select {
                 margin: 5px;
@@ -52,17 +53,17 @@
     }
 
     table {
-        margin: auto;
+        @extend %margin;
     }
 
     th, td {
-        padding: 5px;
+        @extend %padding;
     }
    
 }
 
 
-@media screen and (min-width: 700px) {
+@media #{$Min-Medium-Size} {
     
     .data-bloc {
     
@@ -81,9 +82,6 @@
                 width: 15%;
                 font-size: 0.75em;
             }
-           
         }
-    }
-
-    
+    }    
 }

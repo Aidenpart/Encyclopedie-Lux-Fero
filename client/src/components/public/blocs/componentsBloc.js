@@ -41,6 +41,7 @@ export const SortData = (props) => {
         nom: "",
         appartenance: ""
     });
+    const [messageNoData, setMessageNoData] = useState([])
     const [appartenances, setAppartenances] = useState([])
     const datas = props.datas;
     const type = props.type;
@@ -57,9 +58,14 @@ export const SortData = (props) => {
 
     const handleSubmit = (e, filter) => {
         e.preventDefault();
-        if(e.target[0].value || e.target[1].value !== "" )
-            setSelectedData(datas.filter((data) => selectValues[filter] === data[filter]));
-                   
+        let data = datas.filter((data) => selectValues[filter] === data[filter]);
+        if((e.target[0].value || e.target[1].value !== "") && data.length !== 0) {
+            setSelectedData(data)
+            setMessageNoData(false)
+        }else {
+            setMessageNoData("Aucune donnée dans cette catégorie")
+            setSelectedData(false)
+        }
     };
 
     const handleChange = (selectedValue, selectName) => {
@@ -101,6 +107,9 @@ export const SortData = (props) => {
             {selectedData && (
                 <CardComponent datas={selectedData} type={type}/>
             )}
+            {messageNoData && (
+                <p>{`${messageNoData}`}</p>
+            )}
             </div>
         </section>
     );
@@ -109,19 +118,19 @@ export const SortData = (props) => {
 
 export const LatestData = (props) => {
     const type = props.type;
-    const roman = props.roman
+    const roman = props.roman;
     const [latestDataFound, setLatestDataFound] = useState("")
 
     useEffect(() => {
         readData(type)
         .then((response) => {
-
-            if (roman !== undefined && roman.id !== "") {
-                setLatestDataFound(filterRecentData(response.filter((data) => data.roman === roman.id)))
-            }else
+            if (roman === undefined) {
                 setLatestDataFound(filterRecentData(response))
+            }else {
+                setLatestDataFound(filterRecentData(response.filter((data) => data.roman === roman.id)))
+            }
         })
-    }, [type, roman, latestDataFound])
+    }, [roman, type])
 
 
     return(

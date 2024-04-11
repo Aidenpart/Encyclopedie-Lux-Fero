@@ -77,17 +77,13 @@ export const Fireflies = () => {
                 <li></li> 
             </ul>        
         </div>
-
-    )
-}
+    );
+};
 
 export const Flames = (props) => {
     const [colorOne, setColorOne] = useState("")
     const [colorTwo, setColorTwo] = useState("")
     const [numberOfFlames, setNumberOfFlames] = useState()
-
-
-
 
     useEffect(() => {
         setNumberOfFlames(setRandomNumberOfFlames(10, 20))
@@ -99,13 +95,7 @@ export const Flames = (props) => {
             setColorOne("color-one-RM");
             setColorTwo("color-two-RM");
         }
-    }, [props.roman])
-
-    useEffect(() => {
-        console.log(numberOfFlames)
-    })
-
-    
+    }, [props.roman]) 
 
     return (
         <div className="body-flames">
@@ -114,10 +104,9 @@ export const Flames = (props) => {
                 {Array.from({length:numberOfFlames}, () => <li className={`${colorTwo}`}></li>) }              
             </ul>        
         </div>
-
-    )
-}
+    );
+};
 
 function setRandomNumberOfFlames (min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
-}
+};

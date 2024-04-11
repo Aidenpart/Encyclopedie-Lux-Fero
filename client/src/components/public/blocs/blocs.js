@@ -19,7 +19,7 @@ export const DataBloc = (props) => {
         .catch((err) => {
             console.log(err);
         });
-    }, [roman.id, dataType, datas])
+    }, [roman.id, dataType])
 
 
     return(

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Nunito&family=Cinzel&family=Playfair+Display&display=swap');
 
-
 $primary-color: #E1581E;
 $secundary-color: #fff;
 $third-color: #000;
@@ -9,6 +8,11 @@ $footer : #2E2B29;
 $Cinzel : 'Cinzel', serif;
 $Nunito : 'Nunito', sans-serif;
 $Kanit : 'Kanit', sans-serif;
+$Small-Size : "only screen and (max-width : 480px)";
+$Min-Medium-Size : "only screen and (min-width : 768px)";
+$Max-Medium-Size : "only screen and (max-width : 768px)";
+$Min-Large-Size : "only screen and (min-width : 1024px)";
+$Max-Large-Size : "only screen and (max-width : 1024px)";
 
 
 body {
@@ -56,7 +60,7 @@ body {
     }
 }
 
-@media screen and (min-width: 1279px) {
+@media #{$Min-Large-Size} {
     
     button {
         font-size: 1.12em;

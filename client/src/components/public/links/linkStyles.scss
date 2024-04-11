@@ -1,27 +1,29 @@
+@import "../../../pages/generalStyles.scss";
+%border-radius { border-radius: 25%; }
+
 .lien-accueil {
+    @extend %border-radius;
     width: 300px;
     height: 300px;    
     border: 2px black solid;
-    border-radius: 25%;
     position: relative;
     margin: auto;
     overflow: hidden;
     display: flex;
-    text-decoration: none;    
 
     .image {
+        @extend %border-radius;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        border-radius: 25%; }
+        object-fit: cover; }
 
     .texte-lien-accueil {
+        @extend %border-radius;
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-        border-radius: 25%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -31,12 +33,14 @@
         display: none;}
 }
 
+.lien-accueil, .link-footer, .general-link {
+    text-decoration: none;
+}
 
 .lien-accueil:hover .texte-lien-accueil {
     display: flex;  }
 
 .link-footer {
-    text-decoration: none;
     color: whitesmoke;
 }
 
@@ -45,7 +49,6 @@
 }
 
 .general-link {
-    text-decoration: none;
     font-size: 1.5em;
     color: black;
 }
@@ -56,7 +59,7 @@
     color: darkblue;
 }
 
-@media screen and (max-width: 1080px) {
+@media #{$Max-Large-Size} {
     
     .lien-accueil .texte-lien-accueil {
         display: flex;  }

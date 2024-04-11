@@ -1,6 +1,5 @@
 @import "../../../pages/generalStyles.scss";
 
-
 %box-size {
     box-sizing: border-box;
     margin: 5px auto;
@@ -12,7 +11,6 @@
         @extend %box-size;
         background-color: $primary-color;
         padding: 5px 10px;
-        font-size: 1.5em;
         text-decoration: none;
         color: $secundary-color;
         width: 50%;
@@ -33,7 +31,7 @@
         font-size: 1.25em;
     }
     
-    .titre-LF {
+    .titre-LF, .lien-wattpad {
         font-size: 1.5em;
     }
     
@@ -62,20 +60,13 @@
 }
 
 
-
-@media screen and (min-width: 479px) {
-    .lien-wattpad {
-        width: 40%;
-    }
-}
-
-@media screen and (min-width: 780px) {
+@media #{$Min-Medium-Size} {
     .lien-wattpad {
         width: 30%;
     }    
 }
 
-@media screen and (min-width: 1080px) {
+@media #{$Min-Large-Size} {
     .lien-wattpad {
         width: 25%;
         transition: all 0.5s ease;
