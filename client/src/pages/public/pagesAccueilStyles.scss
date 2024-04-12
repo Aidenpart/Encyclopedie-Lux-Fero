@@ -1,23 +1,14 @@
 @import "../generalStyles.scss";
 
-.page {
-    main {
-        margin-bottom: 100px;
+.article-liens-pages-romans {
+    width: 100%;
 
-        .article-liens-pages-romans {
-            width: 100%;
-            margin-top: 50px;
-
-            .liens-pages-romans{
-                width: 100%;
-                margin: 50px auto;
-            }
-            
-        }
+    .liens-pages-romans{
+        margin: 0 auto 50px;
     }
 }
-
-@media only screen and (min-width: 768px) {
+    
+@media #{$Min-Medium-Size} {
 
     .article-liens-pages-romans {
         display: flex;
@@ -30,5 +21,4 @@
             }
         }
     }
-    
 }

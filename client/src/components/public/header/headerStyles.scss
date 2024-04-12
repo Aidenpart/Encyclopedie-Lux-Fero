@@ -1,22 +1,38 @@
 @import "../../../pages/generalStyles.scss";
 
-
-.header {
+%general {
     font-size: 2em;
     margin: 0 auto;
     font-family: $Cinzel;
     box-sizing: border-box;
 }
 
+.header {
+    @extend %general;
+}
+
+.header-roman {
+    width: 90%;
+    margin: auto;
+
+    h1 {
+        @extend %general;
+    }
+    h2 {
+        margin: 0;
+        font-family: $Kanit;
+    }
+}
+
 
 @media #{$Min-Medium-Size} {
-    .header {
+    .header, .header-roman h1  {
         font-size: 3em;
     }
 }
 
 @media #{$Min-Large-Size} {
-    .header {
+    .header, .header-roman h1 {
         width: 85%;
         font-size: 4.5em;
     }

@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import { NavBar } from "../../components/public/navBar/navBar.js";
 import { listDataCategories } from "../../helpers/categories.js";
-import { Header } from "../../components/public/header/header.js";
+import { HeaderRoman } from "../../components/public/header/header.js";
 import { readData } from "../../helpers/dataHelpers.js";
 import { addRoman } from "../../store/slice/romanSlice.js";
 import { Footer } from "../../components/public/footer/footer.js";
@@ -45,7 +45,7 @@ export const PageAccueilRoman = () => {
         <section className="page">
             < NavBar/>
             <main>
-                <Header text={nomRoman} />
+                <HeaderRoman text={nomRoman} />
                 <LatestDataAdd roman={roman}/>
                 {listDataCategories.slice(0, -1).map((categorie, i) => {
                     return (<DataBloc datas={categorie} dataType={`${categorie}`} key={i} roman={roman}/>)

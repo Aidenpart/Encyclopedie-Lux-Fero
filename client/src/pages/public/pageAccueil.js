@@ -36,7 +36,7 @@ export const PageAccueil = () => {
             <NavBar />
             <main>
                 <article>
-                    <Header text={"Bienvenu"}/>
+                    <Header text={"Bienvenue"}/>
                     <IntroductionAccueil/>     
                     <LatestDataAdd />
                 </article>

@@ -5,8 +5,19 @@ import { appartenancesLuxFero, appartenancesReginaMagicae, listeDomaines } from 
 import { readData } from "../../../helpers/dataHelpers";
 
 
-export const capitalizeFirstLetter = (text) => {
+export function capitalizeFirstLetter (text) {
     return text.charAt(0).toUpperCase()+text.slice(1);
+};
+
+function filterRecentData (data) {
+    let mostRecentDate = new Date(Math.max.apply(null, data.map( e => {
+        return new Date(e.updatedAt);
+     })));
+    let mostRecentObject = data.filter( e => { 
+        let d = new Date( e.updatedAt ); 
+        return d.getTime() === mostRecentDate.getTime();
+    })[0];
+    return mostRecentObject
 };
 
 
@@ -67,21 +78,22 @@ export const SortData = (props) => {
             setSelectedData(data)
             setMessageNoData(false)
         }else {
-            setMessageNoData("Aucune donnée dans cette catégorie")
+            filter === "" ?
+                setMessageNoData("Selectionnez une catégorie")
+                : setMessageNoData("Aucune donnée dans cette catégorie")
             setSelectedData(false)
-        }
+        };
     };
 
     const handleChange = (selectedValue, selectName) => {
         const updatedSelectValues = {...selectValues, [selectName]: selectedValue};
-    
+        setFilter(selectName)
+        setSelectValues(updatedSelectValues);
+        
         Object.keys(updatedSelectValues).forEach(name => {
             if (name !== selectName)
                 updatedSelectValues[name] = '';
         });
-    
-        setFilter(selectName)
-        setSelectValues(updatedSelectValues);
     };
     
     return(
@@ -136,7 +148,6 @@ export const LatestData = (props) => {
         })
     }, [roman, type])
 
-
     return(
         <tr>
             <th>{capitalizeFirstLetter(`${type}`)}</th>
@@ -148,13 +159,3 @@ export const LatestData = (props) => {
 };
 
 
-function filterRecentData (data) {
-    let mostRecentDate = new Date(Math.max.apply(null, data.map( e => {
-        return new Date(e.updatedAt);
-     })));
-    let mostRecentObject = data.filter( e => { 
-        let d = new Date( e.updatedAt ); 
-        return d.getTime() === mostRecentDate.getTime();
-    })[0];
-    return mostRecentObject
-};

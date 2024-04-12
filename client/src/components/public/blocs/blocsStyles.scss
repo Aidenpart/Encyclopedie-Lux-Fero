@@ -6,7 +6,10 @@
 .data-bloc {
     @extend %flex-column;
     width: 100%;
-    padding-bottom: 50px;
+
+    section {
+        width: 100%;
+    }
 
     p {
         width: 90%;
@@ -26,7 +29,7 @@
 
         label {
             @extend %padding;
-            text-align: left;
+            
 
             select {
                 margin: 5px;
@@ -47,7 +50,6 @@
 }
 
 .latest-add {
-    margin-top: 50px;
 
     table, th, td {
         background-color: #fff;
@@ -76,6 +78,7 @@
             justify-content: space-evenly;
            
             label {
+                text-align: left;
                 padding: 0;
                 width: 40%;
             }

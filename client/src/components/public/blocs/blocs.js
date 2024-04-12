@@ -56,7 +56,7 @@ export const LatestDataAdd = (props) => {
 
     return (
         <article className="latest-add">
-            <p>Les dernières connaissances ajoutées à la base de données : </p>
+            <h1>Derniers ajouts de l'encyclopédie</h1>
             <table>
                 <tbody>
                     {categories.map((categorie, i) => {
