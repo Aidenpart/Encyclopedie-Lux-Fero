@@ -21,9 +21,12 @@
 
     form {
         @extend %flex-column;
+        width: 80%;
+        margin: auto;
 
         label {
             @extend %padding;
+            text-align: left;
 
             select {
                 margin: 5px;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { CardComponent } from "../cards/cardsEncyclopedie";
-import { appartenancesLuxFero, appartenancesReginaMagicae } from "../../../helpers/categories";
+import { appartenancesLuxFero, appartenancesReginaMagicae, listeDomaines } from "../../../helpers/categories";
 import { readData } from "../../../helpers/dataHelpers";
 
 
@@ -49,12 +49,16 @@ export const SortData = (props) => {
     const [filter, setFilter] = useState("");
     const [selectedData, setSelectedData] = useState("");
 
-
-    useEffect(() => {
-        props.roman === "Lux Fero" ? 
-            setAppartenances(appartenancesLuxFero) 
-            : setAppartenances(appartenancesReginaMagicae)
-    }, [props.roman, appartenances]);
+    useEffect(() => {       
+        if(type === "fiches")
+            setAppartenances(listeDomaines.map(categorie => categorie.domaine))
+        else {
+            if (props.roman === "Lux Fero") 
+                setAppartenances(appartenancesLuxFero) 
+            else 
+                setAppartenances(appartenancesReginaMagicae)
+        }
+    }, [props.roman, type, setAppartenances]);
 
     const handleSubmit = (e, filter) => {
         e.preventDefault();
@@ -83,12 +87,12 @@ export const SortData = (props) => {
     return(
         <section>
             <div>
-                <form onSubmit={(e) => handleSubmit(e, filter)}>
+                <form className="sort-data-form" onSubmit={(e) => handleSubmit(e, filter)}>
                     <label>Nom du {text} :
-                        <select value={selectValues.nom} onChange={(e) => handleChange(e.target.value, 'nom')}>
+                        <select value={selectValues.nom || selectValues.titre} onChange={(e) => handleChange(e.target.value, 'nom' || "titre")}>
                             <option value={""}>-----</option>
                             {datas.map((data, i) => {
-                                return <option key={i}>{data.nom}</option>;
+                                return <option key={i}>{data.nom || data.titre}</option>;
                             })}
                         </select>                    
                     </label>

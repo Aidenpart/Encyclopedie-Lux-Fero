@@ -55,8 +55,3 @@ export const PageAccueilRoman = () => {
         </section>
     );
 };
-
-
-/*            
-console.log("problem")
- */
