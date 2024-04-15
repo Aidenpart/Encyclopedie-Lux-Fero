@@ -1,12 +1,22 @@
+import { useEffect, useState } from "react";
+
 import { faBookJournalWhills, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./introductionsStyles.scss";
 
 
-export const IntroductionAccueil = () => {
+export const IntroductionAccueil = (props) => {
+    const isDesktop = props.isDesktop;
+    const [classIntro, setClassIntro] = useState("")
+
+    useEffect(() => {
+        isDesktop ?
+            setClassIntro("intro-desktop")
+            : setClassIntro("accueil")
+    }, [isDesktop, setClassIntro])
     
     return (
-        <article className="intro-accueil">
+        <article className={`intro ${classIntro}`}>
             <p className="introduction">
                 Lecteurs, lectrices, curieux et curieuses de tous horizons
                 <br /><span className="bienvenu">Bienvenue sur l'encyclopédie officielle de</span>
@@ -58,8 +68,8 @@ export const ResumeLuxFero = () => {
                 <FontAwesomeIcon icon={faBookJournalWhills} /><span className="lire-roman">Lire sur Wattpad</span>
             </a>
         </article>
-    )
-}
+    );
+};
 
 export const ResumeReginaMagicae = () => {
 
@@ -70,5 +80,5 @@ export const ResumeReginaMagicae = () => {
                 <br />Hélas, un fantôme de son passé ressurgit et tous deux se retrouvent embarqués dans un périple duquel ce premier se serait bien passé mais dont la seconde ne pouvait que rêver.
             </p>
         </article>
-    )
-}
+    );
+};

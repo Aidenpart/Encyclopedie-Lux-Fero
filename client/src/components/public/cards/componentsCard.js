@@ -1,3 +1,76 @@
+import { useState, useEffect } from "react";
+
+import { Loading } from "../loading/loading";
+import { CardsPersonnages, CardsLieux, CardsFiche, CardsRoman } from "./cardsMiniEncyclopedie";
+import { readData } from "../../../helpers/dataHelpers";
+import "./cardsStyles.scss";
+
+
+
+export const CardComponent = (props) => {
+    const time = 500;
+    const [dataLoaded, setDataLoaded] = useState(false);
+    const [romans, setRomans] = useState([]);
+    const [isData, setIsData] = useState(false);
+    const [isCategoryPersonnage, setIsCategoryPersonnage] = useState(false);
+    const [isCategoryFiche, setIsCategoryFiche] = useState(false);
+
+    useEffect(() => {
+        if(!dataLoaded) {
+            readData("romans")
+            .then((data) => {
+                setRomans(data);
+                setDataLoaded(true);
+                switch (props.type) {
+                    case "personnages":
+                        setIsData(true)
+                        setIsCategoryPersonnage(true)
+                        break;
+                    case "lieux":
+                        setIsData(true)
+                        setIsCategoryPersonnage(false)
+                        break;
+                    case "fiches":
+                        setIsData(false)
+                        setIsCategoryFiche(true)
+                        break;
+                    case "romans":
+                        setIsData(false)
+                        setIsCategoryFiche(false)
+                        break;                                           
+                    default:
+                        setIsData(false)
+                        break;
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+    }, [dataLoaded, setDataLoaded, props.type]);
+
+    if (!dataLoaded)
+        return <Loading />; 
+
+    return (
+        <>
+            {props.datas.map((data, i) => {
+                const nomRoman = getNomRoman(romans, data.roman)
+
+                return isData ?
+                    isCategoryPersonnage ?
+                        <CardsPersonnages key={i} personnage={data} delay={time*i} roman={nomRoman} number={i} />
+                        : <CardsLieux key={i} lieu={data} delay={time * i} roman={nomRoman} />
+                    : isCategoryFiche ?
+                        <CardsFiche key={i} fiche={data} roman={nomRoman} />
+                        : <CardsRoman key={i} roman={data} />
+            })}
+        </>
+    )
+};
+
+
+
 const convertArabicToRoman = (num) => {
 	const rules = {
 		"M": 1000, "CM": 900,
@@ -28,7 +101,7 @@ export const RomanNumber = (props) => {
     return (
         <span>{convertArabicToRoman(num)}</span>
     )
-}
+};
 
 
 export const getNomRoman = (romans, id) => {
@@ -46,4 +119,4 @@ export const adaptivePronoun = (emplacement) => {
 		return `${pronomConsonne} ${emplacement}`
 	else
 		return `${pronomVoyelle} ${emplacement}`
-}
+};

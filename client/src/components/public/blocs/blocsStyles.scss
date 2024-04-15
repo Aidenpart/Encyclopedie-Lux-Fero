@@ -49,6 +49,11 @@
     }
 }
 
+.latest-add-desktop {
+    margin: 0 auto;
+    width: 40%;
+}
+
 .latest-add {
 
     table, th, td {
@@ -57,14 +62,8 @@
         border-collapse: collapse;
     }
 
-    table {
-        @extend %margin;
-    }
-
-    th, td {
-        @extend %padding;
-    }
-   
+    table { @extend %margin; }
+    th, td { @extend %padding; }
 }
 
 

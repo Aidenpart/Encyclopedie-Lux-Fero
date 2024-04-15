@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { CardComponent } from "../cards/cardsEncyclopedie";
+import { CardComponent } from "../cards/componentsCard.js";
 import { appartenancesLuxFero, appartenancesReginaMagicae, listeDomaines } from "../../../helpers/categories";
 import { readData } from "../../../helpers/dataHelpers";
 
@@ -8,6 +8,7 @@ import { readData } from "../../../helpers/dataHelpers";
 export function capitalizeFirstLetter (text) {
     return text.charAt(0).toUpperCase()+text.slice(1);
 };
+
 
 function filterRecentData (data) {
     let mostRecentDate = new Date(Math.max.apply(null, data.map( e => {
@@ -157,5 +158,3 @@ export const LatestData = (props) => {
         </tr>
     );
 };
-
-

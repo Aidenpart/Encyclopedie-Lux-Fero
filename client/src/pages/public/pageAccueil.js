@@ -18,6 +18,7 @@ export const PageAccueil = () => {
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1023);
     const [isTablet, setTablet] = useState(window.innerWidth > 480 && window.innerWidth < 1024);
     const [isMobile, setMobile] = useState(window.innerWidth < 481);
+    const [classDivAccueil, setClassDivAccueil] = useState("")
   
     const updateMedia = () => {
       setDesktop(window.innerWidth > 1023);
@@ -26,10 +27,14 @@ export const PageAccueil = () => {
     };
   
     useEffect(() => {
+        isDesktop ?
+            setClassDivAccueil("desktop")
+            : setClassDivAccueil("")
+
         document.title = "Accueil";
         window.addEventListener("resize", updateMedia);
         return () => window.removeEventListener("resize", updateMedia);
-    });
+    }, [setClassDivAccueil, isDesktop]);
 
     return (
         <section className="page">
@@ -37,8 +42,10 @@ export const PageAccueil = () => {
             <main>
                 <article>
                     <Header text={"Bienvenue"}/>
-                    <IntroductionAccueil/>     
-                    <LatestDataAdd />
+                    <div className={classDivAccueil}>
+                        <IntroductionAccueil isDesktop={isDesktop}/>     
+                        <LatestDataAdd isDesktop={isDesktop}/>
+                    </div>
                 </article>
                 <article className="article-liens-pages-romans">
                     {listeRomans.map((roman, i) => {

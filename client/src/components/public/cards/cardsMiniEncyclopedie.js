@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
 import { Loading } from "../loading/loading";
-import { RomanNumber, getNomRoman } from "./componentsCard";
+import { RomanNumber } from "./componentsCard";
 import { listeDomaines } from "../../../helpers/categories";
-import { readData, filteredDataByRoman } from "../../../helpers/dataHelpers";
+import { filteredDataByRoman } from "../../../helpers/dataHelpers";
 import { URL } from "../../../helpers/urlHelpers";
 import "./cardsStyles.scss";
 
@@ -60,70 +60,7 @@ export const CardResumeGeneric = (props) => {
     )
 };
 
-
-export const CardComponent = (props) => {
-    const time = 500;
-    const [dataLoaded, setDataLoaded] = useState(false);
-    const [romans, setRomans] = useState([]);
-    const [isData, setIsData] = useState(false);
-    const [isCategoryPersonnage, setIsCategoryPersonnage] = useState(false);
-    const [isCategoryFiche, setIsCategoryFiche] = useState(false);
-
-    useEffect(() => {
-        if(!dataLoaded) {
-            readData("romans")
-            .then((data) => {
-                setRomans(data);
-                setDataLoaded(true);
-                switch (props.type) {
-                    case "personnages":
-                        setIsData(true)
-                        setIsCategoryPersonnage(true)
-                        break;
-                    case "lieux":
-                        setIsData(true)
-                        setIsCategoryPersonnage(false)
-                        break;
-                    case "fiches":
-                        setIsData(false)
-                        setIsCategoryFiche(true)
-                        break;
-                    case "romans":
-                        setIsData(false)
-                        setIsCategoryFiche(false)
-                        break;                                           
-                    default:
-                        setIsData(false)
-                        break;
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        }
-    }, [dataLoaded, setDataLoaded, props.type]);
-
-    if (!dataLoaded)
-        return <Loading />; 
-
-    return (
-        <>
-            {props.datas.map((data, i) => {
-                const nomRoman = getNomRoman(romans, data.roman)
-
-                return isData ?
-                    isCategoryPersonnage ?
-                        <CardsPersonnages key={i} personnage={data} delay={time*i} roman={nomRoman} number={i} />
-                        : <CardsLieux key={i} lieu={data} delay={time * i} roman={nomRoman} />
-                    : isCategoryFiche ?
-                        <CardsFiche key={i} fiche={data} roman={nomRoman} />
-                        : <CardsRoman key={i} roman={data} />
-            })}
-        </>
-    )
-};
-
-const CardsPersonnages = (props) => {
+export const CardsPersonnages = (props) => {
     const [mounted, setMounted] = useState(false)
     const personnage = props.personnage;
     const number = props.number
@@ -165,7 +102,7 @@ const CardsPersonnages = (props) => {
     )
 };
 
-const CardsLieux = (props) => {
+export const CardsLieux = (props) => {
     const [mounted, setMounted] = useState(false);
     const lieu = props.lieu;
     const roman = props.roman;
@@ -209,7 +146,7 @@ const CardsLieux = (props) => {
     );
 };
 
-const CardsFiche = (props) => {
+export const CardsFiche = (props) => {
     const fiche = props.fiche;
     const [couleurFiche, setCouleurFiche] = useState("")
 
@@ -245,9 +182,9 @@ const CardsFiche = (props) => {
             </article>
         </>
     )
-}
+};
 
-const CardsRoman = (props) => {
+export const CardsRoman = (props) => {
     const roman = props.roman;
     const [dataLoaded, setDataLoaded] = useState(false);
     const [dataRoman, setDataRoman] = useState();
@@ -292,4 +229,4 @@ const CardsRoman = (props) => {
             </ul>
         </article>
     )
-}
+};

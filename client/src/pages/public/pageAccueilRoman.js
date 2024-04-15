@@ -19,7 +19,13 @@ export const PageAccueilRoman = () => {
     const roman = useSelector(state => state.roman);
     const nomRoman = roman.nom;
     const [dataLoaded, setDataLoaded] = useState(false);
-  
+    const [isDesktop, setDesktop] = useState(window.innerWidth > 1023);
+
+    const updateMedia = () => {
+        setDesktop(window.innerWidth > 1023);
+    };
+
+
     useEffect(() => {
         
         if (!dataLoaded) {
@@ -35,6 +41,8 @@ export const PageAccueilRoman = () => {
         };
 
         document.title = `Accueil ${nomRoman}`
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
     }, [dataLoaded, dispatch, urlTitle, nomRoman]);
 
 
@@ -46,7 +54,7 @@ export const PageAccueilRoman = () => {
             < NavBar/>
             <main>
                 <HeaderRoman text={nomRoman} />
-                <LatestDataAdd roman={roman}/>
+                <LatestDataAdd roman={roman} isDesktop={isDesktop}/>
                 {listDataCategories.slice(0, -1).map((categorie, i) => {
                     return (<DataBloc datas={categorie} dataType={`${categorie}`} key={i} roman={roman}/>)
                 })}

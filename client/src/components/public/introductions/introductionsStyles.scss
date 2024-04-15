@@ -5,7 +5,16 @@
     margin: 5px auto;
 }
 
-.intro-accueil, .resume-accueil {
+.accueil {
+    width: 100%;
+}
+
+.intro-desktop {
+    width: 60%;
+}
+
+
+.intro, .resume-accueil {
     
    .lien-wattpad {
         @extend %box-size;
@@ -18,7 +27,6 @@
 
     .introduction, .resume {
         @extend %box-size;
-        padding: 15px 20px;
         width: 85%;
         border-radius: 10px;
     }

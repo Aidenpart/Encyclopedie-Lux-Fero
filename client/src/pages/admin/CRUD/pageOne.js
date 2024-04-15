@@ -8,7 +8,7 @@ import { DeleteOne } from "../../../components/admin/CRUDGeneral/deleteOne.js";
 import { updateData } from "../../../helpers/dataHelpers.js";
 import { GenericLinkDynamicData } from "../../../components/public/links/links.js";
 import { Footer } from "../../../components/public/footer/footer.js";
-import { CardResumeGeneric } from "../../../components/public/cards/cardsEncyclopedie.js";
+import { CardResumeGeneric } from "../../../components/public/cards/cardsMaxiEncyclopedie.js";
 import { readOneData } from "../../../helpers/dataHelpers.js";
 import { CreateOrModifyDataForm, CreateOrModifyTextForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js";
 import "../stylesAdmin.scss"

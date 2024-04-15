@@ -44,18 +44,23 @@ export const DataBloc = (props) => {
 
 
 export const LatestDataAdd = (props) => {
-    const [categories, setCategories] = useState(listDataCategories)
-    const roman = props.roman
+    const [categories, setCategories] = useState(listDataCategories);
+    const [classDesktop, setClassDesktop] = useState("");
+    const roman = props.roman;
 
     useEffect(() => {
+        props.isDesktop ?
+            setClassDesktop("latest-add-desktop")
+            : setClassDesktop("")
+
         if(roman === undefined)
             setCategories(listDataCategories)
         else
             setCategories(listDataCategories.slice(0,-1))
-    }, [setCategories, roman])
+    }, [setCategories, roman, props.isDesktop])
 
     return (
-        <article className="latest-add">
+        <article className={`latest-add ${classDesktop}`}>
             <h1>Derniers ajouts de l'encyclopédie</h1>
             <table>
                 <tbody>

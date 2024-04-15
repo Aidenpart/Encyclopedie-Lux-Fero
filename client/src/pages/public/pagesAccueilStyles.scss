@@ -1,8 +1,13 @@
 @import "../generalStyles.scss";
 
-.article-liens-pages-romans {
+.desktop {
     width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
 
+
+.article-liens-pages-romans {
     .liens-pages-romans{
         margin: 0 auto 50px;
     }
