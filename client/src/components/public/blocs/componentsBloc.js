@@ -49,22 +49,26 @@ export const ReadAll = (props) => {
 
 
 export const SortData = (props) => {
+    const datas = props.datas;
+    const type = props.type;
     const [selectValues, setSelectValues] = useState({
         nom: "",
         appartenance: ""
     });
-    const [messageNoData, setMessageNoData] = useState([])
-    const [appartenances, setAppartenances] = useState([])
-    const datas = props.datas;
-    const type = props.type;
-    const text = `${type}`.slice(0, -1);
+    const [messageNoData, setMessageNoData] = useState([]);
+    const [appartenances, setAppartenances] = useState([]);
+    const [text, setText] = useState("");
     const [filter, setFilter] = useState("");
     const [selectedData, setSelectedData] = useState("");
+    const [modalIsOpen, setModalIsOpen] = useState(false); 
+
 
     useEffect(() => {       
-        if(type === "fiches")
+        if(type === "fiches") {
+            setText(`de la ${type}`.slice(0, -1))
             setAppartenances(listeDomaines.map(categorie => categorie.domaine))
-        else {
+        }else {
+            setText(`du ${type}`.slice(0, -1))
             if (props.roman === "Lux Fero") 
                 setAppartenances(appartenancesLuxFero) 
             else 
@@ -78,6 +82,7 @@ export const SortData = (props) => {
         if((e.target[0].value || e.target[1].value !== "") && data.length !== 0) {
             setSelectedData(data)
             setMessageNoData(false)
+            setModalIsOpen(true)
         }else {
             filter === "" ?
                 setMessageNoData("Selectionnez une catégorie")
@@ -96,12 +101,16 @@ export const SortData = (props) => {
                 updatedSelectValues[name] = '';
         });
     };
+
+    const handleClick = () => {
+        setModalIsOpen(false);
+    };
     
     return(
         <section>
             <div>
                 <form className="sort-data-form" onSubmit={(e) => handleSubmit(e, filter)}>
-                    <label>Nom du {text} :
+                    <label>Nom {text} :
                         <select value={selectValues.nom || selectValues.titre} onChange={(e) => handleChange(e.target.value, 'nom' || "titre")}>
                             <option value={""}>-----</option>
                             {datas.map((data, i) => {
@@ -109,7 +118,7 @@ export const SortData = (props) => {
                             })}
                         </select>                    
                     </label>
-                    <label>Appartenance du {text} : 
+                    <label>Appartenance {text} : 
                         <select value={selectValues.appartenance} onChange={(e) => handleChange(e.target.value, 'appartenance')}>
                             <option value={""}>-----</option>
                                 {appartenances.map((data, i) => {
@@ -117,17 +126,21 @@ export const SortData = (props) => {
                                 })}
                         </select>
                     </label>
-                    <button>Chercher le {text}</button>
+                    <button>Chercher</button>
                 </form>
             </div>
-            <div className="cards-article">
-            {selectedData && (
-                <CardComponent datas={selectedData} type={type}/>
-            )}
-            {messageNoData && (
-                <p>{`${messageNoData}`}</p>
-            )}
-            </div>
+                {modalIsOpen && (
+                    <>
+                        <button className="hide-button" onClick={handleClick}>Cacher</button>
+                        <div className="cards-article">
+                            <CardComponent datas={selectedData} type={type}/>
+                        </div>
+                        
+                    </>
+                )}
+                {messageNoData && (
+                    <p className="error-message">{`${messageNoData}`}</p>
+                )}
         </section>
     );
 };

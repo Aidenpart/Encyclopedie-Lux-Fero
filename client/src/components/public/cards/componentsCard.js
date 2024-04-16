@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { Loading } from "../loading/loading";
-import { CardsPersonnages, CardsLieux, CardsFiche, CardsRoman } from "./cardsMiniEncyclopedie";
+import { CardsPersonnages, CardsLieux, CardsFiche, CardsRoman } from "./cardsEncyclopedie";
 import { readData } from "../../../helpers/dataHelpers";
 import "./cardsStyles.scss";
 

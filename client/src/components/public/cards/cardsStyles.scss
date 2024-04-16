@@ -2,7 +2,7 @@
 %max-widht-height { width: 100%; height: 100%; }
 %margin-none { margin: 0; }
 
-.carte:hover .interieur {    transform: rotateY(180deg);  }
+
 .carte {
     box-sizing: border-box;
     background-color: transparent;
@@ -77,6 +77,8 @@
         }
     }
 } 
+.carte:hover .interieur {    
+    transform: rotateY(180deg); }
 
 
 .fiche {
@@ -173,7 +175,14 @@
                 padding: 15px; 
 
                 p {
-                    @extend %margin-none; }
+                    @extend %margin-none; 
+                
+                    .intitule {
+                        text-decoration: underline
+                    }
+                }
+
+
             }     
 
             .separateur {
@@ -183,14 +192,12 @@
                 padding: 0; }
 
             .description {
-                width: 90%;
-            }
+                width: 90%; }
         }
     }    
 }
 .post-card:hover .interieur {
     transform: rotateY(180deg); }
-
 
 
 .card-generic {
@@ -200,26 +207,29 @@
     margin: auto;
 
     div {
-        p{
+
+        p {
             display: flex;
             justify-content: space-between;
             margin: 5px 0;
+
             .key {
-                text-decoration: underline;
-            }
+                text-decoration: underline; }
+
             .data {
-                text-align: right;
-            }
+                text-align: right; }
         }
     }
 }
 
 
 @keyframes delay {
-    0% {  opacity: 0;    }
-    100% {    opacity: 1;    }
-}
+    0% {  
+        opacity: 0; }
 
+    100% {    
+        opacity: 1; }
+}
 
 
 @media #{$Min-Medium-Size} {

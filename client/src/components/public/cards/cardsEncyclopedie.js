@@ -133,11 +133,11 @@ export const CardsLieux = (props) => {
                         </div>
                         <div className="separateur"></div>
                         <div className="coordonnees">
-                            <p>Nom du lieu : {lieu.nom}</p>
-                            <p>Roman : {roman}</p>
-                            <p>Appartenance : {lieu.appartenance}</p>
-                            <p>Emplacement : {lieu.emplacement}</p>
-                            <p>Population : {lieu.population}</p>
+                            <p><span className="intitule">Nom du lieu :</span> {lieu.nom}</p>
+                            <p><span className="intitule">Roman :</span> {roman}</p>
+                            <p><span className="intitule">Appartenance :</span> {lieu.appartenance}</p>
+                            <p><span className="intitule">Emplacement :</span> {lieu.emplacement}</p>
+                            <p><span className="intitule">Population :</span> {lieu.population}</p>
                         </div>
                     </div>
                 </div>
