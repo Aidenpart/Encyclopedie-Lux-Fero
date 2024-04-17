@@ -18,7 +18,7 @@ export const IntroductionAccueil = (props) => {
     return (
         <article className={`intro ${classIntro}`}>
             <p className="introduction">
-                Lecteurs, lectrices, curieux et curieuses de tous horizons
+                Lecteurs, lectrices, âmes de tous horizons
                 <br /><span className="bienvenu">Bienvenue sur l'encyclopédie officielle de</span>
                 <br /><span className="titre-LF">L'Univers Lux Fero</span>
                 <br />Ici, vous trouverez une encyclopédie des personnages et lieux des romans de l'univers Lux-Fero. Si vous découvrez cet endroit, un lien pour lire le premier tome de "Lux Fero - Le Porteur de Lumière" se trouve plus bas, en accès sur la plateforme Wattpad.

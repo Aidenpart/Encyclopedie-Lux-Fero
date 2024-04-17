@@ -1,5 +1,5 @@
 @import "../../../pages/generalStyles.scss";
-%max-widht-height { width: 100%; height: 100%; }
+%max-width-height { width: 100%; height: 100%; }
 %margin-none { margin: 0; }
 
 
@@ -13,14 +13,14 @@
     text-align: center;
 
     .interieur {
-        @extend %max-widht-height;
+        @extend %max-width-height;
         border: 2px black solid;
         position: relative;
         transition: transform 0.8s;
         transform-style: preserve-3d;  
     
         .recto, .verso {
-            @extend %max-widht-height;
+            @extend %max-width-height;
             @extend %margin-none;
             position: absolute;
             backface-visibility: hidden; }
@@ -82,11 +82,16 @@
 
 
 .fiche {
+    height: 100%;
+    width: 75%;
     border: 2px solid black;
     border-radius: 5px;
+    padding: 5px;
+
 
         .header {
             height: 20%;
+            margin: 10px auto;
 
             h1, h6 {
                 @extend %margin-none;
@@ -94,11 +99,16 @@
         }
 
         .corps {
-            margin: 5px auto;
+            margin: auto;
             background-color: #fff;
             border: 1px solid black;
             height: 80%;
-            width: 95%; }
+            width: 95%;
+        
+                h2 {
+                    margin-top: 0;
+                }
+        }
 }
 
 
@@ -112,14 +122,14 @@
     animation: delay 1s;
 
     .interieur {
-        @extend %max-widht-height;
+        @extend %max-width-height;
         border: 1px black solid;
         position: relative;
         transition: transform 0.8s;
         transform-style: preserve-3d;  
     
         .recto, .verso {
-            @extend %max-widht-height;
+            @extend %max-width-height;
             @extend %margin-none;
             position: absolute;
             backface-visibility: hidden; }
@@ -130,11 +140,11 @@
             box-sizing: border-box;
 
             .image-BG {
-                @extend %max-widht-height;
+                @extend %max-width-height;
                 overflow: hidden;
 
                 .text {
-                    @extend %max-widht-height;
+                    @extend %max-width-height;
                     @extend %margin-none;
                     position: relative;
                     font-size: 1.35em;

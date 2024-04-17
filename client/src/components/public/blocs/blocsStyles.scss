@@ -60,8 +60,8 @@
 }
 
 .latest-add-desktop {
-    margin: 0 auto;
-    width: 40%;
+    margin: 0;
+    width: 50%;
 }
 
 .latest-add {
@@ -98,5 +98,10 @@
                 width: 15%;
                 font-size: 0.75em; }
         }
-    }    
+    }
+    
+    .latest-add {
+        width: 400px;
+        height: 250px;
+    }
 }

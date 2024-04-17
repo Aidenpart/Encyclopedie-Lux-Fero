@@ -2,15 +2,18 @@
 
 %box-size {
     box-sizing: border-box;
-    margin: 5px auto;
-}
+    margin: 5px auto; }
 
 .accueil {
-    width: 100%;
-}
+    width: 100%; }
 
 .intro-desktop {
-    width: 60%;
+    margin: 0;
+    width: 50%;
+
+    .introduction {
+        margin: 0;
+    }
 }
 
 
@@ -22,34 +25,27 @@
         padding: 5px 10px;
         text-decoration: none;
         color: $secundary-color;
-        width: 50%;
-    }
+        width: 50%; }
 
     .introduction, .resume {
         @extend %box-size;
         width: 85%;
-        border-radius: 10px;
-    }
+        border-radius: 10px; }
     
     .bienvenu, .titre-LF {
-        font-family: $Cinzel;
-    }
+        font-family: $Cinzel; }
     
     .bienvenu {
-        font-size: 1.25em;
-    }
+        font-size: 1.25em; }
     
     .titre-LF, .lien-wattpad {
-        font-size: 1.5em;
-    }
+        font-size: 1.5em; }
     
     .titre {
-        font-family: $Kanit;
-    }
+        font-family: $Kanit; }
     
     .lire-roman {
-        padding-left: 15px;
-    }
+        padding-left: 15px; }
 }
 
 .intro-admin {
@@ -62,19 +58,19 @@
         list-style-type: none;
         
         span {
-            padding-left: 5px;
-        }
+            padding-left: 5px; }
     }
 }
 
 
 @media #{$Min-Medium-Size} {
+
     .lien-wattpad {
-        width: 30%;
-    }    
+        width: 30%; }    
 }
 
 @media #{$Min-Large-Size} {
+
     .lien-wattpad {
         width: 25%;
         transition: all 0.5s ease;
@@ -82,7 +78,6 @@
         &:hover {
             background-color: $secundary-color;
             color: $primary-color;
-            font-size: 2em;
-        }
+            font-size: 2em; }
     }   
 }
