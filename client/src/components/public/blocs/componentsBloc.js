@@ -48,104 +48,6 @@ export const ReadAll = (props) => {
 };
 
 
-export const SortData = (props) => {
-    const datas = props.datas;
-    const type = props.type;
-    const [selectValues, setSelectValues] = useState({
-        nom: "",
-        appartenance: ""
-    });
-    const [messageNoData, setMessageNoData] = useState([]);
-    const [appartenances, setAppartenances] = useState([]);
-    const [text, setText] = useState("");
-    const [filter, setFilter] = useState("");
-    const [selectedData, setSelectedData] = useState("");
-    const [modalIsOpen, setModalIsOpen] = useState(false); 
-
-
-    useEffect(() => {       
-        if(type === "fiches") {
-            setText(`de la ${type}`.slice(0, -1))
-            setAppartenances(listeDomaines.map(categorie => categorie.domaine))
-        }else {
-            setText(`du ${type}`.slice(0, -1))
-            if (props.roman === "Lux Fero") 
-                setAppartenances(appartenancesLuxFero) 
-            else 
-                setAppartenances(appartenancesReginaMagicae)
-        }
-    }, [props.roman, type, setAppartenances]);
-
-    const handleSubmit = (e, filter) => {
-        e.preventDefault();
-        let data = datas.filter((data) => selectValues[filter] === data[filter]);
-        if((e.target[0].value || e.target[1].value !== "") && data.length !== 0) {
-            setSelectedData(data)
-            setMessageNoData(false)
-            setModalIsOpen(true)
-        }else {
-            filter === "" ?
-                setMessageNoData("Selectionnez une catégorie")
-                : setMessageNoData("Aucune donnée dans cette catégorie")
-            setSelectedData(false)
-        };
-    };
-
-    const handleChange = (selectedValue, selectName) => {
-        const updatedSelectValues = {...selectValues, [selectName]: selectedValue};
-        setFilter(selectName)
-        setSelectValues(updatedSelectValues);
-        
-        Object.keys(updatedSelectValues).forEach(name => {
-            if (name !== selectName)
-                updatedSelectValues[name] = '';
-        });
-    };
-
-    const handleClick = () => {
-        setModalIsOpen(false);
-    };
-    
-    return(
-        <section>
-            <div>
-                <form className="sort-data-form" onSubmit={(e) => handleSubmit(e, filter)}>
-                    <label>Nom {text} :
-                        <select value={selectValues.nom || selectValues.titre} onChange={(e) => handleChange(e.target.value, 'nom' || "titre")}>
-                            <option value={""}>-----</option>
-                            {datas.map((data, i) => {
-                                return <option key={i}>{data.nom || data.titre}</option>;
-                            })}
-                        </select>                    
-                    </label>
-                    <label>Appartenance {text} : 
-                        <select value={selectValues.appartenance} onChange={(e) => handleChange(e.target.value, 'appartenance')}>
-                            <option value={""}>-----</option>
-                                {appartenances.map((data, i) => {
-                                    return <option key={i}>{data}</option>;
-                                })}
-                        </select>
-                    </label>
-                    <button>Chercher</button>
-                </form>
-            </div>
-                {modalIsOpen && (
-                    <>
-                        <button className="hide-button" onClick={handleClick}>Cacher</button>
-                        <div className="cards-article">
-                            <CardComponent datas={selectedData} type={type}/>
-                        </div>
-                        
-                    </>
-                )}
-                {messageNoData && (
-                    <p className="error-message">{`${messageNoData}`}</p>
-                )}
-        </section>
-    );
-};
-
-
 export const LatestData = (props) => {
     const type = props.type;
     const roman = props.roman;
@@ -169,5 +71,115 @@ export const LatestData = (props) => {
                 <td>Pas de données</td>
                 :<td>{latestDataFound.nom || latestDataFound.titre}</td>}
         </tr>
+    );
+};
+
+
+export const SortData = (props) => {
+    const [dataFilter, setDataFilter] = useState("");
+    const datas = props.datas;
+    const type = props.type.slice(0, -1);
+    const [modalIsOpen, setModalIsOpen] = useState(false); 
+    const [errorMessage, setErrorMessage] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [textType, setTextType] = useState("");
+    const [selectValues, setSelectValues] = useState({
+        nom: "",
+        appartenance: "",
+        titre: "",
+        domaine: ""
+    });
+
+
+    const [selectedData, setSelectedData] = useState("");
+
+    const [filterOne, setFilterOne] = useState("");
+    const [filterTwo, setFilterTwo] = useState("");
+
+
+    useEffect(() => {       
+        if(type === "fiche") {
+            setTextType(`de la ${type}`)
+            setCategories(listeDomaines.map(categorie => categorie.domaine))
+            setFilterOne("titre")
+            setFilterTwo("domaine")
+        }else {
+            setFilterOne("nom")
+            setFilterTwo("appartenance")
+            setTextType(`du ${type}`)
+            if (props.roman === "Lux Fero") 
+                setCategories(appartenancesLuxFero) 
+            else 
+                setCategories(appartenancesReginaMagicae)
+        }
+    }, [props.roman, type, setCategories]);
+
+    const handleSubmit = (e, filter) => {
+        e.preventDefault();
+        let data = datas.filter((data) => selectValues[filter] === data[filter]);
+        if((e.target[0].value || e.target[1].value !== "") && data.length !== 0) {
+            setSelectedData(data)
+            setErrorMessage(false)
+            setModalIsOpen(true)
+        }else {
+            filter === "" ?
+                setErrorMessage("Selectionnez une catégorie")
+                : setErrorMessage("Aucune donnée dans cette catégorie")
+            setSelectedData(false)
+        };
+        
+    };
+
+    const handleChange = (selectedSelect, fr) => {
+        const updatedSelectValues = {...selectValues, [fr]: selectedSelect};
+        setDataFilter(fr)
+        setSelectValues(updatedSelectValues);
+        
+        Object.keys(updatedSelectValues).forEach(name => {
+            if (name !== fr) {
+                updatedSelectValues[name] = "";
+            }
+        });
+    };
+
+    const handleClick = () => {
+        setModalIsOpen(false);
+    };
+    
+    return(
+        <section>
+            <div>
+                <form className="sort-data-form" onSubmit={(e) => handleSubmit(e, dataFilter)}>
+                    <label>{`${capitalizeFirstLetter(filterOne)} ${textType}`} :
+                        <select value={selectValues.nom || selectValues.titre} onChange={(e) => handleChange(e.target.value, filterOne)}>
+                            <option value={""}>-----</option>
+                            {datas.map((data, i) => {
+                                return <option key={i}>{data.nom || data.titre}</option>;
+                            })}
+                        </select>                    
+                    </label>
+                    <label>{`${capitalizeFirstLetter(filterTwo)} ${textType}`} : 
+                        <select value={selectValues.appartenance || selectValues.domaine} onChange={(e) => handleChange(e.target.value, filterTwo)}>
+                            <option value={""}>-----</option>
+                                {categories.map((data, i) => {
+                                    return <option key={i}>{data}</option>;
+                                })}
+                        </select>
+                    </label>
+                    <button>Chercher</button>
+                </form>
+            </div>
+                {modalIsOpen && (
+                    <>
+                        <button className="hide-button" onClick={handleClick}>Cacher</button>
+                        <div className="cards-article">
+                            <CardComponent datas={selectedData} type={type}/>
+                        </div>
+                    </>
+                )}
+                {errorMessage && (
+                    <p className="error-message">{`${errorMessage}`}</p>
+                )}
+        </section>
     );
 };
