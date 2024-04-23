@@ -11,7 +11,7 @@ export const DeleteOne = (props) =>{
     const navigate = useNavigate(); 
     const { id } = useParams(); 
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [token, setToken] = useState('');
+    const [token, setToken] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
     const text = props.specData.substring(0,props.specData.length -1)
         
@@ -20,11 +20,10 @@ export const DeleteOne = (props) =>{
         setDataLoaded(true);
     }, [setToken]);
     
-
     const handleDelete = () => {
         deleteData(text, token, id)
         .then((response) => { 
-            navigate(`/admin/CRUD`, {state: { dataCategory:props.specData, isCreation:true, isPersonnage:props.specData  }});
+            navigate("/admin/CRUD", {state: { dataCategory:props.specData, isCreation:true, isPersonnage:props.specData }});
         })
         .catch((err) => {
             console.log(err);

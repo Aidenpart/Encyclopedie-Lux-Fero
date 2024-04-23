@@ -11,7 +11,6 @@ export const NavBar = () => {
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!isMobileMenuOpen);
     };
-
     const mobileMenuClassName = isMobileMenuOpen ? "nav-menu active" : "nav-menu";
     const hamburgerClassName = isMobileMenuOpen ? "hamburger active" : "hamburger";
 

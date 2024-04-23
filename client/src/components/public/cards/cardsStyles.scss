@@ -88,27 +88,25 @@
     border-radius: 5px;
     padding: 5px;
 
+    .header {
+        height: 20%;
+        margin: 10px auto;
 
-        .header {
-            height: 20%;
-            margin: 10px auto;
+        h1, h6 {
+            @extend %margin-none;
+            padding: 5px; }
+    }
 
-            h1, h6 {
-                @extend %margin-none;
-                padding: 5px; }
-        }
-
-        .corps {
-            margin: auto;
-            background-color: #fff;
-            border: 1px solid black;
-            height: 80%;
-            width: 95%;
-        
-                h2 {
-                    margin-top: 0;
-                }
-        }
+    .corps {
+        margin: auto;
+        background-color: #fff;
+        border: 1px solid black;
+        height: 80%;
+        width: 95%;
+    
+        h2 {
+            margin-top: 0; }
+    }
 }
 
 
@@ -188,11 +186,8 @@
                     @extend %margin-none; 
                 
                     .intitule {
-                        text-decoration: underline
-                    }
+                        text-decoration: underline; }
                 }
-
-
             }     
 
             .separateur {

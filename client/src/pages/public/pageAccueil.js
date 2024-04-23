@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-
 import { NavBar } from "../../components/public/navBar/navBar";
 import { Header } from "../../components/public/header/header";
 import { LinkAccueil } from "../../components/public/links/links";
@@ -10,7 +9,6 @@ import { Footer } from "../../components/public/footer/footer";
 import { IntroductionAccueil } from "../../components/public/introductions/introductions";
 import { ResumeLuxFero, ResumeReginaMagicae } from "../../components/public/introductions/introductions";
 import { listeRomans } from "../../helpers/categories";
-
 import "./pagesAccueilStyles.scss"
 
 
@@ -83,5 +81,5 @@ export const PageAccueil = () => {
             </main>
             <Footer />
         </section>
-    )
-}
+    );
+};

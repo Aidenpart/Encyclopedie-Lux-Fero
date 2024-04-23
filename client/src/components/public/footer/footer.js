@@ -1,7 +1,6 @@
 import { faCopyright } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
 import { GenericLink, LinkConditionalNavigation } from "../links/links.js";
 import "./footerStyles.scss";
 

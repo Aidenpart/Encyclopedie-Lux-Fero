@@ -2,7 +2,6 @@ import {Navigate} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from "react";
 
-
 import { getUserbyToken } from "../helpers/authHelpers.js";
 import { addUser } from "../store/slice/userSlice.js";
 
@@ -13,7 +12,7 @@ export const AuthMiddleware = (props) => {
         return (
             <Navigate to={"/"}/>
         );
-    }
+    };
     
     return (
         <>
@@ -24,13 +23,10 @@ export const AuthMiddleware = (props) => {
 
 
 export const AdminMiddleware = (props) => {
-
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
-
     useEffect(() => {
-        
         if (sessionStorage.getItem('jwt') && !user.isLogged) {
             const userTokenPromise = getUserbyToken();
             userTokenPromise
@@ -40,14 +36,14 @@ export const AdminMiddleware = (props) => {
             .catch(err => {
                 console.log(err);
             });
-        }
+        };
     });
     
     if (!sessionStorage.getItem('jwt') || !user.isAdmin) {
         return (
             <Navigate to={"/"}/>
         );
-    }
+    };
     
     return (
         <>

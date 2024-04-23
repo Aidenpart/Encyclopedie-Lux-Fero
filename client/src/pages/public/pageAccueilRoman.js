@@ -25,9 +25,7 @@ export const PageAccueilRoman = () => {
         setDesktop(window.innerWidth > 1023);
     };
 
-
     useEffect(() => {
-        
         if (!dataLoaded) {
             setDataLoaded(true);
 

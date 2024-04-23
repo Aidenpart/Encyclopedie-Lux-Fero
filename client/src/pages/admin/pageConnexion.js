@@ -53,7 +53,7 @@ export const PageConnexion = () => {
             <main>
                 <Header text={"Connexion"} />
                 <article className="links-place">
-                    <GenericLink direction={"/accueil"} class={"link"} text={"Accueil"}/>
+                    <GenericLink direction={"/"} class={"link"} text={"Accueil"}/>
                 </article>
                 <article className="log-in-form">
                     <h3>S'identifier</h3>

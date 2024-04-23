@@ -1,17 +1,15 @@
 import { URL } from "./urlHelpers";
 
+
 export const getToken = () => {
     const token = sessionStorage.getItem("jwt")
-    if(token){
+    if(token)
         return token;
-    } else {
-        return "";
-    }
+    else 
+        return "";   
 };
 
-
 export const getUserbyToken = async () => {
-    
     const token = getToken();
 
     const user = await fetch(`${URL}/auth/user`, {
@@ -23,7 +21,6 @@ export const getUserbyToken = async () => {
     })
     .then(response => response.json())
     .then(user => {
-        
         return user;
     });
     

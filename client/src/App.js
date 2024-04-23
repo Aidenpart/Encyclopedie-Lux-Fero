@@ -19,8 +19,8 @@ import { PageCGU } from "./pages/legal/pageCGU.js"
 import { PageRGPD } from "./pages/legal/pageRGPD.js";
 import { PageMentionsLegales } from "./pages/legal/pageMentionsLegales.js"
 
+
 function App() {
-  
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -39,7 +39,7 @@ function App() {
         });
       }else
         setDataLoaded(true);
-    }
+    };
   }, [dataLoaded, user.isLogged, dispatch]);
   
   if (!dataLoaded)
@@ -48,11 +48,9 @@ function App() {
   return (
       <Routes>
         <Route path="/" element={<PageAccueil />} />
-
         {listeRomans.map((roman, i) => {
           return <Route key={i} path={`/accueil-${roman.replace(/\s/, "-")}`} element={<PageAccueilRoman />}/>
         })}
-        
         <Route path="/cgu" element={<PageCGU />} />
         <Route path="/rgpd" element={<PageRGPD />} />
         <Route path="/mentions-legales" element={<PageMentionsLegales />} />

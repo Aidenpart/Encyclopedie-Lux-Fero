@@ -20,20 +20,16 @@
         .stick {
             width: 50px;
             height: 120px;
-            background-color: #fff;
-        }
+            background-color: #fff; }
         
         .un, .deux, .trois { 
-            animation: pulse 1.5s infinite; 
-        }
+            animation: pulse 1.5s infinite; }
         
         .deux {    
-            animation-delay: 0.2s; 
-        }
+            animation-delay: 0.2s; }
         
         .trois {    
-            animation-delay: 0.4s;    
-        }
+            animation-delay: 0.4s; }
     }    
 }
 

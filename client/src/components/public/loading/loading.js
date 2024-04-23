@@ -1,6 +1,5 @@
 import "./loading.scss";
 
-
 export const Loading = () => {
     
     return (

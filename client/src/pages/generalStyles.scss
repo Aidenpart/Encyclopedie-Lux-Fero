@@ -19,21 +19,17 @@ body {
     text-align: center;
 
     .page {
-        position: relative;
-    }
+        position: relative; }
     
     p {
-        font-family: $Nunito;
-    }
+        font-family: $Nunito; }
     
     a {
         font-family: $Kanit;
-        text-decoration: none;
-    }
+        text-decoration: none; }
 
     article {
-        margin: 25px auto;
-    }
+        margin: 25px auto; }
 
     
     main {
@@ -41,8 +37,7 @@ body {
         font-size: 1.25em;
         display: flex;
         flex-direction: column;
-        align-items: center;
-    }
+        align-items: center; }
     
     button {
         background-color: $secundary-color;
@@ -53,22 +48,18 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-    }
+        align-items: center; }
     
     textarea {
-        border-radius: 5px;
-    }
+        border-radius: 5px; }
     
     .err-message {
-        color: red;
-    }
+        color: red; }
 }
 
 @media #{$Min-Large-Size} {
     
     button {
-        font-size: 1.12em;
-    }
-    
+        font-size: 1.12em; }
+        
 }

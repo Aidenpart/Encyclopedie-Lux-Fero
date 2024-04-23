@@ -35,7 +35,7 @@ export const PageOne = () =>{
             .catch((err) => {
                 console.log(err);
             });
-        }
+        };
     }, [data, id, specData, dataLoaded]);
 
     useEffect(() => {
@@ -59,8 +59,8 @@ export const PageOne = () =>{
             default:
                 setIsData(false)
                 break;
-        }
-
+        };
+        
         document.title = `${data.nom || data.titre}`;
     }, [setIsData, data.nom, specData, data.titre])
 

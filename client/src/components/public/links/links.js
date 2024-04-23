@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
+
 import { deleteUser } from "../../../store/slice/userSlice.js";
 import "./linkStyles.scss"
 
@@ -59,13 +60,13 @@ export const LinkLogOut = () => {
 };
 
 export const LinkLogOutBurger = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     
     const handleLogOut = () => {
-        sessionStorage.removeItem('jwt')
-        dispatch(deleteUser())
-        navigate("/accueil")
+        sessionStorage.removeItem('jwt');
+        dispatch(deleteUser());
+        navigate("/accueil");
     };
     
     return (

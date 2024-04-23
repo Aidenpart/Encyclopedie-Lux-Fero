@@ -16,7 +16,6 @@ export const userSlice = createSlice({
     initialState,
     
     reducers: {
-        
         addUser: (state, action) => {
             return {
                 ...state,
@@ -34,7 +33,6 @@ export const userSlice = createSlice({
                 ...initialState
             };
         }
-        
     }
     
 });

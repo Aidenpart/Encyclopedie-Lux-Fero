@@ -14,7 +14,7 @@ export const DataBloc = (props) => {
     useEffect(() => {
         readData(dataType)
         .then((response) => {
-            setDatas(response.filter((data) => data.roman === roman.id))
+            setDatas(response.filter((data) => data.roman === roman.id));
         })
         .catch((err) => {
             console.log(err);

@@ -6,8 +6,7 @@ import { Footer } from "../../components/public/footer/footer.js";
 import "./legalStyles.scss";
 
 
-export const PageRGPD = () => {
-    
+export const PageRGPD = () => {  
 
     useEffect(() => {
         document.title = "Protections des Données";
@@ -78,7 +77,3 @@ export const PageRGPD = () => {
         </section>
     );
 };
-
-
-
-

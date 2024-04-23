@@ -45,7 +45,7 @@ export const PageCRUD = () => {
                     setIsData(false)
                     break;
             }
-        })  
+        });
         document.title = `CRUD ${specData}`;
     }, [specData, isCategoryPersonnage]);
 

@@ -26,9 +26,8 @@ export const CardResumeGeneric = (props) => {
             });        
         }else
             setDataLoaded(true)
-        
-    }, [dataLoaded, data._id, setDataRoman, type]);
 
+    }, [dataLoaded, data._id, setDataRoman, type]);
 
     if(!dataLoaded)
         return <Loading />;
@@ -57,18 +56,18 @@ export const CardResumeGeneric = (props) => {
                 </> 
             }
         </article>
-    )
+    );
 };
 
 export const CardsPersonnages = (props) => {
-    const [mounted, setMounted] = useState(false)
     const personnage = props.personnage;
-    const number = props.number
-    const roman = props.roman
+    const number = props.number;
+    const roman = props.roman;
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setTimeout(() => setMounted(true), props.time)
-    })
+    });
 
     return (
         mounted && (
@@ -99,17 +98,17 @@ export const CardsPersonnages = (props) => {
                 </div>
             </article>
         )
-    )
+    );
 };
 
 export const CardsLieux = (props) => {
-    const [mounted, setMounted] = useState(false);
     const lieu = props.lieu;
     const roman = props.roman;
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setTimeout(() => setMounted(true), props.delay)
-    }, [props.delay])
+    }, [props.delay]);
 
     return (
         mounted && (
@@ -148,40 +147,38 @@ export const CardsLieux = (props) => {
 
 export const CardsFiche = (props) => {
     const fiche = props.fiche;
-    const [couleurFiche, setCouleurFiche] = useState("")
+    const [couleurFiche, setCouleurFiche] = useState("");
 
     useEffect(() => {
         listeDomaines.forEach((domaine) => {
             if(fiche.domaine === domaine.domaine)
                 setCouleurFiche(domaine.couleur)
-        })
-    }, [fiche.domaine, couleurFiche])
+        });
+    }, [fiche.domaine, couleurFiche]);
 
     return (
-        <>
-            <article className="fiche" style={{ 
-                backgroundColor: `${couleurFiche}` }}>
-                <div className="header">
-                    <h1>{fiche.domaine}</h1>
-                    <h6>{props.roman}</h6>
+        <article className="fiche" style={{ 
+            backgroundColor: `${couleurFiche}` }}>
+            <div className="header">
+                <h1>{fiche.domaine}</h1>
+                <h6>{props.roman}</h6>
+            </div>
+            <div className="corps">
+                <div>
+                    <h2>{fiche.titre}</h2>
+                    <p>{fiche.contenuPrincipal}</p>
                 </div>
-                <div className="corps">
-                    <div>
-                        <h2>{fiche.titre}</h2>
-                        <p>{fiche.contenuPrincipal}</p>
-                    </div>
-                    <div>
-                        <h3>{fiche.titreSecondaire}</h3>
-                        <p>{fiche.contenuSecondaire}</p>
-                    </div>
-                    <div>
-                        <h4>{fiche.remarque}</h4>
-                        <p>{fiche.contenuRemarque}</p>
-                    </div>
+                <div>
+                    <h3>{fiche.titreSecondaire}</h3>
+                    <p>{fiche.contenuSecondaire}</p>
                 </div>
-            </article>
-        </>
-    )
+                <div>
+                    <h4>{fiche.remarque}</h4>
+                    <p>{fiche.contenuRemarque}</p>
+                </div>
+            </div>
+        </article>
+    );
 };
 
 export const CardsRoman = (props) => {
@@ -192,16 +189,13 @@ export const CardsRoman = (props) => {
     useEffect(() => {
         filteredDataByRoman(roman._id)
         .then((response) => {
-            setDataRoman(response)
+            setDataRoman(response);
             setDataLoaded(true);
         })
         .catch((err) => {
             console.log(err);
         });
-
-        console.log(roman)
     }, [dataLoaded, roman, setDataRoman]);
-
 
     if(!dataLoaded)
         return <Loading />;
@@ -228,5 +222,5 @@ export const CardsRoman = (props) => {
                 })}
             </ul>
         </article>
-    )
+    );
 };

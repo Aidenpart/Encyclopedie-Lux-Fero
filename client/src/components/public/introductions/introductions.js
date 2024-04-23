@@ -7,13 +7,13 @@ import "./introductionsStyles.scss";
 
 export const IntroductionAccueil = (props) => {
     const isDesktop = props.isDesktop;
-    const [classIntro, setClassIntro] = useState("")
+    const [classIntro, setClassIntro] = useState("");
 
     useEffect(() => {
         isDesktop ?
             setClassIntro("intro-desktop")
             : setClassIntro("accueil")
-    }, [isDesktop, setClassIntro])
+    }, [isDesktop, setClassIntro]);
     
     return (
         <article className={`intro ${classIntro}`}>

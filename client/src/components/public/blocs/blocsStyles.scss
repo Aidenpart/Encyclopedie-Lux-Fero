@@ -34,8 +34,8 @@
 
     form {
         @extend %flex-column;
+        @extend %margin;
         width: 80%;
-        margin: auto;
 
         label {
             @extend %padding;

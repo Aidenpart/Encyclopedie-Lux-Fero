@@ -14,67 +14,53 @@ $purple : #560bad;
             height: 3px; 
             width: 3px; 
             position: absolute;
-            animation: up 10s infinite ease-in-out;
-        }
+            animation: up 10s infinite ease-in-out; }
 
         .color-one-LF {
           background-color: $orange;
           box-shadow: 
                 0 0 5px 2px darken($color: $orange, $amount: 5%), 
                 0 0 10px 5px darken($color: $orange, $amount: 10%), 
-                0 0 20px 8px darken($color: $red, $amount: 35%);
-        }
+                0 0 20px 8px darken($color: $red, $amount: 35%); }
+
         .color-two-LF {
           background-color: $red;
           box-shadow: 
           0 0 5px 2px darken($color: $red, $amount: 5%), 
           0 0 10px 5px darken($color: $red, $amount: 25%), 
-          0 0 20px 8px darken($color: $orange, $amount: 50%);
-        }
+          0 0 20px 8px darken($color: $orange, $amount: 50%); }
         
         .color-one-RM {
           background-color: $blue;
           box-shadow: 
           0 0 5px 2px lighten($color: $blue, $amount: 5%), 
           0 0 10px 5px lighten($color: $blue, $amount: 15%), 
-          0 0 20px 8px darken($color: $blue, $amount: 20%);
-        }
+          0 0 20px 8px darken($color: $blue, $amount: 20%); }
         
         .color-two-RM {
           background-color: $purple;
           box-shadow: 
           0 0 5px 2px lighten($color: $purple, $amount: 5%), 
           0 0 10px 5px lighten($color: $purple, $amount: 25%), 
-          0 0 20px 8px lighten($color: $purple, $amount: 40%);
-        }
-
-
+          0 0 20px 8px lighten($color: $purple, $amount: 40%); }
 
         @for $i from 1 through 100 {
             li:nth-of-type(#{$i}) { 
                 right: random($limit: 100)*$percent;
                 animation-delay: ($i * 0.5s); 
                 animation-fill-mode: backwards, backwards; 
-            } 
-        }
-
-        
-
-    }
-
-}
-
-
+            };
+        };        
+    };
+};
 
 
 @keyframes up { 
   
     0% { 
-        top: 100%;
-    }
+        top: 100%; }
 
       
     100% {
-        top: 0%;
-    }
+        top: 0%; }
 } 

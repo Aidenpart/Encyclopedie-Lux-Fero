@@ -5,11 +5,9 @@
     justify-content: space-evenly;
 }
 
-
 .article-liens-pages-romans {
     .liens-pages-romans{
-        margin: 0 auto 50px;
-    }
+        margin: 0 auto 50px; }
 }
     
 @media #{$Min-Medium-Size} {
@@ -21,8 +19,7 @@
         .liens-pages-romans {
             h2 {
                 font-family: $Kanit;
-                font-size: 3em;
-            }
+                font-size: 3em; }
         }
     }
 }

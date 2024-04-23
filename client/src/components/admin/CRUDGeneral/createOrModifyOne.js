@@ -13,25 +13,25 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
     const nombreDeCaracteresLieu = 200;
     const nombreDeCaracteresPersonnage = 100;
     const [nombreDeCaracteresRestants, setNombreDeCaracteresRestants] = useState("")
-    const [nom, setNom] = useState(initialValues.nom || '');
-    const [roman, setRoman] = useState(initialValues.roman || '');
+    const [nom, setNom] = useState(initialValues.nom || "");
+    const [roman, setRoman] = useState(initialValues.roman || "");
     const [appartenances, setAppartenances] = useState([]);
-    const [appartenance, setAppartenance] = useState(initialValues.appartenance || '');
-    const [emplacement, setEmplacement] = useState(initialValues.emplacement || '');
-    const [description, setDescription] = useState(initialValues.description || '');
-    const [population, setPopulation] = useState(initialValues.population || '');
+    const [appartenance, setAppartenance] = useState(initialValues.appartenance || "");
+    const [emplacement, setEmplacement] = useState(initialValues.emplacement || "");
+    const [description, setDescription] = useState(initialValues.description || "");
+    const [population, setPopulation] = useState(initialValues.population || "");
     const [natures, setNatures] = useState([]);
-    const [nature, setNature] = useState(initialValues.nature || '');
-    const [demeure, setDemeure] = useState(initialValues.demeure || '');
-    const [titrePrincipal, setTitrePrincipal] = useState(initialValues.titrePrincipal || '');
-    const [titresSecondaires, setTitresSecondaires] = useState(initialValues.titresSecondaires || '');
-    const [sexe, setSexe] = useState(initialValues.sexe || '');
-    const [attirance, setAttirance] = useState(initialValues.attirance || '');
-    const [specialite, setSpecialite] = useState(initialValues.specialite || '');
-    const [sousSpecialite, setSousSpecialite] = useState(initialValues.sousSpecialite || '');
-    const [image, setImage] = useState('');
-    const [message, setMessage] = useState('');
-    const [token, setToken] = useState('');
+    const [nature, setNature] = useState(initialValues.nature || "");
+    const [demeure, setDemeure] = useState(initialValues.demeure || "");
+    const [titrePrincipal, setTitrePrincipal] = useState(initialValues.titrePrincipal || "");
+    const [titresSecondaires, setTitresSecondaires] = useState(initialValues.titresSecondaires || "");
+    const [sexe, setSexe] = useState(initialValues.sexe || "");
+    const [attirance, setAttirance] = useState(initialValues.attirance || "");
+    const [specialite, setSpecialite] = useState(initialValues.specialite || "");
+    const [sousSpecialite, setSousSpecialite] = useState(initialValues.sousSpecialite || "");
+    const [image, setImage] = useState("");
+    const [message, setMessage] = useState("");
+    const [token, setToken] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
 
     useEffect(() => {
@@ -73,31 +73,31 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('nom', nom);
-        formData.append('roman', roman);
-        formData.append('appartenance', appartenance);
-        formData.append('description', description);
-        formData.append('image', image);
+        formData.append("nom", nom);
+        formData.append("roman", roman);
+        formData.append("appartenance", appartenance);
+        formData.append("description", description);
+        formData.append("image", image);
         if(!isPersonnage) {
-            formData.append('emplacement', emplacement);
-            formData.append('population', population);
+            formData.append("emplacement", emplacement);
+            formData.append("population", population);
         }else {
-            formData.append('nature', nature);
-            formData.append('demeure', demeure);
-            formData.append('titrePrincipal', titrePrincipal);
-            formData.append('titresSecondaires', titresSecondaires);
-            formData.append('sexe', sexe);
-            formData.append('attirance', attirance);
-            formData.append('specialite', specialite);
-            formData.append('sousSpecialite', sousSpecialite);
+            formData.append("nature", nature);
+            formData.append("demeure", demeure);
+            formData.append("titrePrincipal", titrePrincipal);
+            formData.append("titresSecondaires", titresSecondaires);
+            formData.append("sexe", sexe);
+            formData.append("attirance", attirance);
+            formData.append("specialite", specialite);
+            formData.append("sousSpecialite", sousSpecialite);
         };
 
         if(!isPersonnage) {
             await onSubmit("lieu", token, formData, id)
             .then((response) => { 
                 isCreation? 
-                navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }}) 
-                : navigate(`/admin/CRUD`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
+                navigate("/admin", {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }}) 
+                : navigate("/admin/CRUD", {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
             })
             .catch((error) => {
                 console.log(error)
@@ -107,8 +107,9 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
             await onSubmit("personnage", token, formData, id)
             .then((response) => {
                 isCreation? 
-                navigate(`/admin`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }}) 
-                : navigate(`/admin/CRUD`, {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});            })
+                navigate("/admin", {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }}) 
+                : navigate("/admin/CRUD", {state: { dataCategory:dataCategory, isCreation:true, isPersonnage:dataCategory  }});
+            })
             .catch((error) => {
                 console.log(error)
                 setMessage(error.message);
@@ -117,7 +118,6 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
     };
 
     const handleFileUpload = (e) => {
-        console.log(e.target.files[0])
         const file = e.target.files[0];
         setImage(file);
     };
@@ -126,7 +126,7 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
         const description = e.target.value;
         setDescription(description)
         isPersonnage? setNombreDeCaracteresRestants(nombreDeCaracteresPersonnage-description.length) : setNombreDeCaracteresRestants(nombreDeCaracteresLieu-description.length)
-    }
+    };
 
     if (!dataLoaded)
         return <Loading />;
@@ -222,24 +222,24 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
 export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, isFiche, id }) => {
     const navigate = useNavigate();
     const romans = listeRomans;
-    const [roman, setRoman] = useState(initialValues.roman || '');
-    const [resume, setResume] = useState(initialValues.resume || '');
-    const [domaine, setDomaine] = useState(initialValues.domaine || '');
-    const [titre, setTitre] = useState(initialValues.titre || '');
-    const [contenuPrincipal, setContenuPrincipal] = useState(initialValues.contenuPrincipal || '');
-    const [titreSecondaire, setTitreSecondaire] = useState(initialValues.titreSecondaire || '');
-    const [contenuSecondaire, setContenuSecondaire] = useState(initialValues.contenuSecondaire || '');
-    const [remarque, setRemarque] = useState(initialValues.remarque || '');
-    const [contenuRemarque,setContenuRemarque ] = useState(initialValues.contenuRemarque || '');
-    const [nom, setNom] = useState(initialValues.nom || '');
-    const [nombreDePages, setNombreDePages] = useState(initialValues.nombreDePages || '');
-    const [nombreDeMots, setNombreDeMots] = useState(initialValues.nombreDeMots || '');
-    const [nombreDeSEC, setNombreDeSEC] = useState(initialValues.nombreDeSEC || '');
-    const [nombreDeParties, setNombreDeParties] = useState(initialValues.nombreDeParties || '');
-    const [nombreDeChapitres, setNombreDeChapitres] = useState(initialValues.nombreDeChapitres || '');
+    const [roman, setRoman] = useState(initialValues.roman || "");
+    const [resume, setResume] = useState(initialValues.resume || "");
+    const [domaine, setDomaine] = useState(initialValues.domaine || "");
+    const [titre, setTitre] = useState(initialValues.titre || "");
+    const [contenuPrincipal, setContenuPrincipal] = useState(initialValues.contenuPrincipal || "");
+    const [titreSecondaire, setTitreSecondaire] = useState(initialValues.titreSecondaire || "");
+    const [contenuSecondaire, setContenuSecondaire] = useState(initialValues.contenuSecondaire || "");
+    const [remarque, setRemarque] = useState(initialValues.remarque || "");
+    const [contenuRemarque,setContenuRemarque ] = useState(initialValues.contenuRemarque || "");
+    const [nom, setNom] = useState(initialValues.nom || "");
+    const [nombreDePages, setNombreDePages] = useState(initialValues.nombreDePages || "");
+    const [nombreDeMots, setNombreDeMots] = useState(initialValues.nombreDeMots || "");
+    const [nombreDeSEC, setNombreDeSEC] = useState(initialValues.nombreDeSEC || "");
+    const [nombreDeParties, setNombreDeParties] = useState(initialValues.nombreDeParties || "");
+    const [nombreDeChapitres, setNombreDeChapitres] = useState(initialValues.nombreDeChapitres || "");
     const [isFini, setIsFini] = useState(false);
-    const [message, setMessage] = useState('');
-    const [token, setToken] = useState('');
+    const [message, setMessage] = useState("");
+    const [token, setToken] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
 
     useEffect(() => {
@@ -252,35 +252,35 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
 
         const formData = new FormData();
         if(!isFiche) {
-            formData.append('nom', nom);
-            formData.append('resume', resume);
-            formData.append('nombreDePages', nombreDePages);
-            formData.append('nombreDeMots', nombreDeMots);
-            formData.append('nombreDeSEC', nombreDeSEC);
-            formData.append('nombreDeParties', nombreDeParties);
-            formData.append('nombreDeChapitres', nombreDeChapitres);
-            formData.append('isFini', isFini);        
+            formData.append(nom, nom);
+            formData.append("resume", resume);
+            formData.append("nombreDePages", nombreDePages);
+            formData.append("nombreDeMots", nombreDeMots);
+            formData.append("nombreDeSEC", nombreDeSEC);
+            formData.append("nombreDeParties", nombreDeParties);
+            formData.append("nombreDeChapitres", nombreDeChapitres);
+            formData.append("isFini", isFini);        
         }else {
-            formData.append('roman', roman);
-            formData.append('domaine', domaine);
-            formData.append('titre', titre);
-            formData.append('contenuPrincipal', contenuPrincipal);
-            formData.append('titreSecondaire', titreSecondaire);
-            formData.append('contenuSecondaire', contenuSecondaire);
-            formData.append('remarque', remarque);
-            formData.append('contenuRemarque', contenuRemarque);                  
+            formData.append("roman", roman);
+            formData.append("domaine", domaine);
+            formData.append("titre", titre);
+            formData.append("contenuPrincipal", contenuPrincipal);
+            formData.append("titreSecondaire", titreSecondaire);
+            formData.append("contenuSecondaire", contenuSecondaire);
+            formData.append("remarque", remarque);
+            formData.append("contenuRemarque", contenuRemarque);                  
         };
 
         try {
             if(!isFiche)
                 await onSubmit("roman", token, formData, id)
                 .then((response) => { 
-                    navigate(`/admin`);
+                    navigate("/admin");
                 }) 
             else
                 await onSubmit("fiche", token, formData, id)
                 .then((response) => { 
-                    navigate(`/admin`);
+                    navigate("/admin");
                 })
         } catch (error) {
             console.log(error)
@@ -289,10 +289,9 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
     };
 
     const handleStatus = (status) => {
-        console.log(status)
         status.value === "Achevé" ?
             setIsFini(true) : setIsFini(false)
-    }
+    };
 
     if (!dataLoaded)
         return <Loading />;
@@ -301,7 +300,7 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
         <article className="CRUD">
             <h3>{isCreation ? "Créer" : "Modifier"}</h3>
             <div>
-                <form className="formulaire" onSubmit={handleSubmit} encType='multipart/form-data'>
+                <form className="formulaire" onSubmit={handleSubmit} encType="multipart/form-data">
                     {isFiche && <>
                         <label>Domaine :
                             <select onChange={(e) => setDomaine(e.target.value)} value={domaine} required>

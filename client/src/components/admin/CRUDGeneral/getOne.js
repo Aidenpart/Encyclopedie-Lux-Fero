@@ -6,13 +6,13 @@ import { readData } from "../../../helpers/dataHelpers";
 
 export const GetOne = (props) => {
     const navigate = useNavigate();
-    const romans = props.romans
+    const romans = props.romans;
     const [text, setText] = useState("");
     const [message, setMessage] = useState("");
     const [datas, setDatas] = useState([]);
     const [selectedData, setSelectedData] = useState("");
     const [isRoman, setIsRoman] = useState(false);
-    const [roman, setRoman] = useState("")
+    const [roman, setRoman] = useState("");
     
     useEffect(() => {
         readData(props.dataCategory)
@@ -42,7 +42,7 @@ export const GetOne = (props) => {
             default:
                 setText("")
                 break;
-        }
+        };
         
     }, [setDatas, setMessage, props.dataCategory, setText, roman, romans, isRoman, setIsRoman]);
 
@@ -55,32 +55,30 @@ export const GetOne = (props) => {
     
     return (
         <section className="CRUD">
-            <h3>Chercher {text}</h3>
-            <div>
-                <form onSubmit={handleSubmitOne} className="formulaire">
-                    {!isRoman && 
-                        <label> Roman :
-                            <select onChange={(e) => setRoman(e.target.value)}>
-                                <option disabled={true} selected>-----</option>
-                                {romans.map((roman,i) => {
-                                    return <option key={i} value={roman._id}>{roman.nom}</option>
-                                })}
-                            </select>
-                        </label>
-                    }
-                    <label>Nom {text}
-                        <select onChange={(e) => setSelectedData(e.target.value)}>
+            <h3>Chercher</h3>
+            <form onSubmit={handleSubmitOne} className="formulaire">
+                {!isRoman && 
+                    <label> Roman :
+                        <select onChange={(e) => setRoman(e.target.value)}>
                             <option disabled={true} selected>-----</option>
-                            {datas.map((data, i) => {
-                                return <option key={i}>{data.nom || data.titre}</option>
+                            {romans.map((roman,i) => {
+                                return <option key={i} value={roman._id}>{roman.nom}</option>
                             })}
                         </select>
                     </label>
-                    <button>Chercher</button>
-                </form>
-            </div>
+                }
+                <label>Nom {text}
+                    <select onChange={(e) => setSelectedData(e.target.value)}>
+                        <option disabled={true} selected>-----</option>
+                        {datas.map((data, i) => {
+                            return <option key={i}>{data.nom || data.titre}</option>
+                        })}
+                    </select>
+                </label>
+                <button>Chercher</button>
+            </form>
             <div className={"err-message"}>
-            {message}
+                {message}
             </div>
         </section>
     );

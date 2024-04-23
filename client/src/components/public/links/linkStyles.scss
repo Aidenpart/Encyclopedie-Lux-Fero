@@ -34,31 +34,27 @@
 }
 
 .lien-accueil, .link-footer, .general-link {
-    text-decoration: none;
-}
+    text-decoration: none; }
 
 .lien-accueil:hover .texte-lien-accueil {
-    display: flex;  }
+    display: flex; }
 
 .link-footer {
-    color: whitesmoke;
-}
+    color: whitesmoke; }
 
 .absconditus {
-    color: transparent;
-}
+    color: transparent; }
 
 .general-link {
     font-size: 1.5em;
-    color: black;
-}
+    color: black; }
 
 .CRUD-link {
     text-decoration: underline;
     font-size: 2em;
-    color: darkblue;
-}
+    color: darkblue; }
 
+    
 @media #{$Max-Large-Size} {
     
     .lien-accueil .texte-lien-accueil {

@@ -13,11 +13,10 @@ const initialState = {
 export const romanSlice = createSlice({
     
     name: "romanSlice",
-    
+
     initialState,
-    
+
     reducers: {
-        
         addRoman: (state, action) => {
             return {
                 ...state,
@@ -30,13 +29,11 @@ export const romanSlice = createSlice({
                 isFini: action.payload.isFini               
             };
         },
-        
         deleteRoman:(state, action) => {
             return {
                 ...initialState
             };
         }
-        
     }
     
 });

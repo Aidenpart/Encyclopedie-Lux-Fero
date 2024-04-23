@@ -18,13 +18,13 @@ function filterRecentData (data) {
         let d = new Date( e.updatedAt ); 
         return d.getTime() === mostRecentDate.getTime();
     })[0];
-    return mostRecentObject
+    return mostRecentObject;
 };
 
 
 export const ReadAll = (props) => {
     const type = props.type;
-    const datas = props.datas
+    const datas = props.datas;
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const handleClick = () => {
@@ -51,7 +51,7 @@ export const ReadAll = (props) => {
 export const LatestData = (props) => {
     const type = props.type;
     const roman = props.roman;
-    const [latestDataFound, setLatestDataFound] = useState("")
+    const [latestDataFound, setLatestDataFound] = useState("");
 
     useEffect(() => {
         readData(type)
@@ -62,7 +62,7 @@ export const LatestData = (props) => {
                 setLatestDataFound(filterRecentData(response.filter((data) => data.roman === roman.id)))
             }
         })
-    }, [roman, type])
+    }, [roman, type]);
 
     return(
         <tr>
@@ -76,13 +76,16 @@ export const LatestData = (props) => {
 
 
 export const SortData = (props) => {
-    const [dataFilter, setDataFilter] = useState("");
     const datas = props.datas;
     const type = props.type.slice(0, -1);
+    const [dataFilter, setDataFilter] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false); 
     const [errorMessage, setErrorMessage] = useState([]);
     const [categories, setCategories] = useState([]);
     const [textType, setTextType] = useState("");
+    const [selectedData, setSelectedData] = useState("");
+    const [filterOne, setFilterOne] = useState("");
+    const [filterTwo, setFilterTwo] = useState("");
     const [selectValues, setSelectValues] = useState({
         nom: "",
         appartenance: "",
@@ -90,27 +93,20 @@ export const SortData = (props) => {
         domaine: ""
     });
 
-
-    const [selectedData, setSelectedData] = useState("");
-
-    const [filterOne, setFilterOne] = useState("");
-    const [filterTwo, setFilterTwo] = useState("");
-
-
     useEffect(() => {       
         if(type === "fiche") {
-            setTextType(`de la ${type}`)
-            setCategories(listeDomaines.map(categorie => categorie.domaine))
-            setFilterOne("titre")
-            setFilterTwo("domaine")
+            setTextType(`de la ${type}`);
+            setCategories(listeDomaines.map(categorie => categorie.domaine));
+            setFilterOne("titre");
+            setFilterTwo("domaine");
         }else {
-            setFilterOne("nom")
-            setFilterTwo("appartenance")
-            setTextType(`du ${type}`)
+            setFilterOne("nom");
+            setFilterTwo("appartenance");
+            setTextType(`du ${type}`);
             if (props.roman === "Lux Fero") 
-                setCategories(appartenancesLuxFero) 
+                setCategories(appartenancesLuxFero); 
             else 
-                setCategories(appartenancesReginaMagicae)
+                setCategories(appartenancesReginaMagicae);
         }
     }, [props.roman, type, setCategories]);
 
@@ -127,18 +123,16 @@ export const SortData = (props) => {
                 : setErrorMessage("Aucune donnée dans cette catégorie")
             setSelectedData(false)
         };
-        
     };
 
-    const handleChange = (selectedSelect, fr) => {
-        const updatedSelectValues = {...selectValues, [fr]: selectedSelect};
-        setDataFilter(fr)
+    const handleChange = (selectedSelect, selectName) => {
+        const updatedSelectValues = {...selectValues, [selectName]: selectedSelect};
+        setDataFilter(selectName);
         setSelectValues(updatedSelectValues);
         
         Object.keys(updatedSelectValues).forEach(name => {
-            if (name !== fr) {
+            if (name !== selectName)
                 updatedSelectValues[name] = "";
-            }
         });
     };
 

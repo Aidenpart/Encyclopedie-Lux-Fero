@@ -16,7 +16,6 @@ export const PageAdmin = () => {
     useEffect(() => {       
         setDataLoaded(true);
         document.title = "Page Administrateur";
-
     }, [setDataLoaded]);
 
     if (!dataLoaded)
@@ -45,5 +44,5 @@ export const PageAdmin = () => {
             </main>
             <Footer />
         </section>
-    )
-}
+    );
+};

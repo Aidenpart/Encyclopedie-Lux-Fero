@@ -22,7 +22,7 @@ export const PageMentionsLegales = () => {
                     <p>Site crée par Sulivan GEFFROY</p>
                     <a href="">Envoyer un courriel</a>
                     <h2>But du site</h2>
-                    <p>Ce site est un projet personnel n'ayant pas de but lucratif.</p>
+                    <p>Ce site est un projet personnel n'ayant pas de but lucratif. Il ne sera pas mis en ligne.</p>
                     <h2>Mentions Relatives à la Propriété Intellectuelle</h2>
                     <p>Les polices de caractère sont issues de Google-Fonts</p>
                     <p>Les images sont issues de Wallhaven.cc et appartiennent à leurs auteurs et autrices respectives</p>

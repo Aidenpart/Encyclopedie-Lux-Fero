@@ -12,10 +12,10 @@ export const createData = async(type, token, formData, id) => {
     });
     const response = await creation.json();
     if (creation.ok)
-        return response
+        return response ;
     else
-        throw new Error(response.message)
-}
+        throw new Error(response.message) ;
+};
 
 
 export const updateData = async(type, token, formData, id) => {
@@ -30,8 +30,8 @@ export const updateData = async(type, token, formData, id) => {
         return update.json();
     } catch (error) {
         return error;
-    } 
-}
+    };
+};
 
 
 export const deleteData = async (type, token, id) => {
@@ -45,8 +45,8 @@ export const deleteData = async (type, token, id) => {
         return response;
     } catch (error) {
         console.log(error);
-        return error
-    }
+        return error;
+    };
 };
 
 
@@ -57,8 +57,8 @@ export const readData = async (spec) => {
         return data;
     } catch (error) {
         console.log(error);
-        return error
-    }
+        return error;
+    };
 };
 
 
@@ -69,8 +69,8 @@ export const readOneData = async (type, id) => {
         return data;
     } catch (error) {
         console.log(error);
-        return error
-    }
+        return error;
+    };
 };
 
 
@@ -82,6 +82,6 @@ export const filteredDataByRoman = async (idRoman) => {
         return data;
     } catch (error) {
         console.log(error);
-        return error
+        return error;
     }
 };

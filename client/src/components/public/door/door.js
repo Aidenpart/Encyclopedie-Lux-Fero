@@ -11,13 +11,13 @@ export const Door = (props) => {
 
     useEffect(() => {
         if(roman === "Lux Fero") {
-            setPanelColor("darkred, yellow")
-            setDoorColor("linear-gradient(darkgrey, black)")
+            setPanelColor("darkred, yellow");
+            setDoorColor("linear-gradient(darkgrey, black)");
         }else {
-            setPanelColor("#020024 0%, #dae7f9 80%")
-            setDoorColor("linear-gradient(#e66465, #9198e5)")
+            setPanelColor("#020024 0%, #dae7f9 80%");
+            setDoorColor("linear-gradient(#e66465, #9198e5)");
         }
-    }, [roman])
+    }, [roman]);
 
     return (
         <div className="lintel">
@@ -35,19 +35,16 @@ export const Door = (props) => {
                 <div id="right-knob" className="knob"></div>
             </div>
             <Flames roman={roman} />
-
-            
-
         </div>
-    )
-}
+    );
+};
 
 
 function setStylePanel (orientation, colors) {
-    let style = `linear-gradient(${orientation}deg, ${colors}`
+    let style = `linear-gradient(${orientation}deg, ${colors}`;
 
-    return  style
-}
+    return style;
+};
 
 
 export const Fireflies = () => {
@@ -80,13 +77,14 @@ export const Fireflies = () => {
     );
 };
 
+
 export const Flames = (props) => {
-    const [colorOne, setColorOne] = useState("")
-    const [colorTwo, setColorTwo] = useState("")
-    const [numberOfFlames, setNumberOfFlames] = useState()
+    const [colorOne, setColorOne] = useState("");
+    const [colorTwo, setColorTwo] = useState("");
+    const [numberOfFlames, setNumberOfFlames] = useState();
 
     useEffect(() => {
-        setNumberOfFlames(setRandomNumberOfFlames(10, 20))
+        setNumberOfFlames(setRandomNumberOfFlames(10, 20));
 
         if(props.roman === "Lux Fero") {
             setColorOne("color-one-LF");
@@ -95,7 +93,7 @@ export const Flames = (props) => {
             setColorOne("color-one-RM");
             setColorTwo("color-two-RM");
         }
-    }, [props.roman]) 
+    }, [props.roman]) ;
 
     return (
         <div className="body-flames">
@@ -108,5 +106,5 @@ export const Flames = (props) => {
 };
 
 function setRandomNumberOfFlames (min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    return Math.floor(Math.random() * (max - min + 1) + min);
 };

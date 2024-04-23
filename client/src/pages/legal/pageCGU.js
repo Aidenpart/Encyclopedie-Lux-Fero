@@ -7,7 +7,7 @@ import "./legalStyles.scss";
 
 
 export const PageCGU = () => {
-
+    
     useEffect(() => {
         document.title = "CGU";
     });
