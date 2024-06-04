@@ -66,8 +66,8 @@ export const CardsPersonnages = (props) => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setTimeout(() => setMounted(true), props.time)
-    });
+        setTimeout(() => setMounted(true), props.delay)
+    }, [props.delay]);
 
     return (
         mounted && (

@@ -8,6 +8,8 @@ import "./cardsStyles.scss";
 
 
 export const CardComponent = (props) => {
+    console.log(props)
+
     const time = 500;
     const [dataLoaded, setDataLoaded] = useState(false);
     const [romans, setRomans] = useState([]);
@@ -47,6 +49,7 @@ export const CardComponent = (props) => {
                 console.log(err);
             });
         }
+
     }, [dataLoaded, setDataLoaded, props.type]);
 
     if (!dataLoaded)
@@ -59,7 +62,7 @@ export const CardComponent = (props) => {
 
                 return isData ?
                     isCategoryPersonnage ?
-                        <CardsPersonnages key={i} personnage={data} delay={time*i} roman={nomRoman} number={i} />
+                        <CardsPersonnages key={i} personnage={data} delay={time * i} roman={nomRoman} number={i} />
                         : <CardsLieux key={i} lieu={data} delay={time * i} roman={nomRoman} />
                     : isCategoryFiche ?
                         <CardsFiche key={i} fiche={data} roman={nomRoman} />

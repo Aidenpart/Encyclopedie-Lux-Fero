@@ -34,6 +34,7 @@ export const PageAccueil = () => {
         return () => window.removeEventListener("resize", updateMedia);
     }, [setClassDivAccueil, isDesktop]);
 
+
     return (
         <section className="page">
             <NavBar />

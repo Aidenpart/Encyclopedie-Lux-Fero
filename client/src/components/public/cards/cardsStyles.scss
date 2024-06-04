@@ -11,6 +11,7 @@
     perspective: 1000px;
     margin: 10px;
     text-align: center;
+    animation: delay 1s;
 
     .interieur {
         @extend %max-width-height;

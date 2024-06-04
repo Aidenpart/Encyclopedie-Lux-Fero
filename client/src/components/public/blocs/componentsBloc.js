@@ -77,7 +77,7 @@ export const LatestData = (props) => {
 
 export const SortData = (props) => {
     const datas = props.datas;
-    const type = props.type.slice(0, -1);
+    const type = props.type;
     const [dataFilter, setDataFilter] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false); 
     const [errorMessage, setErrorMessage] = useState([]);
@@ -94,32 +94,34 @@ export const SortData = (props) => {
     });
 
     useEffect(() => {       
-        if(type === "fiche") {
-            setTextType(`de la ${type}`);
+        if(type === "fiches") {
+            setTextType(`de la ${type.slice(0, -1)}`);
             setCategories(listeDomaines.map(categorie => categorie.domaine));
             setFilterOne("titre");
             setFilterTwo("domaine");
         }else {
             setFilterOne("nom");
             setFilterTwo("appartenance");
-            setTextType(`du ${type}`);
+            setTextType(`du ${type.slice(0, -1)}`);
             if (props.roman === "Lux Fero") 
                 setCategories(appartenancesLuxFero); 
             else 
                 setCategories(appartenancesReginaMagicae);
         }
+
     }, [props.roman, type, setCategories]);
 
     const handleSubmit = (e, filter) => {
         e.preventDefault();
         let data = datas.filter((data) => selectValues[filter] === data[filter]);
         if((e.target[0].value || e.target[1].value !== "") && data.length !== 0) {
+            console.log(e.target[0].value)
             setSelectedData(data)
             setErrorMessage(false)
             setModalIsOpen(true)
         }else {
             filter === "" ?
-                setErrorMessage("Selectionnez une catégorie")
+                setErrorMessage("Selectionnez une catégorie ou un nom")
                 : setErrorMessage("Aucune donnée dans cette catégorie")
             setSelectedData(false)
         };
@@ -144,7 +146,7 @@ export const SortData = (props) => {
         <section>
             <div>
                 <form className="sort-data-form" onSubmit={(e) => handleSubmit(e, dataFilter)}>
-                    <label>{`${capitalizeFirstLetter(filterOne)} ${textType}`} :
+                    <label>{`${capitalizeFirstLetter(filterOne)} ${textType}`} : <br />
                         <select value={selectValues.nom || selectValues.titre} onChange={(e) => handleChange(e.target.value, filterOne)}>
                             <option value={""}>-----</option>
                             {datas.map((data, i) => {
@@ -152,7 +154,7 @@ export const SortData = (props) => {
                             })}
                         </select>                    
                     </label>
-                    <label>{`${capitalizeFirstLetter(filterTwo)} ${textType}`} : 
+                    <label>{`${capitalizeFirstLetter(filterTwo)} ${textType}`} : <br />
                         <select value={selectValues.appartenance || selectValues.domaine} onChange={(e) => handleChange(e.target.value, filterTwo)}>
                             <option value={""}>-----</option>
                                 {categories.map((data, i) => {

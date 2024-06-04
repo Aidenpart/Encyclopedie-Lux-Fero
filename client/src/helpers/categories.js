@@ -8,6 +8,7 @@ export const naturesAutres = ["Humain(e)", "Cavalier"];
 
 export const listeRomans = ["Lux Fero", "Regina Magicae"];
 export const listSexes = ["mâle", "femelle", "autre"];
+export const listAttirances = ["hétérosexuelle", "homosexuelle", "bisexuelle", "asexuelle", "autres"]
 export const listDataCategories = ["lieux", "personnages", "fiches", "romans"];
 export const listeDomaines = [ 
     {domaine:"Architecture", couleur:"#E77728"},

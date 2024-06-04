@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Loading } from "../../public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
-import { listSexes, listeRomans, listeDomaines, appartenancesLuxFero, appartenancesReginaMagicae, naturesMages, naturesCelestes, naturesAutres, naturesInfernales } from "../../../helpers/categories.js";
+import { listSexes, listeRomans, listeDomaines, appartenancesLuxFero, appartenancesReginaMagicae, naturesMages, naturesCelestes, naturesAutres, naturesInfernales, listAttirances } from "../../../helpers/categories.js";
 import "./generalCRUD.scss"
 
 
@@ -31,6 +31,7 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
     const [sousSpecialite, setSousSpecialite] = useState(initialValues.sousSpecialite || "");
     const [image, setImage] = useState("");
     const [message, setMessage] = useState("");
+    const [secondMessage, setSecondMessage] = useState("");
     const [token, setToken] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -71,6 +72,11 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (roman === "-----" || appartenance === "-----" || (isPersonnage && (nature === "-----" || sexe === "-----" || attirance === "-----"))) {
+            setMessage("Veuillez sélectionner une valeur valide pour tous les champs.");
+            return;
+        }
 
         const formData = new FormData();
         formData.append("nom", nom);
@@ -182,7 +188,12 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                             </select>
                         </label>
                         <label>Attirance :
-                            <input onChange={(e) => setAttirance(e.target.value)} value={attirance} type="text"  />
+                            <select onChange={(e) => setAttirance(e.target.value)} value={attirance}>
+                                    <option>-----</option>
+                                    {listAttirances.map((attirance, i) => {
+                                        return <option key={i}>{attirance}</option>;
+                                    })}
+                            </select>
                         </label>
                         <label>Spécialité :
                             <input onChange={(e) => setSpecialite(e.target.value)} value={specialite} type="text" required />
@@ -249,6 +260,12 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+
+        if (roman === "-----" || domaine === "-----" ) {
+            setMessage("Veuillez sélectionner une valeur valide pour tous les champs.");
+            return;
+        }
 
         const formData = new FormData();
         if(!isFiche) {
