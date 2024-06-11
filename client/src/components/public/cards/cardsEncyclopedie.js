@@ -73,7 +73,7 @@ export const CardsPersonnages = (props) => {
         mounted && (
             <article key={number} className="carte">
                 <div className="interieur">
-                    <div className="recto" style={{ backgroundImage: `url(${URL}/${personnage.image})`, backgroundPosition: 'center', backgroundSize: 'contain' }}>
+                    <div className="recto" style={{backgroundImage: `url(${URL}/${personnage.image})`}}>
                         <div className="top">
                             <RomanNumber i={number}/><p>{personnage.nom}</p><RomanNumber i={number}/>
                         </div>

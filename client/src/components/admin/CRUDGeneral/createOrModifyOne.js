@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Loading } from "../../public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
-import { listSexes, listeRomans, listeDomaines, appartenancesLuxFero, appartenancesReginaMagicae, naturesMages, naturesCelestes, naturesAutres, naturesInfernales, listAttirances } from "../../../helpers/categories.js";
+import { listeNatures, listSexes, listeRomans, listeDomaines, appartenancesLuxFero, appartenancesReginaMagicae, naturesMages, naturesCelestes, naturesAutres, naturesInfernales, listAttirances } from "../../../helpers/categories.js";
 import "./generalCRUD.scss"
 
 
@@ -31,7 +31,6 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
     const [sousSpecialite, setSousSpecialite] = useState(initialValues.sousSpecialite || "");
     const [image, setImage] = useState("");
     const [message, setMessage] = useState("");
-    const [secondMessage, setSecondMessage] = useState("");
     const [token, setToken] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -46,6 +45,8 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
         setToken(getToken());
         setDataLoaded(true);
     }, [initialValues, setDataLoaded, setToken, setAppartenances, roman]);
+
+
 
     useEffect(() => {
         switch (appartenance) {
@@ -386,7 +387,7 @@ export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, is
                     <button>{isCreation ? "Créer" : "Modifier"}</button>
                 </form>
             </div>
-            <div>
+            <div className="error">
                 {message}
             </div>
         </article>

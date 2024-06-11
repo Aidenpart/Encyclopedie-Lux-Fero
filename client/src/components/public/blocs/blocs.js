@@ -43,6 +43,7 @@ export const LatestDataAdd = (props) => {
     const roman = props.roman;
 
     useEffect(() => {
+
         props.isDesktop ?
             setClassDesktop("latest-add-desktop")
             : setClassDesktop("")

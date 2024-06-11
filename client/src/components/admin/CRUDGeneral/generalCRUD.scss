@@ -55,3 +55,10 @@
         font-size: 1.25em;
         margin: 10px auto; }
 }
+
+
+@media #{$Min-Large-Size} {
+    .CRUD {
+        width: 1200px;
+    }
+}

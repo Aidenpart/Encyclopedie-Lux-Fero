@@ -28,6 +28,8 @@
     
         .recto { 
             box-shadow: 5px 5px 5px 0px rgba(38, 38, 38, 0.2);
+            background-position: center;
+            background-size: cover;
     
             .top, .bottom {
                 background-color: whitesmoke;
@@ -245,7 +247,7 @@
         height: 320px; 
 
         .interieur {  
-            .recto {    
+            .recto {        
                 .image-BG {    
                     .text {
                         height: 40%;

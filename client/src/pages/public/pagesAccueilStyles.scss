@@ -2,12 +2,12 @@
 
 .desktop {
     display: flex;
-    justify-content: space-evenly;
-}
+    justify-content: space-evenly; }
 
 .article-liens-pages-romans {
     .liens-pages-romans{
-        margin: 0 auto 50px; }
+        margin: 0 auto 50px;
+        width: 50%; }
 }
     
 @media #{$Min-Medium-Size} {
