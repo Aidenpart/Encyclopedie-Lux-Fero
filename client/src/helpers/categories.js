@@ -1,7 +1,7 @@
-export const appartenancesReginaMagicae = ["Humanité", "Mages", "Autres"];
-export const appartenancesLuxFero = ["Enfer", "Cieux", "Humanité"];
-
-
+export const listeAppartenances = {
+    ReginaMagicae : ["Humanité", "Mages", "Autres"],
+    LuxFero: ["Enfer", "Cieux", "Humanité"]
+}
 
 export const listeNatures = { 
     Cieux: ["Archange", "Ange Primordial(e)", "Ange"],
@@ -19,10 +19,17 @@ export const listeDemeures = {
     Autres: ["Humain(e)", "Cavalier"]
 }
 
-export const listeRomans = ["Lux Fero", "Regina Magicae"];
-export const listSexes = ["mâle", "femelle", "autre"];
-export const listAttirances = ["hétérosexuelle", "homosexuelle", "bisexuelle", "asexuelle", "autres"]
-export const listDataCategories = ["lieux", "personnages", "fiches", "romans"];
+export const listeDetailsCRUD = {
+    romans: ["Lux Fero", "Regina Magicae"],
+    sexes: ["mâle", "femelle", "autre"],
+    attirances: ["hétérosexuelle", "homosexuelle", "bisexuelle", "asexuelle", "autres"]
+}
+
+export const listeSpecs = {
+    romans: ["Lux Fero", "Regina Magicae"],
+    categories: ["lieux", "personnages", "fiches", "romans"]
+}
+
 export const listeDomaines = [ 
     {domaine:"Architecture", couleur:"#E77728"},
     {domaine:"Magie", couleur:"#E1A624"},

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { listeRomans } from '../../../helpers/categories.js';
+import { listeSpecs } from '../../../helpers/categories.js';
 import { ReloadLinkDynamicData, GenericLink, LinkConditionalNavigationBurger, LinkLogOutBurger } from "../links/links.js";
 import "./navBar.scss";
 
@@ -20,7 +20,7 @@ export const NavBar = () => {
                 <li className="nav-item">
                     <GenericLink direction={"/"} class={"nav-link"} text={"Accueil"}/>
                 </li>
-                {listeRomans.map((roman, i) => {
+                {listeSpecs.romans.map((roman, i) => {
                     return (
                         <li className="nav-item" key={i}>
                             <ReloadLinkDynamicData 

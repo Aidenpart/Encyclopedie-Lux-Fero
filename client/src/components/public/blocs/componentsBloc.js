@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { CardComponent } from "../cards/componentsCard.js";
-import { appartenancesLuxFero, appartenancesReginaMagicae, listeDomaines } from "../../../helpers/categories";
+import { listeDomaines, listeAppartenances } from "../../../helpers/categories";
 import { readData } from "../../../helpers/dataHelpers";
 
 
@@ -104,9 +104,9 @@ export const SortData = (props) => {
             setFilterTwo("appartenance");
             setTextType(`du ${type.slice(0, -1)}`);
             if (props.roman === "Lux Fero") 
-                setCategories(appartenancesLuxFero); 
+                setCategories(listeAppartenances.LuxFero); 
             else 
-                setCategories(appartenancesReginaMagicae);
+                setCategories(listeAppartenances.ReginaMagicae);
         }
 
     }, [props.roman, type, setCategories]);

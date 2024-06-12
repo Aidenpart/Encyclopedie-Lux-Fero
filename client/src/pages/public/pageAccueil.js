@@ -8,7 +8,7 @@ import { Door } from "../../components/public/door/door";
 import { Footer } from "../../components/public/footer/footer";
 import { IntroductionAccueil } from "../../components/public/introductions/introductions";
 import { ResumeLuxFero, ResumeReginaMagicae } from "../../components/public/introductions/introductions";
-import { listeRomans } from "../../helpers/categories";
+import { listeSpecs } from "../../helpers/categories";
 import "./pagesAccueilStyles.scss"
 
 
@@ -47,7 +47,7 @@ export const PageAccueil = () => {
                     </div>
                 </article>
                 <article className="article-liens-pages-romans">
-                    {listeRomans.map((roman, i) => {
+                    {listeSpecs.romans.map((roman, i) => {
                         return (
                             <section key={i} className="liens-pages-romans">
                                 {isMobile && 

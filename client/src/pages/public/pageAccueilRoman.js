@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { NavBar } from "../../components/public/navBar/navBar.js";
-import { listDataCategories } from "../../helpers/categories.js";
+import { listeSpecs } from "../../helpers/categories.js";
 import { HeaderRoman } from "../../components/public/header/header.js";
 import { readData } from "../../helpers/dataHelpers.js";
 import { addRoman } from "../../store/slice/romanSlice.js";
@@ -53,7 +53,7 @@ export const PageAccueilRoman = () => {
             <main>
                 <HeaderRoman text={nomRoman} />
                 <LatestDataAdd roman={roman} isDesktop={isDesktop}/>
-                {listDataCategories.slice(0, -1).map((categorie, i) => {
+                {listeSpecs.categories.slice(0, -1).map((categorie, i) => {
                     return (<DataBloc datas={categorie} dataType={`${categorie}`} key={i} roman={roman}/>)
                 })}
             </main>

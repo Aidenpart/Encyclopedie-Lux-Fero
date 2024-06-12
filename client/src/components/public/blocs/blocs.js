@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { readData } from "../../../helpers/dataHelpers.js";
 import {capitalizeFirstLetter, ReadAll, SortData, LatestData} from "./componentsBloc.js"
-import { listDataCategories } from "../../../helpers/categories.js";
+import { listeSpecs } from "../../../helpers/categories.js";
 import "./blocsStyles.scss"
 
 
@@ -38,7 +38,7 @@ export const DataBloc = (props) => {
 
 
 export const LatestDataAdd = (props) => {
-    const [categories, setCategories] = useState(listDataCategories);
+    const [categories, setCategories] = useState(listeSpecs.categories);
     const [classDesktop, setClassDesktop] = useState("");
     const roman = props.roman;
 
@@ -49,9 +49,9 @@ export const LatestDataAdd = (props) => {
             : setClassDesktop("")
 
         if(roman === undefined)
-            setCategories(listDataCategories)
+            setCategories(listeSpecs.categories)
         else
-            setCategories(listDataCategories.slice(0,-1))
+            setCategories(listeSpecs.categories.slice(0,-1))
     }, [setCategories, roman, props.isDesktop])
 
     return (

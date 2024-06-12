@@ -6,7 +6,7 @@ import { Loading } from "./components/public/loading/loading.js";
 import { getUserbyToken } from "./helpers/authHelpers.js";
 import { AdminMiddleware } from "./router/authMiddleware.js";
 import { addUser } from "./store/slice/userSlice";
-import { listDataCategories, listeRomans } from "./helpers/categories.js";
+import { listeSpecs } from "./helpers/categories.js";
 
 import { PageAccueil } from "./pages/public/pageAccueil.js";
 import { PageAccueilRoman } from "./pages/public/pageAccueilRoman.js";
@@ -48,7 +48,7 @@ function App() {
   return (
       <Routes>
         <Route path="/" element={<PageAccueil />} />
-        {listeRomans.map((roman, i) => {
+        {listeSpecs.romans.map((roman, i) => {
           return <Route key={i} path={`/accueil-${roman.replace(/\s/, "-")}`} element={<PageAccueilRoman />}/>
         })}
         <Route path="/cgu" element={<PageCGU />} />
@@ -58,7 +58,7 @@ function App() {
 
         <Route path="/admin" element={<AdminMiddleware> <PageAdmin /> </AdminMiddleware>} />
         <Route path="/admin/CRUD" element={<AdminMiddleware> <PageCRUD /> </AdminMiddleware>} />
-        {listDataCategories.map((categorie, i) => {
+        {listeSpecs.categories.map((categorie, i) => {
           return <Route key={i} path={`/admin/CRUD/${categorie}/:id`} element={<AdminMiddleware> <PageOne /> </AdminMiddleware>} />
         })}
       </Routes>

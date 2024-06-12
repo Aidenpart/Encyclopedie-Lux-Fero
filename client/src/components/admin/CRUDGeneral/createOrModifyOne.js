@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 import { Loading } from "../../public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
-import { listeNatures, listSexes, listeRomans, listeDomaines, appartenancesLuxFero, appartenancesReginaMagicae, listAttirances } from "../../../helpers/categories.js";
+import { listeNatures, listeDetailsCRUD, listeAppartenances, listeDomaines, listeSpecs } from "../../../helpers/categories.js";
 import "./generalCRUD.scss"
 
 
 export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, isPersonnage, id, dataCategory }) => {
     const navigate = useNavigate();
-    const romans = listeRomans;
+    const romans = listeSpecs.romans;
     const nombreDeCaracteresLieu = 200;
     const nombreDeCaracteresPersonnage = 100;
     const [nombreDeCaracteresRestants, setNombreDeCaracteresRestants] = useState("")
@@ -36,9 +36,9 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
 
     useEffect(() => {
         if (initialValues.roman === "Lux Fero" || roman === "Lux Fero") {
-            setAppartenances(appartenancesLuxFero);
+            setAppartenances(listeAppartenances.LuxFero);
         }else if (initialValues.roman === "Regina Magicae" || roman === "Regina Magicae") {
-            setAppartenances(appartenancesReginaMagicae);
+            setAppartenances(listeAppartenances.ReginaMagicae);
         }else 
             setAppartenances(["-----"]);
 
@@ -184,7 +184,7 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                         <label>Sexe :
                             <select onChange={(e) => setSexe(e.target.value)} value={sexe}>
                                 <option>-----</option>
-                                {listSexes.map((sexe, i) => {
+                                {listeDetailsCRUD.sexes.map((sexe, i) => {
                                     return <option key={i}>{sexe}</option>;
                                 })}
                             </select>
@@ -192,7 +192,7 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                         <label>Attirance :
                             <select onChange={(e) => setAttirance(e.target.value)} value={attirance}>
                                     <option>-----</option>
-                                    {listAttirances.map((attirance, i) => {
+                                    {listeDetailsCRUD.attirances.map((attirance, i) => {
                                         return <option key={i}>{attirance}</option>;
                                     })}
                             </select>
@@ -234,7 +234,7 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
 
 export const CreateOrModifyTextForm = ({ initialValues, onSubmit, isCreation, isFiche, id }) => {
     const navigate = useNavigate();
-    const romans = listeRomans;
+    const romans = listeDetailsCRUD.romans;
     const [roman, setRoman] = useState(initialValues.roman || "");
     const [resume, setResume] = useState(initialValues.resume || "");
     const [domaine, setDomaine] = useState(initialValues.domaine || "");

@@ -6,7 +6,7 @@ import { GenericLinkDynamicData } from "../../components/public/links/links.js";
 import { IntroductionAdmin } from "../../components/public/introductions/introductions.js";
 import { Header } from "../../components/public/header/header.js";
 import { Footer } from "../../components/public/footer/footer.js";
-import { listDataCategories } from "../../helpers/categories.js";
+import { listeSpecs } from "../../helpers/categories.js";
 import "./stylesAdmin.scss"
 
 
@@ -28,7 +28,7 @@ export const PageAdmin = () => {
                 <Header text={"Admin"}/>
                 <IntroductionAdmin />
                 <div className="link-zone">
-                    {listDataCategories.map((dataCategory, i) => {
+                    {listeSpecs.categories.map((dataCategory, i) => {
                         return <GenericLinkDynamicData 
                                     key={i}
                                     direction={`/admin/CRUD`} 
