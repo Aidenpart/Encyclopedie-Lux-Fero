@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Loading } from "../../public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
-import { listeNatures, listSexes, listeRomans, listeDomaines, appartenancesLuxFero, appartenancesReginaMagicae, naturesMages, naturesCelestes, naturesAutres, naturesInfernales, listAttirances } from "../../../helpers/categories.js";
+import { listeNatures, listSexes, listeRomans, listeDomaines, appartenancesLuxFero, appartenancesReginaMagicae, listAttirances } from "../../../helpers/categories.js";
 import "./generalCRUD.scss"
 
 
@@ -49,21 +49,22 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
 
 
     useEffect(() => {
+
         switch (appartenance) {
             case "Cieux":
-                setNatures(naturesCelestes)
+                setNatures(listeNatures.Cieux)
                 break;
             case "Enfer":
-                setNatures(naturesInfernales)
+                setNatures(listeNatures.Enfer)
                 break;
             case "Humanité":
-                setNatures(naturesAutres)
+                setNatures(listeNatures.Humanite)
                 break;
             case "Mages":
-                setNatures(naturesMages)
+                setNatures(listeNatures.Mages)
                 break;              
             case "Autres":
-                setNatures(naturesAutres)
+                setNatures(listeNatures.Autres)
                 break;                                
             default:
                 setNatures([""])

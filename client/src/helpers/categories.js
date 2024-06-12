@@ -1,18 +1,23 @@
 export const appartenancesReginaMagicae = ["Humanité", "Mages", "Autres"];
 export const appartenancesLuxFero = ["Enfer", "Cieux", "Humanité"];
 
-export const naturesCelestes = ["Archange", "Ange Primordial(e)", "Ange"];
-export const naturesInfernales = ["Général(e) Infernal(e)", "Prince(sse) Démon(e)", "Déchu(e)", "Démon(e)", "Mage"];
-export const naturesMages = ["Mage", "Sorcier(ère)", "Mère de la Magie"];
-export const naturesAutres = ["Humain(e)", "Cavalier"];
 
-export const listeNatures = [ 
-    {nature:"Cieux", liste: ["Archange", "Ange Primordial(e)", "Ange"]},
-    {nature:"Enfer", liste: ["Général(e) Infernal(e)", "Prince(sse) Démon(e)", "Déchu(e)", "Démon(e)", "Mage"]},
-    {nature:"Humanité", liste: ["Humain(e)", "Cavalier"]}, 
-    {nature:"Mages", liste: ["Mage", "Sorcier(ère)", "Mère de la Magie"]}, 
-    {nature:"Autres", liste: ["Humain(e)", "Cavalier"]}
-]
+
+export const listeNatures = { 
+    Cieux: ["Archange", "Ange Primordial(e)", "Ange"],
+    Enfer: ["Général(e) Infernal(e)", "Prince(sse) Démon(e)", "Déchu(e)", "Démon(e)", "Mage"], 
+    Humanite: ["Humain(e)", "Cavalier"], 
+    Mages: ["Mage", "Sorcier(ère)", "Mère de la Magie"], 
+    Autres: ["Humain(e)", "Cavalier"]
+}
+
+export const listeDemeures = { 
+    Cieux: ["Cité d'Argent", "Eden", "Paradis", "Humanité", "Autre"],
+    Enfer: ["Pandore", "Volcans d'Adramelech", "Irkalla", "Kûr", "Autre"], 
+    Humanite: ["Afrique", "Amérique du Nord", "Amérique du Sud", "Antarctique", "Asie", "Europe", "Océanie"], 
+    Mages: ["Humanité", "Kûr", "Autre"], 
+    Autres: ["Humain(e)", "Cavalier"]
+}
 
 export const listeRomans = ["Lux Fero", "Regina Magicae"];
 export const listSexes = ["mâle", "femelle", "autre"];
