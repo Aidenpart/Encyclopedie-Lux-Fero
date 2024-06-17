@@ -39,7 +39,6 @@ export const createPersonnage = async (req, res) => {
             sexe: fields.sexe[0],
             attirance: fields.attirance[0],
             specialite: fields.specialite[0],
-            sousSpecialite: fields.sousSpecialite[0],
             description: fields.description[0],
             image: newPath
         });
@@ -56,7 +55,6 @@ export const createPersonnage = async (req, res) => {
                 sexe: personnage.sexe,
                 attirance: personnage.attirance,
                 specialite: personnage.specialite,
-                sousSpecialite: personnage.sousSpecialite,
                 roman: personnage.roman,
                 description: personnage.description,
                 image: newPath
@@ -119,7 +117,6 @@ export const updatePersonnage = async (req, res) => {
                 sexe: fields.sexe[0],
                 attirance: fields.attirance[0],
                 specialite: fields.specialite[0],
-                sousSpecialite: fields.sousSpecialite[0],
                 description: fields.description[0],
                 image: newPath
             },
