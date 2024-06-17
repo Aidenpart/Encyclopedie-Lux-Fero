@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Loading } from "../../public/loading/loading.js";
 import { getToken } from "../../../helpers/authHelpers.js";
-import { listeNatures, listeDetailsCRUD, listeAppartenances, listeDomaines, listeSpecs } from "../../../helpers/categories.js";
+import { listeNatures, listeDetailsCRUD, listeAppartenances, listeDomaines, listeSpecs, listeDemeures } from "../../../helpers/categories.js";
 import "./generalCRUD.scss"
 
 
@@ -11,25 +11,32 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
     const navigate = useNavigate();
     const romans = listeSpecs.romans;
     const nombreDeCaracteresLieu = 200;
-    const nombreDeCaracteresPersonnage = 100;
+    const nombreDeCaracteresPersonnage = 120;
     const [nombreDeCaracteresRestants, setNombreDeCaracteresRestants] = useState("")
     const [nom, setNom] = useState(initialValues.nom || "");
-    const [roman, setRoman] = useState(initialValues.roman || "");
-    const [appartenances, setAppartenances] = useState([]);
-    const [appartenance, setAppartenance] = useState(initialValues.appartenance || "");
+    const [roman, setRoman] = useState("");
+
     const [emplacement, setEmplacement] = useState(initialValues.emplacement || "");
     const [description, setDescription] = useState(initialValues.description || "");
     const [population, setPopulation] = useState(initialValues.population || "");
-    const [natures, setNatures] = useState([]);
-    const [nature, setNature] = useState(initialValues.nature || "");
-    const [demeure, setDemeure] = useState(initialValues.demeure || "");
+
     const [titrePrincipal, setTitrePrincipal] = useState(initialValues.titrePrincipal || "");
     const [titresSecondaires, setTitresSecondaires] = useState(initialValues.titresSecondaires || "");
     const [sexe, setSexe] = useState(initialValues.sexe || "");
     const [attirance, setAttirance] = useState(initialValues.attirance || "");
-    const [specialite, setSpecialite] = useState(initialValues.specialite || "");
-    const [sousSpecialite, setSousSpecialite] = useState(initialValues.sousSpecialite || "");
+    const [domaineSpecialite, setDomaineSpecialite] = useState("");
+    const [specialite, setSpecialite] = useState("");
+    const [sousSpecialite, setSousSpecialite] = useState(initialValues.specialite || "");
     const [image, setImage] = useState("");
+
+    const [appartenances, setAppartenances] = useState([]);
+    const [appartenance, setAppartenance] = useState("");
+    const [nature, setNature] = useState(initialValues.nature || "");
+    const [natures, setNatures] = useState([]);
+    const [demeure, setDemeure] = useState(initialValues.demeure || "");
+    const [demeures, setDemeures] = useState([]);
+
+
     const [message, setMessage] = useState("");
     const [token, setToken] = useState("");
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -53,30 +60,37 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
         switch (appartenance) {
             case "Cieux":
                 setNatures(listeNatures.Cieux)
+                setDemeures(listeDemeures.Cieux)
                 break;
             case "Enfer":
                 setNatures(listeNatures.Enfer)
+                setDemeures(listeDemeures.Enfer)
                 break;
             case "Humanité":
                 setNatures(listeNatures.Humanite)
+                setDemeures(listeDemeures.Humanite)
                 break;
             case "Mages":
                 setNatures(listeNatures.Mages)
+                setDemeures(listeDemeures.Mages)
                 break;              
             case "Autres":
                 setNatures(listeNatures.Autres)
+                setDemeures(listeDemeures.Autres)
                 break;                                
             default:
                 setNatures([""])
                 break;
         }
-    }, [appartenance, setNatures]);
+
+        setSpecialite(`${domaineSpecialite} - ${sousSpecialite}`)
+    }, [appartenance, domaineSpecialite, sousSpecialite, setNatures]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (roman === "-----" || appartenance === "-----" || (isPersonnage && (nature === "-----" || sexe === "-----" || attirance === "-----"))) {
-            setMessage("Veuillez sélectionner une valeur valide pour tous les champs.");
+        if (roman === "-----" || roman === "" || appartenance === "-----" || appartenance === "" || (isPersonnage && (nature === "-----" || sexe === "-----" || attirance === "-----"))) {
+            setMessage("Veuillez au moins sélectionner une valeur valide pour le roman et l'appartenance.");
             return;
         }
 
@@ -97,7 +111,6 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
             formData.append("sexe", sexe);
             formData.append("attirance", attirance);
             formData.append("specialite", specialite);
-            formData.append("sousSpecialite", sousSpecialite);
         };
 
         if(!isPersonnage) {
@@ -173,8 +186,12 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                             </select>
                         </label>                        
                         <label>Demeure :
-                            <input onChange={(e) => setDemeure(e.target.value)} value={demeure} type="text" required />
-                        </label>
+                            <select onChange={(e) => setDemeure(e.target.value)} value={demeure} required>
+                                <option>-----</option>
+                                {demeures.map((demeure, i) => {
+                                    return <option key={i}>{demeure}</option>;
+                                })}
+                            </select>                        </label>
                         <label>Titre Principal :
                             <input onChange={(e) => setTitrePrincipal(e.target.value)} value={titrePrincipal} type="text" required />
                         </label>
@@ -197,11 +214,16 @@ export const CreateOrModifyDataForm = ({ initialValues, onSubmit, isCreation, is
                                     })}
                             </select>
                         </label>
-                        <label>Spécialité :
-                            <input onChange={(e) => setSpecialite(e.target.value)} value={specialite} type="text" required />
+                        <label>Domaine de Spécialité :
+                            <select onChange={(e) => setDomaineSpecialite(e.target.value)} value={domaineSpecialite}>
+                                    <option>-----</option>
+                                    {listeDetailsCRUD.domainesSpecialites.map((domaineSpecialite, i) => {
+                                        return <option key={i}>{domaineSpecialite}</option>;
+                                    })}
+                            </select>
                         </label>
-                        <label>Sous-Spécialité :
-                            <input onChange={(e) => setSousSpecialite(e.target.value)} value={sousSpecialite} type="text" />
+                        <label>Spécialité :
+                            <input onChange={(e) => setSousSpecialite(e.target.value)} value={sousSpecialite} type="text" required />
                         </label>
                     </>}
                     {!isPersonnage && <>

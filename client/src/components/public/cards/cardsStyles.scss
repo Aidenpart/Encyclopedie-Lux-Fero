@@ -214,14 +214,17 @@
     width: 90%;
     margin: auto;
 
-    div {
+    .data-generic {
+        padding: 15px;
 
         p {
+            font-size: 0.9em;
             display: flex;
             justify-content: space-between;
             margin: 5px 0;
 
             .key {
+                font-style: italic;
                 text-decoration: underline; }
 
             .data {

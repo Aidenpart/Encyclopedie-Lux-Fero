@@ -1,7 +1,7 @@
 export const listeAppartenances = {
     ReginaMagicae : ["Humanité", "Mages", "Autres"],
     LuxFero: ["Enfer", "Cieux", "Humanité"]
-}
+};
 
 export const listeNatures = { 
     Cieux: ["Archange", "Ange Primordial(e)", "Ange"],
@@ -9,26 +9,26 @@ export const listeNatures = {
     Humanite: ["Humain(e)", "Cavalier"], 
     Mages: ["Mage", "Sorcier(ère)", "Mère de la Magie"], 
     Autres: ["Humain(e)", "Cavalier"]
-}
+};
 
 export const listeDemeures = { 
-    Cieux: ["Cité d'Argent", "Eden", "Paradis", "Humanité", "Autre"],
-    Enfer: ["Pandore", "Volcans d'Adramelech", "Irkalla", "Kûr", "Autre"], 
-    Humanite: ["Afrique", "Amérique du Nord", "Amérique du Sud", "Antarctique", "Asie", "Europe", "Océanie"], 
-    Mages: ["Humanité", "Kûr", "Autre"], 
-    Autres: ["Humain(e)", "Cavalier"]
-}
+    Cieux: ["Cité d'Argent", "Eden", "Paradis", "Humanité", "Autre", "Nomade"],
+    Enfer: ["Pandore", "Volcans d'Adramelech", "Irkalla", "Kûr", "Autre", "Nomade"], 
+    Humanite: ["Afrique", "Amérique du Nord", "Amérique du Sud", "Antarctique", "Asie", "Europe", "Océanie", "Nomade"], 
+    Mages: ["Afrique", "Amérique du Nord", "Amérique du Sud", "Antarctique", "Asie", "Europe", "Océanie", "Kûr", "Autre", "Nomade"]
+};
 
 export const listeDetailsCRUD = {
+    domainesSpecialites: ["Gestion", "Combat", "Magie", "Service", "Production"],
     romans: ["Lux Fero", "Regina Magicae"],
     sexes: ["mâle", "femelle", "autre"],
     attirances: ["hétérosexuelle", "homosexuelle", "bisexuelle", "asexuelle", "autres"]
-}
+};
 
 export const listeSpecs = {
     romans: ["Lux Fero", "Regina Magicae"],
     categories: ["lieux", "personnages", "fiches", "romans"]
-}
+};
 
 export const listeDomaines = [ 
     {domaine:"Architecture", couleur:"#E77728"},

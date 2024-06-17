@@ -34,7 +34,7 @@ export const CardResumeGeneric = (props) => {
 
     return (
         <article className="card-generic">
-            <div>
+            <div className="data-generic">
                 {Object.keys(data).map((key) => (
                     <p key={key}><span className="key">{key.toLocaleUpperCase()}</span><span className="data">{data[key]}</span></p>
                 ))}
