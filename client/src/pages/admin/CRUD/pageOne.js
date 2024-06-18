@@ -10,7 +10,8 @@ import { GenericLinkDynamicData } from "../../../components/public/links/links.j
 import { Footer } from "../../../components/public/footer/footer.js";
 import { CardResumeGeneric } from "../../../components/public/cards/cardsEncyclopedie.js";
 import { readOneData } from "../../../helpers/dataHelpers.js";
-import { CreateOrModifyDataForm, CreateOrModifyTextForm } from "../../../components/admin/CRUDGeneral/createOrModifyOne.js";
+import { CreateOrModifyDataForm } from "../../../components/admin/CRUDGeneral/createOrModifyData.js";
+import { CreateOrModifyTextForm } from "../../../components/admin/CRUDGeneral/createOrModifyText.js";
 import "../stylesAdmin.scss"
 
 
